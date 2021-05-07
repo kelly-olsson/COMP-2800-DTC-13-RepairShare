@@ -1,0 +1,35 @@
+body{
+    background-color: yellow;
+    display: grid;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+                "header"
+                "body"
+                "footer";
+    gap: 2%;
+}
+
+body >*{
+    border: 1px red solid;
+}
+
+main >*{
+    border: 3px gray solid;
+
+}
+
+footer nav ul{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+main{
+    border: green 2px solid;
+ 
+}
+
+#map{
+    height: 100%;
+}
