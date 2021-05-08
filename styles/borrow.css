@@ -8,6 +8,7 @@ body{
                 "body"
                 "footer";
     gap: 2%;
+    height: 100vh;
 }
 
 body >*{
@@ -32,4 +33,11 @@ main{
 
 #map{
     height: 100%;
+    width: 100%;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
 }
