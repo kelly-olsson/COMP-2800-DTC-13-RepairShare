@@ -10,46 +10,24 @@ function initMap() {
         center: location
     });
 
-    // // The marker, positioned at location
-    // const marker = new google.maps.Marker({
-    //     position: location,
-    //     map: map,
-    //     // icon:  can add a new image for the markeer by specifyin an img url
-    // });
+    // The marker, positioned at location
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        // icon: "repair.png"
+    });
 
-    // //this is how you add a window with some content to the map
-    // const detailWindow = new google.maps.InfoWindow({
-    //     content: "<h2> Hammer </h2>"
-    // });
+    //this is how you add a window with some content to the map
+    const detailWindow = new google.maps.InfoWindow({
+        content: "<h2> Hammer to lend! </h2> <img src='repair.png'>"
+    });
 
-    // //this pops open the content that was set 
-    // marker.addListener("mouseover", () =>{
-    //     detailWindow.open(map, marker)
-    // })
+    //this pops open the content that was set 
+    marker.addListener("click", () =>{
+        detailWindow.open(map, marker)
+    })
 
-    //ADD MARKER FUNCTION
 
-    function addMarker(property){
-
-        const marker = new google.maps.Marker({
-                position: property.location,
-                map: map,
-                // icon: property.icon
-            });
-
-            if(property.icon){
-                marker.setIcon(property.icon)
-            }
-    }
-
-    // addMarker(location)
-    let hammer = [{ lat: 49.282730, lng: -123.25 }, { lat: 49.282730, lng: -123.120745 }, { lat: 49.282730, lng: -123.15 }];
-    let picture = ["https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"]
-    for(let i = 0; i < hammer.length; i++) {
-        addMarker({location: hammer[i], 
-                   icon: picture[i]})
-
-    };
 }
 
 
