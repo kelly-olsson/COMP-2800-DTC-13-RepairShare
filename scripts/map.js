@@ -4,6 +4,7 @@
 
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 function initMap() {
+
     var location = { lat: 49.282730, lng: -123.120735 };
     var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 11,
@@ -19,13 +20,17 @@ function initMap() {
 
     //this is how you add a window with some content to the map
     const detailWindow = new google.maps.InfoWindow({
-        // content: "<div id='detail-window'><h2> Hammer to lend! </h2> <img src='repair.png'></div>"
         content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Link to Profile: <span id='window-profile'></span> </h3>"
     });
 
+    sayHello();
+    readCoordinateFromDatabase();
+
     //this pops open the content that was set 
     marker.addListener("click", () =>{
-        detailWindow.open(map, marker)
+        detailWindow.open(map, marker);
+        mapDetailWindow();
+        
     })
 }
 initMap();
@@ -59,7 +64,6 @@ function mapDetailWindow(){
                 })
         }})
 }
-mapDetailWindow();
 
 
 // Add provider marker, read data from Firestore 
@@ -75,7 +79,6 @@ function readCoordinateFromDatabase() {
                 })
         }})
 }
-readCoordinateFromDatabase();
 
 
 // Read user info from firebase and greet user based on user's name.
@@ -92,7 +95,6 @@ function sayHello() {
         }
     })
 }
-sayHello();
 
 
 
