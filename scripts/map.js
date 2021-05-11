@@ -27,7 +27,20 @@ function initMap() {
         detailWindow.open(map, marker)
     })
 
+    function initAuthentication(onAuthSuccess) {
+        firebase.auth().signInAnonymously().catch(function(error) {
+          console.log(error.code + ', ' + error.message);
+        }, {remember: 'sessionOnly'});
 
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            data.sender = user.uid;
+            onAuthSuccess();
+          } else {
+            // User is signed out.
+          }
+        });
+      }
 }
 
 
