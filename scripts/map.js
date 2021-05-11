@@ -39,7 +39,7 @@ function readCoordinateFromDatabase() {
                 .doc(somebody.uid) 
                 .get() 
                 .then(function (doc) {
-                    var n = doc.data().Location; 
+                    var n = doc.data().location; 
                     $("#location-goes-here").text(n); 
                 })
         }})
