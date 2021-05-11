@@ -19,16 +19,47 @@ function initMap() {
 
     //this is how you add a window with some content to the map
     const detailWindow = new google.maps.InfoWindow({
-        content: "<h2> Hammer to lend! </h2> <img src='repair.png'>"
+        // content: "<div id='detail-window'><h2> Hammer to lend! </h2> <img src='repair.png'></div>"
+        content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Link to Profile: <span id='window-profile'></span> </h3>"
     });
 
     //this pops open the content that was set 
     marker.addListener("click", () =>{
         detailWindow.open(map, marker)
     })
-
-
 }
+initMap();
+
+
+// Pull data from firestore to put in map detail window
+// function mapDetailWindow(doc){
+
+//     let mapWindow = document.getElementById("detail-window");
+//     let name = document.createElement(li);
+
+//     name.textContent = doc.data().name;
+
+//     mapWindow.appendChild(name);
+// }
+// mapDetailWindow(doc);
+
+function mapDetailWindow(){
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users") 
+                .doc(somebody.uid) 
+                .get() 
+                .then(function (doc) {
+                    var name = doc.data().name; 
+                    var rating = doc.data().rating; 
+                    var description = doc.data().description; 
+                    $("#window-name").text(name); 
+                    $("#window-rating").text(rating); 
+                    $("#window-description").text(description); 
+                })
+        }})
+}
+mapDetailWindow();
 
 
 // Add provider marker, read data from Firestore 
@@ -63,6 +94,30 @@ function sayHello() {
 }
 sayHello();
 
+
+
+//Carly's code to read data from the database
+// function readQuote(){
+//     db.collection("quotes").doc("tuesday")
+//     .onSnapshot(function(c){
+//         console.log ("current document data: " + c.data());                       //.data() returns data object
+//         document.getElementById("quote-goes-here").innerHTML = c.data().quote;    //using vanilla javascript
+//         //$('#quote-goes-here').text(c.data().quote);                             //using jquery object dot notation
+//         //$("#quote-goes-here").text(c.data()["quote"]);                          //using json object indexing
+//     })
+// }
+// readQuote();
+
+
+// var database = firebase.database();
+// var ref = database.ref("")
+
+// ref.on("value", function (snapshot) {
+//     snapshot.forEach(function (childSnapshot) {
+//         var data = childSnapshot.val()
+//         console.log(data)
+//     });
+// })
 
 
 
