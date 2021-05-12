@@ -1,11 +1,16 @@
 
 // PROBABLY the lat and lng need to be dynamically changed for each user!!!!!!!!!!!!!!!
 
+db.collection("users").get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        initMap(doc);
+    })
+})
 
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
-function initMap() {
+function initMap(doc) {
 
-    var location = { lat: 49.282730, lng: -123.120735 };
+    var location = { lat: doc.data().location[0], lng: doc.data().location[1] };
     var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 11,
         center: location
@@ -33,7 +38,7 @@ function initMap() {
         
     })
 }
-initMap();
+// initMap();
 
 
 // Pull data from firestore to put in map detail window
