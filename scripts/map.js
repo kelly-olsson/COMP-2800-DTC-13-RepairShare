@@ -42,8 +42,8 @@ function searchForTools() {
                     var toolsObject = doc.data();  // this is an object
                     for (var key in toolsObject){
                         console.log(Object.values(toolsObject));
-                        if (toolsObject.hasOwnProperty(key)) {
-                            console.log(key + " -> " + toolsObject[key]);
+                        if (toolsObject[key] == true) {
+                            console.log(key + "-> " + toolsObject[key]);
                         }
                         // if (Object.values(toolsObject) == true) {
                         //     console.log(key);
