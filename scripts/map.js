@@ -13,16 +13,16 @@ db.collection("users").get().then((snapshot) => {
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         var toolKeyword = document.getElementById("tool-keyword").value;
-        console.log(toolKeyword);
-        // searchForTools(toolKeyword)
+        // console.log(toolKeyword);
+        searchForTools(toolKeyword)
 
-        let array = [{lat: 49.2, lng: -123.1207}, {lat: 49.252, lng: -123.1207}, {lat: 49.23, lng: -123.1207}] //format of the data needed for tool search/show
-        addMarkerToMap(array); //this has to stay in order to populate the map with the markers of the search result submit 
+        // let array = [{ lat: 49.2, lng: -123.1207 }, { lat: 49.252, lng: -123.1207 }, { lat: 49.23, lng: -123.1207 }] //format of the data needed for tool search/show
+        // addMarkerToMap(array); //this has to stay in order to populate the map with the markers of the search result submit 
     })
 }
 addSubmitListener();
 
-
+var test;
 // function to search for tools with the keyword entered from borrow.html
 function searchForTools(toolKeyword) {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -31,31 +31,62 @@ function searchForTools(toolKeyword) {
             .collection("Tools")
             .where(toolKeyword, "==", true)
             .get()
-            .then(function (snapshot) {
+            .then(function (snapshot, test) {
                 snapshot.forEach(function (doc) {
                     console.log("keyword search works");
                     var toolsObject = doc.data();  // this is an object
+                    test = []
                     for (var key in toolsObject) {
                         // console.log(Object.values(toolsObject));
                         if (toolsObject[key] == true) {
                             // console.log(key + "-> " + toolsObject[key]);
+                            test.push(toolsObject);
                         }
-
-                        // then(function (toolsObject) {
-                        //     return toolsObject;
-
-                        // })
                     }
-                return toolsObject;
-                    
-                })
-                
-            })
-            return toolsObject;
-    })
+                    console.log(test)
+                }) 
+                console.log(test)
+                return test;
+            }).then(addMarkerToMap(test))      
+    })   
 }
-var testObject = searchForTools("Hammer");
-console.log("testObject: " + testObject);
+
+// firebase.auth().onAuthStateChanged(function (somebody) {
+//         if (somebody) {
+//             db.collection("users")
+//                 .doc(somebody.uid)
+//                 .get()
+//                 .then(function (doc) {
+//                     var name = doc.data().name;
+
+// { lat: 49.2, lng: -123.1207 }
+
+//a function to add multiple markers to the map based on secified coordinates
+function addMarkerToMap(coordinatesArray) {
+    for (let i = 0; i < coordinatesArray.length; i++) {
+        var location = coordinatesArray[i];
+        var newmarker = new google.maps.Marker({
+            position: location,
+            zoom: 11,
+            map: map,
+        });
+    }
+};
+
+// .then(addMarkerToMap(test))
+// .then(function(result) { // (**)
+
+//     alert(result); // 1
+//     return result * 2;
+  
+//   }).then(function(result)
+
+
+
+
+  
+// var testObject = searchForTools("Hammer");
+// console.log("test return: "+testObject);
 
 
 /*
@@ -83,7 +114,7 @@ function initMap(doc) {
     //     map: map,
     //     // icon: "repair.png"
     // });
-    
+
 
     //this is how you add a window with some content to the map
     const detailWindow = new google.maps.InfoWindow({
@@ -102,17 +133,7 @@ function initMap(doc) {
 }
 
 
-//a function to add multiple markers to the 
-function addMarkerToMap(coordinatesArray){
-    for (let i=0; i<coordinatesArray.length; i++){
-        var location = coordinatesArray[i];
-        var newmarker = new google.maps.Marker({
-            position: location,
-            zoom: 11,
-            map: map,
-        });
-    }
-};
+
 
 
 function mapDetailWindow() {
