@@ -6,4 +6,10 @@
         "First Second"
         "Third Fourth";
     gap: 20px;
+.mask{
+    background-color: rgba(0, 0, 0, 0.6)
+}
+
+.navbar-brand{
+    font-size: 24px;
 }
