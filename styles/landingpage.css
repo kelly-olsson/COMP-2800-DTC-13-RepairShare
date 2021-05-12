@@ -1,27 +1,35 @@
 #headline{
     font-size: 100px;
   }
-  
+
 .navbar-brand{
     font-size: 24px;
 }
-  .team-boxed {
+
+#bottomfooter{
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.team-boxed {
     color: #eaeaea;
     background-color: #eaeaea ;
   }
   
-  .team-boxed p {
+.team-boxed p {
     color:#7d8285;
   }
   
-  .team-boxed h2 {
+.team-boxed h2 {
     font-weight:bold;
     margin-bottom:40px;
     padding-top:40px;
     color:inherit;
   }
   
-  @media (max-width:767px) {
+@media (max-width:767px) {
     .team-boxed h2 {
       margin-bottom:25px;
       padding-top:25px;
@@ -29,7 +37,7 @@
     }
   }
   
-  .team-boxed .intro {
+.team-boxed .intro {
     font-size:16px;
     max-width:500px;
     margin:0 auto;
@@ -94,13 +102,8 @@
   .team-boxed .social a:hover {
     opacity:1;
   }
-  
-  #bottomfooter{
-    color: #eaeaea;
-    background-color: #eaeaea
-  }
-  
-  #bottomtext {
+    
+#bottomtext {
     color: black;
   }
 
