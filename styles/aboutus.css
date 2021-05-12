@@ -6,6 +6,8 @@
         "First Second"
         "Third Fourth";
     gap: 20px;
+}
+
 .mask{
     background-color: rgba(0, 0, 0, 0.6)
 }
