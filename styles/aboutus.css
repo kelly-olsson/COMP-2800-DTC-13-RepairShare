@@ -18,6 +18,7 @@
 
 .card {
     width: 50%;
+    border-style: none;
 }
 
 .card-img-top {
@@ -54,9 +55,9 @@
 }
 
 /* .missionstatement {
-    background-color: #bea493;s
-} */
+    background-color: #bea493;
+}
 
-/* #teamPicturesContainer{
+#teamPicturesContainer{
     background-color: #F5F5F5;
 } */
