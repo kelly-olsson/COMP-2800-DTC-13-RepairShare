@@ -1,7 +1,7 @@
 #teamPicturesContainer {
     display: grid;
     justify-content: center;
-    margin: 4em 0em 0em 0em;
+    margin: 2em 0em 0em 0em;
     grid-template-areas:
         "First Second"
         "Third Fourth";
@@ -54,3 +54,6 @@
     color: black;
 }
 
+body {
+    margin: 0em 0em 3em 0em;
+}
