@@ -30,26 +30,39 @@ function searchForTools(toolKeyword) {
             .doc(user.uid)
             .collection("Tools")
             .where(toolKeyword, "==", true)
-            .get()
-            .then(function (snapshot, test) {
-                snapshot.forEach(function (doc) {
+            .get() //does not return the snapshot per se, it just gives us a promise object  .then is invoked from the promise that is returned when .get finishes
+            .then(function (snapshot) {  //to get a handle on the data that .get returns, we use the snapshot. (this is a callback function) the input to that function is whateve the .get got for me
+                snapshot.forEach(function (doc) { // snapshot is a pointer to the data we get from .get()
                     console.log("keyword search works");
                     var toolsObject = doc.data();  // this is an object
+                    // console.log(doc.data())
                     test = []
                     for (var key in toolsObject) {
                         // console.log(Object.values(toolsObject));
                         if (toolsObject[key] == true) {
+                            getLocation(user.uid);
                             // console.log(key + "-> " + toolsObject[key]);
                             test.push(toolsObject);
+                            
                         }
                     }
-                    console.log(test)
+                    // console.log(test)
                 }) 
-                console.log(test)
+                // console.log(test)
                 return test;
             }).then(addMarkerToMap(test))      
     })   
 }
+
+function getLocation(param){
+    db.collection("users")
+    .doc(param)
+    .get()
+    .then(function(doc){
+        console.log(doc.data().location)
+    })
+}
+
 
 // firebase.auth().onAuthStateChanged(function (somebody) {
 //         if (somebody) {
