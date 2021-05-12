@@ -1,11 +1,11 @@
 #teamPicturesContainer {
     display: grid;
     justify-content: center;
-    margin: 8em 0em 0em 0em;
+    margin: 4em 0em 0em 0em;
     grid-template-areas:
         "First Second"
         "Third Fourth";
-    gap: 20px;
+    gap: 90px;
 }
 
 .mask {
