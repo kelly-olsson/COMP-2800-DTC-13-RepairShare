@@ -1,11 +1,66 @@
 
 // PROBABLY the lat and lng need to be dynamically changed for each user!!!!!!!!!!!!!!!
 
+// db.collection("tools").get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         console.log(doc.data());
+
+//     })
+// })
+
+
+// var ref = firebase.database().ref("users/tools");
+// ref.once("value")
+//     .then(function(snapshot) {
+//         var key = snapshot.key;
+//         var childKey = snapshot.child("name/last").key;
+//         console.log(key);
+//         console.log(childKey);
+//     })
+
+    
+// Pull data from firestore to pass to initMap function
 db.collection("users").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
+        // console.log(doc.data().location);
         initMap(doc);
+        // searchForTools(doc);
     })
 })
+
+
+function searchForTools() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.collection("users")
+            // .doc(user.uid)
+            // .collection("tools")
+            .where("rating", "==", 4.8)
+            .get()
+            .then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    console.log("works");
+                    console.log(doc.data().name);
+                })
+            })
+            // .then(function (snapshot) {
+            //     console.log("works");
+            //     snapshot.forEach(function (doc) {
+            //         var name = doc.data().name;
+            //         var info = doc.data().info;
+            //         var time = doc.data().time;
+            //         $("#habit-and-info").append("<h3 id='habit-title'> " + name + "</h3>");
+            //         if (time) {
+            //         $("#habit-and-info").append("<h6> " + info + ' (' + time + ')' + "</h6>");
+            //         }
+            //         else {
+            //         $("#habit-and-info").append("<h6> " + info + "</h6>");
+            //         }
+            //     })
+            // })
+    })
+}
+searchForTools();
+
 
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 function initMap(doc) {
