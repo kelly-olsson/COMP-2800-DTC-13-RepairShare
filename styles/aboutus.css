@@ -36,3 +36,10 @@
     text-align: center;
 }
 
+#intro {
+    padding-top: 2vh;
+}
+
+.missionstatement {
+    background-color: #bea493;
+}
