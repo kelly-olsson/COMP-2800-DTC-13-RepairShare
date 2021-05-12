@@ -1,3 +1,13 @@
+#teamPicturesContainer {
+    display: grid;
+    justify-content: center;
+    margin: 8em 0em 0em 0em;
+    grid-template-areas:
+        "First Second"
+        "Third Fourth";
+    gap: 20px;
+}
+
 .mask{
     background-color: rgba(0, 0, 0, 0.6)
 }
