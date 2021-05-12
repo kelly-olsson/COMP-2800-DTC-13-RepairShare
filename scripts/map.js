@@ -21,7 +21,7 @@
     
 // Pull data from firestore to pass to initMap function
 db.collection("users").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
+    snapshot.docs.forEach(function(doc) {
         // console.log(doc.data().location);
         initMap(doc);
         // searchForTools(doc);
@@ -32,14 +32,23 @@ db.collection("users").get().then((snapshot) => {
 function searchForTools() {
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("users")
-            // .doc(user.uid)
-            // .collection("tools")
-            .where("rating", "==", 4.8)
+            .doc(user.uid)
+            .collection("Tools")
+            .where("Hammer", "==", true)
             .get()
-            .then((snapshot) => {
-                snapshot.docs.forEach(doc => {
+            .then(function(snapshot) {
+                snapshot.forEach(function(doc) {
                     console.log("works");
-                    console.log(doc.data().name);
+                    var toolsObject = doc.data();  // this is an object
+                    for (var key in toolsObject){
+                        console.log(Object.values(toolsObject));
+                        if (toolsObject.hasOwnProperty(key)) {
+                            console.log(key + " -> " + toolsObject[key]);
+                        }
+                        // if (Object.values(toolsObject) == true) {
+                        //     console.log(key);
+                        // }
+                    }
                 })
             })
             // .then(function (snapshot) {
@@ -80,7 +89,7 @@ function initMap(doc) {
 
     //this is how you add a window with some content to the map
     const detailWindow = new google.maps.InfoWindow({
-        content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Link to Profile: <span id='window-profile'></span> </h3>"
+        content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
     });
 
     sayHello();
