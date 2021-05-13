@@ -81,7 +81,8 @@
     border-style: none;
 } */
 
-.card p {
+
+.title {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
@@ -92,5 +93,15 @@
 }
 
 #skillsheading{
-    margin-left: 10vw;
+    margin-left: 10vw;}
+    
+.columns {
+    display: grid;
+    text-align: left;
+    grid-template-areas:
+        "First Second";
+}
+
+.columns p {
+    padding: 0em 1em;
 }
