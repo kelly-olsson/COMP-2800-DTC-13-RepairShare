@@ -83,24 +83,15 @@
     margin-top: 2.5vh;
 }
 
-#chaticon{
-    padding-bottom: 1vh;
-}
-
 #learnmore{
     margin-left: 10vw;
     width: 75vw;
 
 }
 
-/* #chatbox{
-    width: 50vw;
-} */
-/* 
-.card {
-    border-style: none;
-} */
-
+#chatbox {
+    margin: 1em 0em 0em 0em;
+}
 
 .title {
     text-align: center;

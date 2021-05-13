@@ -68,3 +68,7 @@ hr{
     width: 80vw;
     margin-top: 2.5vh;
 }
+
+#bottomfooter a {
+    color: inherit;
+}

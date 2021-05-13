@@ -41,6 +41,10 @@ main{
     display: inline;
 }
 
+#bottomfooter a {
+    color: inherit;
+}
+
 /* footer{
     background-color: grey;
 } */
