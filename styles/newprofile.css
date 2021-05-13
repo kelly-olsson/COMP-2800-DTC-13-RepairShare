@@ -18,12 +18,20 @@
 
 #username{
     margin-top: 6vh;
-    margin-left: 5vw;
+    margin-left: 6vw;
 }
 
 #infobutton{
     display: flex;
     justify-content: center;
+}
+
+#membersince{
+    margin-left: 6vw;
+}
+
+#rating{
+    margin-left: 6vw;
 }
 
 .checked{
@@ -70,10 +78,10 @@
 } */
 
 .card {
-    text-align: center;
+    border-style: none;
 }
 
-.title {
+.card p {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
