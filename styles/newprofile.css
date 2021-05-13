@@ -1,4 +1,4 @@
-#bottomfooter{
+#bottomfooter {
     background-color: white;
     overflow: hidden;
     position: fixed;
@@ -26,15 +26,7 @@
     justify-content: center;
 }
 
-#membersince{
-    margin-left: 5vw;
-}
-
-#rating{
-    margin-left: 5vw;
-}
-
-.checked {
+.checked{
     color: blue;
   }
 
@@ -59,7 +51,7 @@
     width: 10vw;
 }
 
-.helpfulskills{
+#helpfulSkills {
     display: grid;
     justify-content: center;
     margin: 2em 0em 0em 0em;
@@ -69,6 +61,7 @@
     gap: 90px;
 }
 
+<<<<<<< HEAD
 #messagechunk{
     width: 75vw;
     margin-left: 10vw;
@@ -77,3 +70,14 @@
 /* #chatbox{
     width: 50vw;
 } */
+=======
+.card {
+    border-style: none;
+}
+
+.card p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+>>>>>>> adc7a8f26f6db33b9cee8429dca194e5f788c954
