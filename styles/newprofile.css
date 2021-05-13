@@ -1,4 +1,4 @@
-#bottomfooter{
+#bottomfooter {
     background-color: white;
     overflow: hidden;
     position: fixed;
@@ -18,7 +18,7 @@
     justify-content: center;
 }
 
-.checked {
+.checked{
     color: blue;
   }
 
@@ -43,7 +43,7 @@
     width: 10vw;
 }
 
-.helpfulskills{
+#helpfulSkills {
     display: grid;
     justify-content: center;
     margin: 2em 0em 0em 0em;
@@ -51,4 +51,16 @@
         "First Second"
         "Third Fourth";
     gap: 90px;
+}
+
+.card {
+    border-style: none;
+}
+
+ul {
+    border: none;
+}
+
+li {
+    border: none;
 }
