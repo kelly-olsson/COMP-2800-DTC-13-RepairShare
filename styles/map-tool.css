@@ -1,0 +1,44 @@
+body{
+    background-color: yellow;
+    display: grid;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+                "header"
+                "body"
+                "footer";
+    gap: 2%;
+    height: 100vh;
+}
+
+footer nav ul{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+main{
+    border: green 2px solid;
+ 
+}
+
+#map{
+    height: 90%;
+    width: 100%;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#bottomfooter{
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
