@@ -1,12 +1,57 @@
+// CITATION FOR GEOLOCATION: https://www.aspsnippets.com/Articles/Show-users-current-location-on-Google-Map-using-GeoLocation-API-in-website.aspx
+
 var map;
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 function initMap(doc) {
-
-    var location = { lat: doc.data().location[0], lng: doc.data().location[1] };
-    map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 11,
-        center: location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (p) {
+            var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+            var mapOptions = {
+                center: LatLng,
+                zoom: 13,
+                // mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+    // var location = { lat: doc.data().location[0], lng: doc.data().location[1] };
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Marker({
+        position: LatLng,
+        map: map,
+        icon: "repair.png"  //WE COULD ADD A CUSTOM MARKER TO THE MIDDLE or PULL THE LOGGED IN USER'S PROFILE PIC TO PUT THERE (LOOK BELOW FOR FAILED ATTEMPT)
     });
+})
+}
+
+//an attempt was made
+// var map;
+// // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
+// function initMap(doc) {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(function (p) {
+//             var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+//             var mapOptions = {
+//                 center: LatLng,
+//                 zoom: 13,
+//             };
+//     // var location = { lat: doc.data().location[0], lng: doc.data().location[1] };
+//     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+//     firebase.auth().onAuthStateChanged(function (somebody) {
+//         if (somebody) {
+//             db.collection("users")
+//                 .doc(somebody.uid)
+//                 .get()
+//                 .then(function (doc) {
+//                     var pic = doc.data().profilePicture;
+//                     var marker = new google.maps.Marker({
+//                         position: LatLng,
+//                         map: map,
+//                         icon: pic
+//                     });
+//                 })
+//         }
+//     })
+
+// })
+// }
 
     // // The marker, positioned at location of the user who has logged in 
     // const marker = new google.maps.Marker({
@@ -127,7 +172,7 @@ function searchForTools(toolKeyword) {
                 // console.log(test)
                 return test;
             })
-            // .then(addMarkerToMap(test))
+        // .then(addMarkerToMap(test))
     })
 }
 
@@ -169,61 +214,6 @@ function getLocation(param) {
             console.log(doc.data().location)
         })
 }
-
-
-// CARLY'S
-// function getLocation(param){
-//     db.collection("users")
-//     .doc(param)
-//     .get()
-//     .then(function(doc){
-//         console.log(doc.data().location)
-//     })
-// }
-
-
-// firebase.auth().onAuthStateChanged(function (somebody) {
-//         if (somebody) {
-//             db.collection("users")
-//                 .doc(somebody.uid)
-//                 .get()
-//                 .then(function (doc) {
-//                     var name = doc.data().name;
-
-// { lat: 49.2, lng: -123.1207 }
-
-
-
-// .then(addMarkerToMap(test))
-// .then(function(result) { // (**)
-
-//     alert(result); // 1
-//     return result * 2;
-
-//   }).then(function(result)
-
-
-
-
-
-// var testObject = searchForTools("Hammer");
-// console.log("test return: "+testObject);
-
-
-/*
-
-function add(a, b) {
-    return a+b;
-}
-var sum = add(1,2);
-console.log(sum)
-*/
-
-
-
-
-
-
 
 
 function mapDetailWindow() {
@@ -418,3 +408,54 @@ function sayHello() {
 // // }
 
 // mahanSearch("hammer");
+
+
+
+
+// CARLY'S
+// function getLocation(param){
+//     db.collection("users")
+//     .doc(param)
+//     .get()
+//     .then(function(doc){
+//         console.log(doc.data().location)
+//     })
+// }
+
+
+// firebase.auth().onAuthStateChanged(function (somebody) {
+//         if (somebody) {
+//             db.collection("users")
+//                 .doc(somebody.uid)
+//                 .get()
+//                 .then(function (doc) {
+//                     var name = doc.data().name;
+
+// { lat: 49.2, lng: -123.1207 }
+
+
+
+// .then(addMarkerToMap(test))
+// .then(function(result) { // (**)
+
+//     alert(result); // 1
+//     return result * 2;
+
+//   }).then(function(result)
+
+
+
+
+
+// var testObject = searchForTools("Hammer");
+// console.log("test return: "+testObject);
+
+
+/*
+
+function add(a, b) {
+    return a+b;
+}
+var sum = add(1,2);
+console.log(sum)
+*/
