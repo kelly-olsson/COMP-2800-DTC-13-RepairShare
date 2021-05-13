@@ -77,10 +77,6 @@
     width: 50vw;
 } */
 
-.card {
-    text-align: center;
-}
-
 .title {
     text-align: center;
     font-weight: bold;
@@ -89,4 +85,15 @@
 
 .card li {
     list-style: none;
+}
+
+.columns {
+    display: grid;
+    text-align: left;
+    grid-template-areas:
+        "First Second";
+}
+
+.columns p {
+    padding: 0em 1em;
 }
