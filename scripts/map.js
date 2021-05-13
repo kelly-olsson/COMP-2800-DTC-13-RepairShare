@@ -1,116 +1,3 @@
-
-// Pull data from firestore to pass to initMap function
-db.collection("users").get().then((snapshot) => {
-    snapshot.docs.forEach(function (doc) {
-        // console.log(doc.data().location);
-        initMap(doc);
-        // searchForTools(doc);
-    })
-})
-
-
-// function to listen to the submit event and call searchForTools
-function addSubmitListener() {
-    document.getElementById("submit").addEventListener("click", function () {
-        var toolKeyword = document.getElementById("tool-keyword").value;
-        // console.log(toolKeyword);
-        searchForTools(toolKeyword)
-
-        // let array = [{ lat: 49.2, lng: -123.1207 }, { lat: 49.252, lng: -123.1207 }, { lat: 49.23, lng: -123.1207 }] //format of the data needed for tool search/show
-        // addMarkerToMap(array); //this has to stay in order to populate the map with the markers of the search result submit 
-    })
-}
-addSubmitListener();
-
-var test;
-// function to search for tools with the keyword entered from borrow.html
-function searchForTools(toolKeyword) {
-    firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("users")
-            .doc(user.uid)
-            .collection("Tools")
-            .where(toolKeyword, "==", true)
-            .get() //does not return the snapshot per se, it just gives us a promise object  .then is invoked from the promise that is returned when .get finishes
-            .then(function (snapshot) {  //to get a handle on the data that .get returns, we use the snapshot. (this is a callback function) the input to that function is whateve the .get got for me
-                snapshot.forEach(function (doc) { // snapshot is a pointer to the data we get from .get()
-                    console.log("keyword search works");
-                    var toolsObject = doc.data();  // this is an object
-                    // console.log(doc.data())
-                    test = []
-                    for (var key in toolsObject) {
-                        // console.log(Object.values(toolsObject));
-                        if (toolsObject[key] == true) {
-                            getLocation(user.uid);
-                            // console.log(key + "-> " + toolsObject[key]);
-                            test.push(toolsObject);
-                            
-                        }
-                    }
-                    // console.log(test)
-                }) 
-                // console.log(test)
-                return test;
-            }).then(addMarkerToMap(test))      
-    })   
-}
-
-function getLocation(param){
-    db.collection("users")
-    .doc(param)
-    .get()
-    .then(function(doc){
-        console.log(doc.data().location)
-    })
-}
-
-
-// firebase.auth().onAuthStateChanged(function (somebody) {
-//         if (somebody) {
-//             db.collection("users")
-//                 .doc(somebody.uid)
-//                 .get()
-//                 .then(function (doc) {
-//                     var name = doc.data().name;
-
-// { lat: 49.2, lng: -123.1207 }
-
-//a function to add multiple markers to the map based on secified coordinates
-function addMarkerToMap(coordinatesArray) {
-    for (let i = 0; i < coordinatesArray.length; i++) {
-        var location = coordinatesArray[i];
-        var newmarker = new google.maps.Marker({
-            position: location,
-            zoom: 11,
-            map: map,
-        });
-    }
-};
-
-// .then(addMarkerToMap(test))
-// .then(function(result) { // (**)
-
-//     alert(result); // 1
-//     return result * 2;
-  
-//   }).then(function(result)
-
-
-
-
-  
-// var testObject = searchForTools("Hammer");
-// console.log("test return: "+testObject);
-
-
-/*
-function add(a, b) {
-    return a+b;
-}
-var sum = add(1,2);
-console.log(sum)
-*/
-
-
 var map;
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 function initMap(doc) {
@@ -144,6 +31,196 @@ function initMap(doc) {
 
     })
 }
+
+
+
+// Pull data from firestore to pass to initMap function
+db.collection("users").get().then((snapshot) => {
+    snapshot.docs.forEach(function (doc) {
+        // console.log(doc.data().location);
+        initMap(doc);
+        // searchForTools(doc);
+    })
+})
+
+
+var test;
+function getLocationH(toolKeyword) {
+    db.collection("users")
+        .where("tools." + toolKeyword, '==', true)
+        .get()
+        .then(function (snapshot) {
+            test = []
+            snapshot.forEach(function (doc) {
+                console.log(doc.data().location);
+                // console.log(typeof doc.data().location);
+                test.push(doc.data().location)
+                console.log(doc.data().location)
+                console.log(test)
+                // console.log(typeof test[0])
+            })
+            return test
+        })
+        .then(addMarkerToMap(test))
+}
+// getLocationH("hammer");
+
+//a function to add multiple markers to the map based on secified coordinates
+function addMarkerToMap(coordinatesArray) {
+    for (let i = 0; i < coordinatesArray.length; i++) {
+        let newLocation = new Map()
+        newLocation['lat'] = coordinatesArray[i][0]
+        newLocation['lng'] = coordinatesArray[i][1]
+        var location = newLocation;
+        console.log(location)
+        var newmarker = new google.maps.Marker({
+            position: location,
+            zoom: 11,
+            map: map,
+        });
+        // console.log("marker is getting called")
+    }
+};
+
+
+// function to listen to the submit event and call searchForTools
+function addSubmitListener() {
+    document.getElementById("submit").addEventListener("click", function () {
+        var toolKeyword = document.getElementById("tool-keyword").value;
+        getLocationH(toolKeyword);
+        // console.log(toolKeyword);
+        // searchForTools(toolKeyword)
+
+        // let array = [{ lat: 49.2, lng: -123.1207 }, { lat: 49.252, lng: -123.1207 }, { lat: 49.23, lng: -123.1207 }] //format of the data needed for tool search/show
+        // console.log(array)
+        // addMarkerToMap(array); //this has to stay in order to populate the map with the markers of the search result submit 
+    })
+}
+addSubmitListener();
+
+// var test;
+// function to search for tools with the keyword entered from borrow.html
+function searchForTools(toolKeyword) {
+    firebase.auth().onAuthStateChanged(function (user) {
+        db.collection("users")
+            .doc(user.uid)
+            .collection("Tools")
+            .where(toolKeyword, "==", true)
+            .get() //does not return the snapshot per se, it just gives us a promise object  .then is invoked from the promise that is returned when .get finishes
+            .then(function (snapshot) {  //to get a handle on the data that .get returns, we use the snapshot. (this is a callback function) the input to that function is whateve the .get got for me
+                snapshot.forEach(function (doc) { // snapshot is a pointer to the data we get from .get()
+                    console.log("keyword search works");
+                    var toolsObject = doc.data();  // this is an object
+                    // console.log(doc.data())
+                    test = []
+                    for (var key in toolsObject) {
+                        // console.log(Object.values(toolsObject));
+                        if (toolsObject[key] == true) {
+                            getLocation(user.uid);
+                            // console.log(key + "-> " + toolsObject[key]);
+                            test.push(toolsObject);
+
+                        }
+                    }
+                    // console.log(test)
+                })
+                // console.log(test)
+                return test;
+            })
+            // .then(addMarkerToMap(test))
+    })
+}
+
+function hannahSearch(toolKeyword) {
+    db.collection("users").doc(uid)
+        // console.log(Object.values(data().tools);
+        .collection("tools").doc
+        .where(toolKeyword, "==", true)
+        .get()
+        .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                console.log("hannah search works");
+                toolsObject = doc.data().tools; // type Object
+                console.log(Object.keys(toolsObject));
+                console.log(Object.values(toolsObject));
+
+                // for (var key in toolsObject) {
+
+                // }
+            })
+        })
+}
+// hannahSearch("hammer");
+
+
+// let array = [{ lat: 49.2, lng: -123.1207 }, { lat: 49.252, lng: -123.1207 }, { lat: 49.23, lng: -123.1207 }] //format of the data needed for tool search/show
+// Objects within an array
+
+
+
+// addMarkerToMap([{ lat: 49.2, lng: -123.1207 }, { lat: 49.252, lng: -123.1207 }, { lat: 49.23, lng: -123.1207 }]);
+
+// { lat: 49.2, lng: -123.1207 }
+
+function getLocation(param) {
+    db.ref("users/")
+        .get()
+        .then(function (doc) {
+            console.log(doc.data().location)
+        })
+}
+
+
+// CARLY'S
+// function getLocation(param){
+//     db.collection("users")
+//     .doc(param)
+//     .get()
+//     .then(function(doc){
+//         console.log(doc.data().location)
+//     })
+// }
+
+
+// firebase.auth().onAuthStateChanged(function (somebody) {
+//         if (somebody) {
+//             db.collection("users")
+//                 .doc(somebody.uid)
+//                 .get()
+//                 .then(function (doc) {
+//                     var name = doc.data().name;
+
+// { lat: 49.2, lng: -123.1207 }
+
+
+
+// .then(addMarkerToMap(test))
+// .then(function(result) { // (**)
+
+//     alert(result); // 1
+//     return result * 2;
+
+//   }).then(function(result)
+
+
+
+
+
+// var testObject = searchForTools("Hammer");
+// console.log("test return: "+testObject);
+
+
+/*
+
+function add(a, b) {
+    return a+b;
+}
+var sum = add(1,2);
+console.log(sum)
+*/
+
+
+
 
 
 
@@ -241,45 +318,47 @@ function sayHello() {
 
 
 
-//  //This code enables panning to the devices location. 
-//  var infoWindow = new google.maps.InfoWindow();
-//  const locationButton = document.createElement("button");
-//  locationButton.textContent = "Pan to Current Location";
-//  locationButton.classList.add("custom-map-control-button");
-//  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-//  locationButton.addEventListener("click", () => {
-//      // Try HTML5 geolocation.
-//      if (navigator.geolocation) {
-//          navigator.geolocation.getCurrentPosition(
-//              (position) => {
-//                  const pos = {
-//                      lat: position.coords.latitude,
-//                      lng: position.coords.longitude,
-//                  };
-//                  infoWindow.setPosition(pos);
-//                  infoWindow.setContent("Location found.");
-//                  infoWindow.open(map);
-//                  map.setCenter(pos);
-//              },
-//              () => {
-//                  handleLocationError(true, infoWindow, map.getCenter());
-//              }
-//          );
-//      } else {
-//          // Browser doesn't support Geolocation
-//          handleLocationError(false, infoWindow, map.getCenter());
-//      }
-//  });
+//This code enables panning to the devices location. 
+
+// function geoLocation() {
+//     var infoWindow = new google.maps.InfoWindow();
+//     const locationButton = document.createElement("button");
+//     locationButton.textContent = "Pan to Current Location";
+//     locationButton.classList.add("custom-map-control-button");
+//     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+//     locationButton.addEventListener("click", () => {
+//         // Try HTML5 geolocation.
+//         if (navigator.geolocation) {
+//             navigator.geolocation.getCurrentPosition(
+//                 (position) => {
+//                     const pos = {
+//                         lat: position.coords.latitude,
+//                         lng: position.coords.longitude,
+//                     };
+//                     infoWindow.setPosition(pos);
+//                     infoWindow.setContent("Location found.");
+//                     infoWindow.open(map);
+//                     map.setCenter(pos);
+//                 },
+//                 () => {
+//                     handleLocationError(true, infoWindow, map.getCenter());
+//                 }
+//             );
+//         } else {
+//             // Browser doesn't support Geolocation
+//             handleLocationError(false, infoWindow, map.getCenter());
+//         }
+//     });
 // }
 
 // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//  infoWindow.setPosition(pos);
-//  infoWindow.setContent(
-//      browserHasGeolocation
-//          ? "Error: The Geolocation service failed."
-//          : "Error: Your browser doesn't support geolocation."
-//  );
-//  infoWindow.open(map);
+//     infoWindow.setPosition(pos);
+//     infoWindow.setContent(
+//         browserHasGeolocation
+//             ? "Error: The Geolocation service failed."
+//             : "Error: Your browser doesn't support geolocation."
+//     );
+//     infoWindow.open(map);
 // }
 
 
@@ -321,3 +400,21 @@ function sayHello() {
         //         }
         //     })
         // })
+
+
+        // function mahanSearch(tool){
+//     var me = "tools." + tool
+//     console.log(me)
+//     var toolRef = db.collection("users")
+//     var query = toolRef.where(me, '==', true)
+//     query.get()
+//     .then()
+// }
+
+//     // .get()
+//     // .then(function(doc){
+//         // console.log(doc)
+// //     })
+// // }
+
+// mahanSearch("hammer");

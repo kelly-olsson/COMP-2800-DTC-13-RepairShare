@@ -1,4 +1,10 @@
-
+function writeUserData(userId, name, email, imageUrl) {
+    firebase.database().ref('users/' + userId).set({
+      username: name,
+      email: email,
+      profile_picture : imageUrl
+    });
+  }
 // var firebase = new Firebase("https://repairshare-ce54f-default-rtdb.firebaseio.com");
 
 // function initMap() {
@@ -115,3 +121,5 @@
 //     data.lng = e.latLng.lng();
 //     addToFirebase(data);
 //   });
+
+
