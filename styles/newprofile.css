@@ -1,0 +1,54 @@
+#bottomfooter{
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#profile-photo{
+    margin-top: 2vh;
+    border-radius: 50%;
+}
+
+#infobutton{
+    display: flex;
+    justify-content: center;
+}
+
+.checked {
+    color: blue;
+  }
+
+#reviewscore{
+    color: black;
+}
+
+#reviews{
+    border-style: none;
+}
+
+#reviewtitle{
+    text-transform: uppercase;
+}
+
+.aboutuser{
+    width: 75vw;
+    margin-left: 10vw;
+}
+
+#dividingskills{
+    width: 10vw;
+}
+
+.helpfulskills{
+    display: grid;
+    justify-content: center;
+    margin: 2em 0em 0em 0em;
+    grid-template-areas:
+        "First Second"
+        "Third Fourth";
+    gap: 90px;
+}

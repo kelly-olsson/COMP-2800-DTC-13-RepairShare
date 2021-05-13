@@ -59,3 +59,12 @@
 body {
     margin: 0em 0em 3em 0em;
 }
+
+#introbody{
+    width: 75vw
+}
+
+hr{
+    width: 80vw;
+    margin-top: 2.5vh;
+}
