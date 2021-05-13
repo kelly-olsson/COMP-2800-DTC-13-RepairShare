@@ -54,3 +54,7 @@
 .carousel-inner .carousel-item-left{ 
   transform: translateX(0);
 }
+
+#bottomfooter a {
+    color: inherit;
+}
