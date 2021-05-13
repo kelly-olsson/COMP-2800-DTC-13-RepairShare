@@ -11,15 +11,6 @@ body{
     height: 100vh;
 }
 
-body >*{
-    border: 1px red solid;
-}
-
-main >*{
-    border: 3px gray solid;
-
-}
-
 footer nav ul{
     display: flex;
     justify-content: space-around;
@@ -32,7 +23,7 @@ main{
 }
 
 #map{
-    height: 100%;
+    height: 90%;
     width: 100%;
 
 }
@@ -40,4 +31,14 @@ main{
 * {
     margin: 0;
     padding: 0;
+}
+
+#bottomfooter{
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }

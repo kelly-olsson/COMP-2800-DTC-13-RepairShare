@@ -13,11 +13,11 @@ function initMap(doc) {
             };
     // var location = { lat: doc.data().location[0], lng: doc.data().location[1] };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    var marker = new google.maps.Marker({
-        position: LatLng,
-        map: map,
-        icon: "repair.png"  //WE COULD ADD A CUSTOM MARKER TO THE MIDDLE or PULL THE LOGGED IN USER'S PROFILE PIC TO PUT THERE (LOOK BELOW FOR FAILED ATTEMPT)
-    });
+    // var marker = new google.maps.Marker({
+    //     position: LatLng,
+    //     map: map,
+    //     // icon: "repair.png"  //WE COULD ADD A CUSTOM MARKER TO THE MIDDLE or PULL THE LOGGED IN USER'S PROFILE PIC TO PUT THERE (LOOK BELOW FOR FAILED ATTEMPT)
+    // });
 })
 }
 
