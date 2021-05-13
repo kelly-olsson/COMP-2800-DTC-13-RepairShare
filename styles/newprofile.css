@@ -54,10 +54,9 @@
 #helpfulSkills {
     display: grid;
     justify-content: center;
-    margin: 2em 0em 0em 0em;
+    margin: 2em 0em 2em 0em;
     grid-template-areas:
-        "First Second"
-        "Third Fourth";
+        "First Second";
     gap: 90px;
 }
 
