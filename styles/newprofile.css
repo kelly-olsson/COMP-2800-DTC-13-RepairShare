@@ -105,3 +105,7 @@
 .columns p {
     padding: 0em 1em;
 }
+
+#bottomfooter a {
+    color: inherit;
+}
