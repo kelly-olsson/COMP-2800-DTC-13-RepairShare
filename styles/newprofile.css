@@ -76,6 +76,11 @@
 /* #chatbox{
     width: 50vw;
 } */
+/* 
+.card {
+    border-style: none;
+} */
+
 
 .title {
     text-align: center;
@@ -87,6 +92,9 @@
     list-style: none;
 }
 
+#skillsheading{
+    margin-left: 10vw;}
+    
 .columns {
     display: grid;
     text-align: left;
