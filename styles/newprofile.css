@@ -83,14 +83,18 @@
     margin-top: 2.5vh;
 }
 
-#chaticon{
+/* #chaticon{
     padding-bottom: 1vh;
-}
+} */
 
 #learnmore{
     margin-left: 10vw;
     width: 75vw;
 
+}
+
+#chatbox {
+    margin: 1em 0em 0em 0em;
 }
 
 /* #chatbox{
