@@ -9,13 +9,29 @@
 }
 
 #profile-photo{
-    margin-top: 2vh;
+    margin-top: 4vh;
+    margin-right: 10vw;
     border-radius: 50%;
+    width: 25vw;
+    float: right;
+}
+
+#username{
+    margin-top: 6vh;
+    margin-left: 5vw;
 }
 
 #infobutton{
     display: flex;
     justify-content: center;
+}
+
+#membersince{
+    margin-left: 5vw;
+}
+
+#rating{
+    margin-left: 5vw;
 }
 
 .checked {
@@ -52,3 +68,12 @@
         "Third Fourth";
     gap: 90px;
 }
+
+#messagechunk{
+    width: 75vw;
+    margin-left: 10vw;
+}
+
+/* #chatbox{
+    width: 50vw;
+} */
