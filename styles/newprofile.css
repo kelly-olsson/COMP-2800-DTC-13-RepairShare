@@ -71,6 +71,26 @@
 #messagechunk{
     width: 75vw;
     margin-left: 10vw;
+    margin-top: 2.5vh;
+}
+
+#dividingline2{
+    width: 75vw;
+    margin-left: 10vw;
+}
+
+#dividingline3{ 
+    margin-top: 2.5vh;
+}
+
+#chaticon{
+    padding-bottom: 1vh;
+}
+
+#learnmore{
+    margin-left: 10vw;
+    width: 75vw;
+
 }
 
 /* #chatbox{
