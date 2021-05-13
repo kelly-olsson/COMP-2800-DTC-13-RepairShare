@@ -72,12 +72,19 @@
 } */
 =======
 .card {
-    border-style: none;
+    text-align: center;
 }
 
-.card p {
+.title {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
 }
+<<<<<<< HEAD
 >>>>>>> adc7a8f26f6db33b9cee8429dca194e5f788c954
+=======
+
+.card li {
+    list-style: none;
+}
+>>>>>>> 4ed87623955cb18110df59e420854814f8be0b4b
