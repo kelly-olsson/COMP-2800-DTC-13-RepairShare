@@ -1,14 +1,24 @@
 body{
-    background-color: yellow;
     display: grid;
-    grid-template-rows: 1fr 10fr 1fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr;
     grid-template-areas:
                 "header"
-                "body"
-                "footer";
+                "body";
     gap: 2%;
     height: 100vh;
+}
+
+#submit {
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    border: none;
+    background-color: #ffe605;
+    padding: 0px 0px 4px 0px;
+}
+
+#searchIcon {
+    height: 1em;
 }
 
 footer nav ul{
@@ -19,13 +29,11 @@ footer nav ul{
 
 main{
     border: green 2px solid;
- 
 }
 
 #map{
     height: 90%;
     width: 100%;
-
 }
 
 * {
@@ -44,5 +52,6 @@ main{
 }
 
 #bottomfooter a {
-    color: inherit;
+    color: black;
+    text-decoration: none;
 }
