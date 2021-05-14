@@ -42,9 +42,6 @@ main{
 }
 
 #bottomfooter a {
-    color: inherit;
+    color: black;
+    text-decoration: none;
 }
-
-/* footer{
-    background-color: grey;
-} */
