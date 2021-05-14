@@ -121,3 +121,23 @@
     color: black;
     text-decoration: none;
 }
+
+#reviews {
+    margin-top: 2vh;
+    margin-left: 10vw;
+    width: 75vw;
+}
+
+#reviewer-photo{
+    border-radius: 50%;
+    width:10vw;
+}
+
+#reviewer-name{
+    margin-left: 2vw;
+
+}
+
+#numberofreviews{
+    margin-left: 10vw;
+}
