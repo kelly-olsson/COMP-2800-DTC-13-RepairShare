@@ -60,7 +60,7 @@ function sayHello() {
 
 
 
-
+// let content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3><h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
 
 // Being called by an event listener
 function mapDetailWindow(userID, i) {
@@ -72,12 +72,17 @@ function mapDetailWindow(userID, i) {
             console.log(".then works at line 68");
             console.log(doc.data().name)
             var name = doc.data().name;
-            // var rating = doc.data().rating;
-            // var description = doc.data().description;
+            var rating = doc.data().rating;
+            var description = doc.data().description;
+            var picture = doc.data().profilePicture;
             console.log("line 70")
             console.log('#window-name_' + i + '')
 
             $('#window-name_' + i + '').text(name);
+            $('#window-rating_' + i + '').text(rating);
+            $('#window-description_' + i + '').text(description);
+            $('.profile-pic_' + i + '').attr("src", picture);
+            
 
             // $("#window-name_1").text(name);
             // $("#window-name_0").text(name);
@@ -114,7 +119,7 @@ function setMarkers(map, megaArray){
         });
 
         //   + "'>User</span> </h3> <h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-    let content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
+    let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='https://randomuser.me/api/portraits/men/1.jpg' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
 
     // mapDetailWindow(userID, i);
 

@@ -17,10 +17,10 @@ footer nav ul{
     list-style-type: none;
 }
 
-main{
+/* main{
     border: green 2px solid;
  
-}
+} */
 
 #map{
     height: 90%;
@@ -41,4 +41,8 @@ main{
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.profile-pic {
+    float:left;
 }
