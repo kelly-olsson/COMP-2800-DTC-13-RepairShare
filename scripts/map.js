@@ -57,35 +57,46 @@ function sayHello() {
 // }
 // }
 
-function mapDetailWindow(userID) {
-    // console.log(userID);
+
+// Being called by an event listener
+function mapDetailWindow(userID, i) {
+    console.log("mapDetailWindow is being called at line 63");
     db.collection("users")
         .doc(userID)
         .get()
         .then(function (doc) {
-            // console.log(doc.data())
+            console.log(".then works at line 68");
+            console.log(doc.data().name)
             var name = doc.data().name;
-            var rating = doc.data().rating;
-            var description = doc.data().description;
-            $("#window-name").text(name);
-            $("#window-rating").text(rating);
-            $("#window-description").text(description);
+            // var rating = doc.data().rating;
+            // var description = doc.data().description;
+            console.log("line 70")
+            console.log('#window-name_' + i + '')
+            // $("#window-name_1").text(name);
+            // ISSUE IS NEXT LINE
+            // document.getElementById("window-name_"+i).textContent = name;
+            $('#window-name_' + i + '').text(name);
+            // console.log(document.getElementById("window_name_0".value))
+            // $("#window-rating_" + i).text(rating);
+            // $("#window-description_" + i).text(description);
+            console.log("end of map detail reached")
         })
 }
+
+
+// CLOSURE
 
 function setMarkers(map, megaArray){
   
     var marker, i
-
+    // console.log(i)
 for (i = 0; i < megaArray.length; i++){  
 
     var lat = megaArray[i][0][0]
     var lng = megaArray[i][0][1]
     var userID = megaArray[i][1]
-    console.log(lng)
-    console.log(lat)
-    console.log(typeof lat)
-
+    console.log(userID)
+    console.log(i)
 
     var location = new google.maps.LatLng(lat, lng);
 
@@ -94,19 +105,34 @@ var marker = new google.maps.Marker({
         position: location  
       });
 
+    //   + "'>User</span> </h3> <h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
+var content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
 
-var content = "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-mapDetailWindow(userID)
+mapDetailWindow(userID, i);
+
+
+console.log("line 100")
+console.log(content)
 var infowindow = new google.maps.InfoWindow()
+console.log(i)
+
+// var infowindow = new google.maps.InfoWindow({
+//     content : "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
+// });
+
 
 google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
       return function() {
+        console.log(i)
          infowindow.setContent(content);
          infowindow.open(map,marker);
+
       };
+      
   })(marker,content,infowindow)); 
 
-};
+
+}; // for loop ends here
 
 }
 
@@ -122,8 +148,8 @@ function getLocationH(toolKeyword) {
                 
                 tempArray.push(doc.data().location)
                 tempArray.push(doc.id)
-                console.log("user uid line 223")
-                console.log(doc.id)
+                // console.log("user uid line 223")
+                // console.log(doc.id)
 
                 megaArray.push(tempArray)
             })
@@ -135,6 +161,8 @@ function getLocationH(toolKeyword) {
 }
 
 initMap();
-// sayHello();
+sayHello();
 addSubmitListener();
 // readCoordinateFromDatabase();
+
+
