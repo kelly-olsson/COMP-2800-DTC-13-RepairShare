@@ -1,6 +1,7 @@
 // CITATION FOR GEOLOCATION: https://www.aspsnippets.com/Articles/Show-users-current-location-on-Google-Map-using-GeoLocation-API-in-website.aspx
 var locationArray;
-
+var megaArray;
+var newMEGAArray;
 var map;
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 function initMap(doc) {
@@ -167,64 +168,83 @@ function sayHello() {
 // }
 
 
-function addInfoWindow(marker){
-    var detailWindow = new google.maps.InfoWindow({
-        content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-    });
-        //this pops open the content that was set 
-        marker.addListener("click", () => {
-            detailWindow.open(map, marker);
-            mapDetailWindow();
-    
+
+// [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
+function addInfoWindow(newMEGAArray){
+    for (let i = 0; i < megaArray.length; i++) {
+        var detailWindow = new google.maps.InfoWindow({
+            content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
+        });
+            var marker = newMEGAArray[i][0]
+            var userID = newMEGAArray[i][1]
+            //this pops open the content that was set 
+            marker.addListener("click", () => {
+                detailWindow.open(map, marker);
+                console.log("Issue is map detail window");
+                console.log(userID);
+                mapDetailWindow(userID);
+        
+            })
+}
+}
+
+function mapDetailWindow(userID) {
+    // console.log(userID);
+    db.collection("users")
+        .doc(userID)
+        .get()
+        .then(function (doc) {
+            // console.log(doc.data())
+            var name = doc.data().name;
+            var rating = doc.data().rating;
+            var description = doc.data().description;
+            $("#window-name").text(name);
+            $("#window-rating").text(rating);
+            $("#window-description").text(description);
         })
 }
 
-
-function mapDetailWindow() {
-    firebase.auth().onAuthStateChanged(function (somebody) {
-        if (somebody) {
-            db.collection("users")
-                .doc(somebody.uid)
-                .get()
-                .then(function (doc) {
-                    var name = doc.data().name;
-                    var rating = doc.data().rating;
-                    var description = doc.data().description;
-                    $("#window-name").text(name);
-                    $("#window-rating").text(rating);
-                    $("#window-description").text(description);
-                })
-        }
-    })
-}
+// [
+//  [[long:, lat:] , UID], 
+//  [[long:, lat:] , UID]
+// ]
 
 function getLocationH(toolKeyword) {
     db.collection("users")
         .where("tools." + toolKeyword, '==', true)
         .get()
         .then(function (snapshot) {
-            locationArray = []
+            megaArray = []   // [[[long:, lat:] , UID], [[long:, lat:] , UID]]
             snapshot.forEach(function (doc) {
-                console.log(doc.data().location);
-                // console.log(typeof doc.data().location);
-                locationArray.push(doc.data().location)
-                console.log(doc.data().location)
-                console.log(locationArray)
-                // console.log(typeof test[0])
+                var tempArray = []
+
+                tempArray.push(doc.data().location)
+                tempArray.push(doc.id)
+                console.log("user uid line 223")
+                console.log(doc.id)
+
+                megaArray.push(tempArray)
             })
-            return locationArray
+            console.log("megaArray line 229")
+            console.log(megaArray)
+            return megaArray
         })
-        .then(addMarkerToMap(locationArray))
-        // .then()
+        .then(addMarkerToMap(megaArray))
 }
 
+// megaArray = [[[long:, lat:] , UID], [[long:, lat:] , UID]]
+
+// return this -> [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
+
 //a function to add multiple markers to the map based on secified coordinates
-function addMarkerToMap(coordinatesArray) {
-    var markers = []
-    for (let i = 0; i < coordinatesArray.length; i++) {
+function addMarkerToMap(megaArray) {
+    newMEGAArray = []
+    for (let i = 0; i < megaArray.length; i++) {
+        var newTEMPArray = []
+        let accessedUID = megaArray[i][1]
         let newLocation = new Map()
-        newLocation['lat'] = coordinatesArray[i][0]
-        newLocation['lng'] = coordinatesArray[i][1]
+        newLocation['lat'] = megaArray[i][0][0]
+        newLocation['lng'] = megaArray[i][0][1]
         var location = newLocation;
         console.log(location)
         var newmarker = new google.maps.Marker({
@@ -232,10 +252,17 @@ function addMarkerToMap(coordinatesArray) {
             zoom: 11,
             map: map,
         });
-        markers.push[newmarker]
-        // console.log(markers)
-        addInfoWindow(newmarker)
+        newTEMPArray.push(newmarker)
+        newTEMPArray.push(accessedUID)
+        // markers.push[newmarker]
+        // console.log(markers)  
+        newMEGAArray.push(newTEMPArray)
+        console.log("newTEMPArray")
+        console.log(newTEMPArray)
     }
+    console.log(newMEGAArray)
+    addInfoWindow(newMEGAArray)
+
 };
 
 
@@ -247,4 +274,4 @@ function addMarkerToMap(coordinatesArray) {
 
 sayHello();
 addSubmitListener();
-readCoordinateFromDatabase();
+// readCoordinateFromDatabase();
