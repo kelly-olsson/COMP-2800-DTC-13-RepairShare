@@ -76,8 +76,11 @@ function mapDetailWindow(userID, i) {
             // var description = doc.data().description;
             console.log("line 70")
             console.log('#window-name_' + i + '')
-            $("#window-name_1").text(name);
-            $("#window-name_0").text(name);
+
+            $('#window-name_' + i + '').text(name);
+
+            // $("#window-name_1").text(name);
+            // $("#window-name_0").text(name);
             // ISSUE IS NEXT LINE
             // document.getElementById("window-name_"+i).textContent = name;
             // $('#window-name_' + i + '').text(name);
