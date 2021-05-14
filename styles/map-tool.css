@@ -1,9 +1,4 @@
 body{
-    /* display: grid;
-    grid-template-rows: 1fr 10fr;
-    grid-template-areas:
-                "header"
-                "body"; */
     gap: 2%;
     height: 100vh;
 }
@@ -52,13 +47,10 @@ main{
     justify-content: space-around;
 }
 
-<<<<<<< HEAD
 .profile-pic {
     float:left;
 }
-=======
 #bottomfooter a {
     color: black;
     text-decoration: none;
 }
->>>>>>> fe650a06386dd993727b798e8024d7f275974ffa
