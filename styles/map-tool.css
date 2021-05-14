@@ -1,9 +1,9 @@
 body{
-    display: grid;
+    /* display: grid;
     grid-template-rows: 1fr 10fr;
     grid-template-areas:
                 "header"
-                "body";
+                "body"; */
     gap: 2%;
     height: 100vh;
 }
@@ -28,7 +28,8 @@ footer nav ul{
 }
 
 main{
-    border: green 2px solid;
+    margin: 3.5em 0em 0em 0em;
+    height: 75vh;
 }
 
 #map{
