@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/map-tool.css" rel="stylesheet">
 
-    <title class> Repair Share </title>
+    <title class>RepairShare</title>
     <script src="jquery-3.5.1.min.js"></script>
     <script src="./JS/index.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -61,15 +61,18 @@
         </div> -->
     </header>
 
-
     <main>
         <div>
-            <h2>What tools are you looking for?</h2>
             <h3> Hello, <span id="name-goes-here">User!</span> </h3>
+<<<<<<< HEAD
             <!-- <h3> Your location is <span id="location-goes-here"></span> </h3> --> <!--R-->
+=======
+            <h3> Your location is <span id="location-goes-here"></span> </h3>
+            <h2>What tools are you looking for?</h2>
+>>>>>>> fe650a06386dd993727b798e8024d7f275974ffa
             <form>
-                <input type="text" id="tool-keyword">
-                <button type='button' id="submit">Submit</button>
+                <input type="text" id="tool-keyword" placeholder="Search">
+                <button type='button' id="submit"><span class="iconify" id="searchIcon" data-icon="oi:magnifying-glass" data-inline="false" data-height="30"></span></button>
             </form>
         </div>
         <div id="map"></div>
@@ -77,14 +80,13 @@
 
     <footer>
         <div class="navbar" id="bottomfooter">
-            <a href="###" class="iconify" data-icon="fluent:home-12-filled" data-inline="false" data-height="48"></a>
-            <a href="" class="iconify" data-icon="oi:magnifying-glass" data-inline="false" data-height="48"></a>
-            <a href="" class="iconify" data-icon="cil:speech" data-inline="false" data-height="48"></a>
-            <a href="" class="iconify" data-icon="el:map-marker" data-inline="false" data-height="48"></a>
-            <a href="" class="iconify" data-icon="vs:profile" data-inline="false" data-height="48"></a>
+            <a href="index.html"><span class="iconify" data-icon="fluent:home-12-filled" data-inline="false" data-height="48"></span></a>
+            <a href="#"><span class="iconify" data-icon="oi:magnifying-glass" data-inline="false" data-height="48"></span></a>
+            <a href="#"><span class="iconify" data-icon="cil:speech" data-inline="false" data-height="48"></span></a>
+            <a href="#"><span class="iconify" data-icon="el:map-marker" data-inline="false" data-height="48"></span></a>
+            <a href="newprofile.html"><span class="iconify" data-icon="vs:profile" data-inline="false" data-height="48"></span></a>
         </div>
     </footer>
-
     <!----------------------------------------------->
     <!-- JS: Boostrap, JQuery, Firebase, API related    -->
     <!----------------------------------------------->

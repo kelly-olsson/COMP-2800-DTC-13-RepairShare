@@ -1,3 +1,5 @@
+//JAVASCRIPT FOR CAROUSEL CREATED USING HEAVY REFERENCE TO: https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-carousel.php //  
+
 $('#recipeCarousel').carousel({
     interval: 10000
   })

@@ -1,9 +1,81 @@
-#headline{
-    font-size: 100px;
-  }
+body {
+    margin: 0em 0em 5em 0em;
+}
 
-.navbar-brand{
-    font-size: 24px;
+.container-fluid > a {
+    font-size: 3.4em;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.navbar-toggler {
+    height: 4vh;
+    width: 10vw;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: white;
+}
+
+.navbar-toggler-icon {
+    height: 4vh;
+    width: 6vw;
+}
+
+.container-fluid {
+    margin: 1em 2em 1em 2em;
+    width: 100vw;
+}
+
+.nav-link {
+    font-size: 2.5em;
+}
+
+.text-white {
+    margin: 5em 0em 0em 0em;
+}
+
+#headline{
+    font-size: 8em;
+}
+
+#slogan {
+    font-size: 4em;
+}
+
+.btn-lg {
+    font-size: 3em;
+}
+
+#carouseldiv {
+    height: 35vh;
+    margin: 0em;
+}
+
+.card-title {
+    font-size: 3em;
+}
+
+.card-subtitle {
+    font-size: 2em;
+}
+
+.card-text {
+    font-size: 1.5em;
+}
+
+.card-link {
+    font-size: 1.5em;
+}
+
+.carousel-inner {
+    height: 30vh;
+}
+
+.container {
+    max-width: 100%;
 }
 
 #bottomfooter{
@@ -16,6 +88,16 @@
     justify-content: space-around;
 }
 
+#bottomfooter a {
+    color: black;
+    text-decoration: none;
+    margin: 1.2em 0em 1.2em 0em;
+}
+
+#iconifyFooter {
+    width: 6vh;
+    height: 6vh;
+}
 
 #bottomtext {
     color: black;
@@ -53,4 +135,8 @@
 .carousel-inner .carousel-item-right,
 .carousel-inner .carousel-item-left{ 
   transform: translateX(0);
+}
+
+#bottomfooter a {
+    color: inherit;
 }
