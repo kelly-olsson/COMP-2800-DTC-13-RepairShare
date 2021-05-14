@@ -58,6 +58,10 @@ function sayHello() {
 // }
 
 
+
+
+
+
 // Being called by an event listener
 function mapDetailWindow(userID, i) {
     console.log("mapDetailWindow is being called at line 63");
@@ -72,10 +76,11 @@ function mapDetailWindow(userID, i) {
             // var description = doc.data().description;
             console.log("line 70")
             console.log('#window-name_' + i + '')
-            // $("#window-name_1").text(name);
+            $("#window-name_1").text(name);
+            $("#window-name_0").text(name);
             // ISSUE IS NEXT LINE
             // document.getElementById("window-name_"+i).textContent = name;
-            $('#window-name_' + i + '').text(name);
+            // $('#window-name_' + i + '').text(name);
             // console.log(document.getElementById("window_name_0".value))
             // $("#window-rating_" + i).text(rating);
             // $("#window-description_" + i).text(description);
@@ -88,51 +93,70 @@ function mapDetailWindow(userID, i) {
 
 function setMarkers(map, megaArray){
   
-    var marker, i
+    let marker, i
     // console.log(i)
-for (i = 0; i < megaArray.length; i++){  
+    for (let i = 0; i < megaArray.length; i++){  // FOR LOOP STARTS
 
-    var lat = megaArray[i][0][0]
-    var lng = megaArray[i][0][1]
-    var userID = megaArray[i][1]
-    console.log(userID)
+        let lat = megaArray[i][0][0]
+        let lng = megaArray[i][0][1]
+        let userID = megaArray[i][1]
+        console.log(userID)
+        console.log(i)
+
+        let location = new google.maps.LatLng(lat, lng);
+
+        let marker = new google.maps.Marker({  
+            map: map, 
+            position: location  
+        });
+
+        //   + "'>User</span> </h3> <h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
+    let content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
+
+    // mapDetailWindow(userID, i);
+
+
+    console.log("line 100")
+    console.log(content)
+    let infowindow = new google.maps.InfoWindow()
     console.log(i)
 
-    var location = new google.maps.LatLng(lat, lng);
-
-var marker = new google.maps.Marker({  
-        map: map, 
-        position: location  
-      });
-
-    //   + "'>User</span> </h3> <h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-var content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
-
-mapDetailWindow(userID, i);
+    // var infowindow = new google.maps.InfoWindow({
+    //     content : "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
+    // });
 
 
-console.log("line 100")
-console.log(content)
-var infowindow = new google.maps.InfoWindow()
-console.log(i)
+    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        return function() {
+            console.log(i)
+            infowindow.close();
+            infowindow.setContent(content);
+            infowindow.open(map,marker);
+            mapDetailWindow(userID, i);  
+            
 
-// var infowindow = new google.maps.InfoWindow({
-//     content : "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
-// });
-
-
-google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-      return function() {
-        console.log(i)
-         infowindow.setContent(content);
-         infowindow.open(map,marker);
-
-      };
-      
-  })(marker,content,infowindow)); 
+        };
+        
+    })(marker,content,infowindow)); 
 
 
-}; // for loop ends here
+    }; // for loop ends here
+    
+    // marker.addEventListener("click", function(e) {
+    //     console.log("ah")
+    // })
+
+    // google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+    //     return function() {
+    //         console.log(i)
+    //         infowindow.setContent(content);
+    //         infowindow.open(map,marker);
+    //         mapDetailWindow(userID, i);  // ISSUE IS THE LOCATION OF FUNCTION CALL
+
+    //     };
+        
+    // })(marker,content,infowindow));
+    
 
 }
 
@@ -153,11 +177,14 @@ function getLocationH(toolKeyword) {
 
                 megaArray.push(tempArray)
             })
+            .then(mapDetailWindow(doc.id, i))
             // console.log("megaArray line 229")
             // console.log(megaArray)
             return megaArray
         })
+        
         .then(setMarkers(map, megaArray))
+        
 }
 
 initMap();

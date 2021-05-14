@@ -169,7 +169,7 @@ function sayHello() {
 
 
 
-// [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
+// newMEGAArray = [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
 function addInfoWindow(newMEGAArray){
     for (let i = 0; i < megaArray.length; i++) {
         var detailWindow = new google.maps.InfoWindow({
@@ -177,6 +177,7 @@ function addInfoWindow(newMEGAArray){
         });
             var marker = newMEGAArray[i][0]
             var userID = newMEGAArray[i][1]
+            // mapDetailWindow(userID);
             //this pops open the content that was set 
             marker.addListener("click", () => {
                 detailWindow.open(map, marker);
@@ -185,11 +186,11 @@ function addInfoWindow(newMEGAArray){
                 mapDetailWindow(userID);
         
             })
-}
+    } // FOR LOOP ENDS
 }
 
 function mapDetailWindow(userID) {
-    // console.log(userID);
+    console.log("map detail window is being called at line 193");
     db.collection("users")
         .doc(userID)
         .get()
@@ -238,6 +239,8 @@ function getLocationH(toolKeyword) {
 
 //a function to add multiple markers to the map based on secified coordinates
 function addMarkerToMap(megaArray) {
+    console.log("megaArray")
+    console.log(megaArray)
     newMEGAArray = []
     for (let i = 0; i < megaArray.length; i++) {
         var newTEMPArray = []
