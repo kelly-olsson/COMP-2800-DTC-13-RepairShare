@@ -1,18 +1,50 @@
+.navbar-brand {
+    font-size: 2.5em;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.navbar-toggler {
+    height: 4vh;
+    width: 10vw;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: black;
+}
+
+.navbar-toggler-icon {
+    height: 4vh;
+    width: 6vw;
+}
+
+.container-fluid {
+    margin: 1em 2em 1em 2em;
+    width: 100vw;
+}
+
+.nav-link {
+    font-size: 2em;
+}
+
 body {
-    /* height: 100vh; */
+    margin: 6em 0em;
 }
 
 #profile-photo{
-    margin-top: 4vh;
-    margin-right: 10vw;
+    margin-top: 1vh;
+    margin-right: 4vw;
     border-radius: 50%;
     width: 25vw;
     float: right;
 }
 
 #username{
-    margin-top: 6vh;
-    margin-left: 6vw;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    font-size: 4em;
 }
 
 #infobutton{
@@ -21,11 +53,13 @@ body {
 }
 
 #membersince{
-    margin-left: 6vw;
+    margin-left: 2vw;
+    font-size: 3em;
 }
 
 #rating{
-    margin-left: 6vw;
+    margin-left: 2vw;
+    font-size: 3em;
 }
 
 .checked{
@@ -34,6 +68,28 @@ body {
 
 #reviewscore{
     color: black;
+}
+
+#quotationMark {
+    width: 3vh;
+    height: 3vh;
+}
+
+.subtitle {
+    font-size: 3em;
+}
+
+#about {
+    font-size: 2em;
+}
+
+#tooldescription {
+    width: 2vh;
+    height: 2vh;
+}
+
+#description {
+    font-size: 1.8em;
 }
 
 #reviews{
@@ -45,26 +101,26 @@ body {
 }
 
 .aboutuser{
-    width: 75vw;
-    margin-left: 10vw;
+    width: 85vw;
+    margin-left: 5vw;
 }
 
 #dividingskills{
-    width: 10vw;
+    width: 5vw;
 }
 
 #helpfulSkills {
     display: grid;
-    justify-content: center;
-    margin: 2em 0em 2em 0em;
+    justify-content: space-around;
+    margin: 2em 0em;
     grid-template-areas:
-        "First Second";
-    gap: 90px;
+        "First Second"
+        "Third Fourth";
 }
 
 #messagechunk{
     width: 75vw;
-    margin-left: 10vw;
+    margin-left: 5vw;
     margin-top: 2.5vh;
 }
 
@@ -78,19 +134,33 @@ body {
 }
 
 #learnmore{
-    margin-left: 10vw;
+    margin-left: 6vw;
     width: 75vw;
+}
 
+#chaticon {
+    width: 3vh;
+    height: 3vh;
 }
 
 #chatbox {
     margin: 1em 0em 0em 0em;
 }
 
+#exampleFormControlTextarea1 {
+    font-size: 3em;
+}
+
+#chatbox button {
+    font-size: 2.5em;
+}
+
 .title {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
+    grid-column: 1 / span 2;
+    padding: 0em 4em;
 }
 
 .card li {
@@ -98,11 +168,12 @@ body {
 }
 
 #skillsheading{
-    margin-left: 10vw;}
+    margin-left: 7vw;}
     
 .columns {
     display: grid;
     text-align: left;
+    font-size: 2em;
     grid-template-areas:
         "First Second";
 }
@@ -126,7 +197,7 @@ body {
     color: black;
     text-decoration: none;
     display: inline-block;
-    margin: 0em 0em 1.2em 0em;
+    margin: 1.2em 0em 1.2em 0em;
 }
 
 #iconifyFooter {
@@ -136,18 +207,23 @@ body {
 
 #reviews {
     margin-top: 2vh;
-    margin-left: 10vw;
-    width: 75vw;
+    margin-left: 5vw;
+    margin-bottom: 10vh;
+    width: 85vw;
 }
 
 #reviewer-photo{
     border-radius: 50%;
-    width:10vw;
+    width: 20vw;
+}
+
+#reviewer-statement {
+    font-size: 2em;
 }
 
 #reviewer-name{
-    margin-left: 2vw;
-
+    margin-left: 2em;
+    font-size: 2em;
 }
 
 #numberofreviews{
