@@ -91,14 +91,11 @@ function getLocationH(toolKeyword) {
                 tempArray.push(doc.id)
                 megaArray.push(tempArray)
             })
-            // .then(mapDetailWindow(doc.id, i))
             console.log("INSIDE Get Location" + megaArray)
             console.log("INSIDE Get location" + typeof megaArray)
-            return megaArray
-        })
-        .then(setMarkers(map, megaArray)).catch(function(error){
-            console.log(error)
-        })
+            setMarkers(map, megaArray)        }).catch(function(error){
+                console.log(error)
+            })
         
 }
 // $(document).ready()
