@@ -8,7 +8,7 @@
     <link href="styles/map-tool.css" rel="stylesheet">
 
     <title class>RepairShare</title>
-    <script src="jquery-3.5.1.min.js"></script>
+    <script src="jquery-3.5.1.min.js"></script> <!--MIGHT NEED O CHANGE IT TO "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"-->
     <script src="./JS/index.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -68,6 +68,8 @@
             <h2>What tools are you looking for?</h2>
             <form>
                 <input type="text" id="tool-keyword" placeholder="Search">
+                <!-- <input type='submit' id="submit" value="submit"><span class="iconify" id="searchIcon" data-icon="oi:magnifying-glass" data-inline="false" data-height="30"></span> -->
+
                 <button type='button' id="submit"><span class="iconify" id="searchIcon" data-icon="oi:magnifying-glass" data-inline="false" data-height="30"></span></button>
             </form>
         </div>
@@ -86,9 +88,13 @@
     <!----------------------------------------------->
     <!-- JS: Boostrap, JQuery, Firebase, API related    -->
     <!----------------------------------------------->
-    <script async defer
+    <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
-        type="text/javascript"></script>
+        type="text/javascript"></script> -->
+        <!--CHANGED THE ABOVE TO THE ONE BELOW TO GET IT TO LOAS SYNCHORNOUSLY-->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE" 
+    type="text/javascript"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
