@@ -1,42 +1,144 @@
 // CITATION FOR GEOLOCATION: https://www.aspsnippets.com/Articles/Show-users-current-location-on-Google-Map-using-GeoLocation-API-in-website.aspx
-// var locationArray;
+
 var megaArray;
 var newMEGAArray;
 var map;
+var markersList = []
 // https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
+
 function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (p) {
-            var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-            var mapOptions = {
+            let LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+            let mapOptions = {
                 center: LatLng,
                 zoom: 13,
             };
             map = new google.maps.Map(document.getElementById("map"), mapOptions);
         })
     }
+
 }
 
+// Being called by an event listener
+function mapDetailWindow(userID, i) {
+    db.collection("users")
+        .doc(userID)
+        .get()
+        .then(function (doc) {
+            let name = doc.data().name;
+            let rating = doc.data().rating;
+            let description = doc.data().description;
+            let picture = doc.data().profilePicture;
+            $('#window-name_' + i + '').text(name);
+            $('#window-rating_' + i + '').text(rating);
+            $('#window-description_' + i + '').text(description);
+            $('.profile-pic_' + i + '').attr("src", picture);
+        }).catch(function(error){
+            console.log(error)
+        })
+}
+
+function getLocationH(toolKeyword) {
+    db.collection("users")
+        .where("tools." + toolKeyword, '==', true)
+        .get()
+        .then(function (snapshot) {
+            megaArray = []  
+            snapshot.forEach(function (doc) {
+                let tempArray = []
+                tempArray.push(doc.data().location)
+                tempArray.push(doc.id)
+                megaArray.push(tempArray)
+            })
+
+            setMarkers(map, megaArray)})
+            .catch(function(error){
+                console.log(error)
+            })
+        
+}
+
+function setMarkers(map, megaArray){
+    for (let i = 0; i < megaArray.length; i++){  
+
+        let lat = megaArray[i][0][0]
+        let lng = megaArray[i][0][1]
+        let userID = megaArray[i][1]
+        let location = new google.maps.LatLng(lat, lng);
+        let marker = new google.maps.Marker({  
+            map: map, 
+            position: location  
+        });
+        markersList.push(marker);
+    let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
+    let infowindow = new google.maps.InfoWindow()
+
+    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        return function() {
+            infowindow.close();
+            mapDetailWindow(userID, i);  
+            infowindow.setContent(content);
+            infowindow.open(map,marker); 
+        };
+        
+    })(marker,content,infowindow)); 
+    }; 
+}
+
+
+
+function removeMarkers(markersList){
+    for(let j=0; j<markersList.length; j++){
+        markersList[j].setMap(null);
+    }
+    markersList.length = 0
+}
+
+let submitButton = document.getElementById("submit");
 function addSubmitListener() {
-    document.getElementById("submit").addEventListener("click", function () {
-        var toolKeyword = document.getElementById("tool-keyword").value;
-        getLocationH(toolKeyword);
-    })
+    let toolKeyword = document.getElementById("tool-keyword").value;
+    removeMarkers(markersList);
+    getLocationH(toolKeyword);
 }
 
-function sayHello() {
-    firebase.auth().onAuthStateChanged(function (somebody) {
-        if (somebody) {
-            db.collection("users")
-                .doc(somebody.uid)
-                .get()
-                .then(function (doc) {
-                    var n = doc.data().name;
-                    $("#name-goes-here").text(n);
-                })
-        }
-    })
-}
+submitButton.onclick = addSubmitListener;
+initMap();
+
+// function setMarkers(map, megaArray){
+//     for (let i = 0; i < megaArray.length; i++){  
+
+//         let lat = megaArray[i][0][0]
+//         let lng = megaArray[i][0][1]
+//         let userID = megaArray[i][1]
+//         let location = new google.maps.LatLng(lat, lng);
+//         let marker = new google.maps.Marker({  
+//             map: map, 
+//             position: location  
+//         });
+//         markersList.push(marker);
+//     let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
+//     mapDetailWindow(userID, i);  
+//     let infowindow = new google.maps.InfoWindow({
+//         content: content
+//     })
+//     // infowindow.setContent(content);
+//     // mapDetailWindow(userID, i);  
+
+
+//     google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+//         return function() {
+//             infowindow.close();
+//             infowindow.open(map,marker);
+//             mapDetailWindow(userID, i);  
+
+            
+//         };
+        
+//     })(marker,content,infowindow)); 
+//     }; 
+// }
+
 
 // [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
 // function addInfoWindow(newMEGAArray){
@@ -61,143 +163,3 @@ function sayHello() {
 
 
 // let content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3><h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-
-// Being called by an event listener
-function mapDetailWindow(userID, i) {
-    console.log("mapDetailWindow is being called at line 63");
-    db.collection("users")
-        .doc(userID)
-        .get()
-        .then(function (doc) {
-            console.log(".then works at line 68");
-            console.log(doc.data().name)
-            var name = doc.data().name;
-            var rating = doc.data().rating;
-            var description = doc.data().description;
-            var picture = doc.data().profilePicture;
-            console.log("line 70")
-            console.log('#window-name_' + i + '')
-
-            $('#window-name_' + i + '').text(name);
-            $('#window-rating_' + i + '').text(rating);
-            $('#window-description_' + i + '').text(description);
-            $('.profile-pic_' + i + '').attr("src", picture);
-            
-
-            // $("#window-name_1").text(name);
-            // $("#window-name_0").text(name);
-            // ISSUE IS NEXT LINE
-            // document.getElementById("window-name_"+i).textContent = name;
-            // $('#window-name_' + i + '').text(name);
-            // console.log(document.getElementById("window_name_0".value))
-            // $("#window-rating_" + i).text(rating);
-            // $("#window-description_" + i).text(description);
-            console.log("end of map detail reached")
-        })
-}
-
-
-// CLOSURE
-
-function setMarkers(map, megaArray){
-  
-    let marker, i
-    // console.log(i)
-    for (let i = 0; i < megaArray.length; i++){  // FOR LOOP STARTS
-
-        let lat = megaArray[i][0][0]
-        let lng = megaArray[i][0][1]
-        let userID = megaArray[i][1]
-        console.log(userID)
-        console.log(i)
-
-        let location = new google.maps.LatLng(lat, lng);
-
-        let marker = new google.maps.Marker({  
-            map: map, 
-            position: location  
-        });
-
-        //   + "'>User</span> </h3> <h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-    let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='https://randomuser.me/api/portraits/men/1.jpg' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
-
-    // mapDetailWindow(userID, i);
-
-
-    console.log("line 100")
-    console.log(content)
-    let infowindow = new google.maps.InfoWindow()
-    console.log(i)
-
-    // var infowindow = new google.maps.InfoWindow({
-    //     content : "<h3> Name: <span id='window-name_" + i + "'></span> </h3>"
-    // });
-
-
-    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-        return function() {
-            console.log(i)
-            infowindow.close();
-            infowindow.setContent(content);
-            infowindow.open(map,marker);
-            mapDetailWindow(userID, i);  
-            
-
-        };
-        
-    })(marker,content,infowindow)); 
-
-
-    }; // for loop ends here
-    
-    // marker.addEventListener("click", function(e) {
-    //     console.log("ah")
-    // })
-
-    // google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-    //     return function() {
-    //         console.log(i)
-    //         infowindow.setContent(content);
-    //         infowindow.open(map,marker);
-    //         mapDetailWindow(userID, i);  // ISSUE IS THE LOCATION OF FUNCTION CALL
-
-    //     };
-        
-    // })(marker,content,infowindow));
-    
-
-}
-
-///A COPY 
-function getLocationH(toolKeyword) {
-    db.collection("users")
-        .where("tools." + toolKeyword, '==', true)
-        .get()
-        .then(function (snapshot) {
-            megaArray = []   // [[[long:, lat:] , UID], [[long:, lat:] , UID]]
-            snapshot.forEach(function (doc) {
-                var tempArray = []
-                
-                tempArray.push(doc.data().location)
-                tempArray.push(doc.id)
-                // console.log("user uid line 223")
-                // console.log(doc.id)
-
-                megaArray.push(tempArray)
-            })
-            .then(mapDetailWindow(doc.id, i))
-            // console.log("megaArray line 229")
-            // console.log(megaArray)
-            return megaArray
-        })
-        
-        .then(setMarkers(map, megaArray))
-        
-}
-
-initMap();
-sayHello();
-addSubmitListener();
-// readCoordinateFromDatabase();
-
-
