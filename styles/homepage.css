@@ -1,0 +1,31 @@
+#headline{
+    font-size: 100px;
+  }
+
+.navbar-brand{
+    font-size: 24px;
+}
+
+#bottomfooter{
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+body{
+    color: whitesmoke;
+}
+
+#search-form{
+    margin-top: -10vh;
+}
+
+#searchhome{
+    width: 15rem;
+    border-radius: 2em;
+
+}
