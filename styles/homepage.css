@@ -21,7 +21,7 @@ body{
 }
 
 #search-form{
-    margin-top: -10vh;
+    margin-top: -2vh;
 }
 
 #searchhome{
@@ -30,8 +30,38 @@ body{
 
 }
 
+#exploretools{
+    margin-top: 2.5vh;
+    width: 75vw;
+    margin-left: 5vw;
+}
+
 #AvailableTools{
     color: black;
     font-weight: bold;
-    margin-top: 2.5vh;
+    font-size: 36px;
+}
+
+#paintbrush{
+    margin-top: 2vh;
+    border-style: none;
+ 
+}
+
+.card-img-top{
+    border-radius: 15%;
+}
+
+#slogan{
+    color: black;
+    font-weight: bold;
+    font-size: 42px;
+}
+
+#headline{
+    text-align: left;
+}
+
+#communityoffering{
+    color: black;
 }
