@@ -1,19 +1,59 @@
+.navbar-brand {
+    font-size: 2.5em;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.navbar-toggler {
+    height: 85px;
+    width: 105px;
+    padding: 0px 1px 0px 0px;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: black;
+}
+
+.navbar-toggler-icon {
+    height: 55px;
+    width: 65px;
+}
+
+.container-fluid {
+    margin: 1em 2em 1em 2em;
+    width: 100vw;
+}
+
+.nav-link {
+    font-size: 2em;
+}
+
+body {
+    margin: 6em 2em;
+}
+
+/* #coverImage{
+    width: 1000px;
+} */
+
+#headline {
+    font-size: 5em;
+}
+
 #teamPicturesContainer {
     display: grid;
     justify-content: center;
-    margin: 2em 0em 0em 0em;
+    margin: 2em 0em 10em 0em;
     grid-template-areas:
         "First Second"
         "Third Fourth";
-    gap: 90px;
+    gap: 60px;
 }
 
 .mask {
     background-color: rgba(0, 0, 0, 0.6)
-}
-
-.navbar-brand {
-    font-size: 24px;
 }
 
 .card {
@@ -30,19 +70,26 @@
 .card-title {
     text-align: center;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }
 
 .card-text {
     text-align: center;
     color: #7d8285;
+    font-size: 2em;
 }
 
 #intro {
     padding-top: 2vh;
+    font-size: 2.8em;
 }
 
-#bottomfooter{
+#teamTitle {
+    font-size: 2.8em;
+    margin: 1em 0em 0em 0em;
+}
+
+/* #bottomfooter{
     background-color: white;
     overflow: hidden;
     position: fixed;
@@ -54,14 +101,15 @@
 
 #bottomtext {
     color: black;
-}
+} */
 
-body {
+/* body {
     margin: 0em 0em 3em 0em;
-}
+} */
 
 #introbody{
-    width: 75vw
+    width: 75vw;
+    font-size: 1.8em;
 }
 
 hr{
@@ -69,6 +117,31 @@ hr{
     margin-top: 2.5vh;
 }
 
-#bottomfooter a {
+/* #bottomfooter a {
     color: inherit;
+} */
+
+#bottomfooter {
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
+
+#bottomfooter a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1.2em 0em 1.2em 0em;
+}
+
+#iconifyFooter {
+    width: 6vh;
+    height: 6vh;
+}
+
+/* @media (min-width: 400px) { */
