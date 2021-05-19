@@ -51,22 +51,24 @@
     <!-- <img src="/images/bg-dark.jpg" class="img-fluid" alt="Responsive image"> -->
 
     <form style="float:clear;" id="user-form">
-        <br>
-        <div class="form-group">
+        
+        <div class="form-group-name">
             <label for="exampleFormControlSelect1">Please enter your name:</label>
             <input id="habit-name" class="form-control form-control-lg" type="text" placeholder="Your name">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Short description of yourself:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Please select the tools you'd like to lend to others:</label>
             <br>
+            <label for="exampleFormControlTextarea1">How would you like to introduce yourself:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="Short description of yourself"></textarea>
+        </div>
+        <br>
+
+        <!-- <div class="form-description"> -->
+        <!-- <label for="exampleFormControlTextarea1">Short description of yourself:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+        <!-- </div> -->
+
+        <div class="form-body">
+            <label for="exampleFormControlSelect1">Please select the tools you'd like to lend to others:</label>
             <br>
 
             <div class="form-group-tools">
@@ -96,12 +98,6 @@
                     <label class="form-check-label" for="defaultCheck1">Sewking Kit</label>
                 </div>
 
-                <!-- <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">Another Tool</label>
-                </div> -->
-
-
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
                     <label class="form-check-label" for="inlineCheckbox3">(disabled)</label>
@@ -109,16 +105,77 @@
 
             </div>
 
+            <br>
+
+            <label for="exampleFormControlSelect1">What are the skills you'd like to offer?</label>
+            <br>
+            <div class="form-group-skills">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">Home repair</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">Automobile repair</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">Textile repair</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">Electronic repair</label>
+                </div>
+
+            </div>
+
+            <br>
+
+            <label for="formFileLg" class="form-label">Upload your profile picture:</picture></label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" />
 
         </div>
         <br>
 
+        <!-- <div id="address-form"> -->
+            <!-- <form class="form-inline"> -->
+            <!-- <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+            </div> -->
+            <!-- </form> -->
 
-        <div class="form-group">
-            <button type="button" id="submit" class="btn btn-outline-success">Submit</button>
-            <button type="button" id="reset" class="btn btn-outline-danger">Reset</button>
         </div>
-        <br>
+
+        <div class="submit-reset-form">
+            <button type="button" id="submit" class="btn-lg btn-outline-success form-button">Submit</button>
+            <button type="button" id="reset" class="btn-lg btn-outline-danger form-button">Reset</button>
+        </div>
     </form>
 
     <footer>
