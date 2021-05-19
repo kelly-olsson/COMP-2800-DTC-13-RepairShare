@@ -1,5 +1,6 @@
 #headline{
     font-size: 100px;
+    margin-left: 3vw;
   }
 
 .navbar-brand{
@@ -33,13 +34,14 @@ body{
 #exploretools{
     margin-top: 2.5vh;
     width: 75vw;
-    margin-left: 5vw;
+    margin-left: 10vw;
 }
 
 #AvailableTools{
     color: black;
     font-weight: bold;
     font-size: 36px;
+    /* margin-left: 7.5vw; */
 }
 
 #paintbrush{
@@ -65,3 +67,86 @@ body{
 #communityoffering{
     color: black;
 }
+
+#anchorlinks {
+    display: grid;
+    position: relative;
+    justify-content: center;
+    margin: 0em 0em 0em 2.5em;
+    grid-template-areas:
+        "First Second"
+        "Third Fourth";
+    gap: 90px;
+}
+
+#info{
+    float: right;
+}
+
+#providerplace{
+    margin-top: 2.5vh;
+    margin-left: 2.5vw;
+    border-radius: 15%;
+}
+
+#providerinfo{
+    border-style: none;
+    width: 45rem;
+    border-radius: 10%;
+}
+
+#newapproach{
+    color: black;
+    font-weight: bold;
+    font-size: 36px;
+    margin-top: 2.5vh;
+}
+
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+    
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(33.333%);
+    }
+    
+    .carousel-inner .carousel-item-left.active, 
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.333%);
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+.imagedescription{
+    color: black;
+}
+
+#rightarrow{
+    margin-right: -3vw;
+    margin-bottom: 3vh;
+}
+
+#leftarrow{
+    margin-bottom: 3vh;
+}
+
