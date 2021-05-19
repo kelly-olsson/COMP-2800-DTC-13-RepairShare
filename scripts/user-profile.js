@@ -10,11 +10,13 @@ function sayHello() {
                     var description = doc.data().description;
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
+                    let picture = doc.data().profilePicture;
 
 
-
-                    $("#usernamegoeshere").text(name);
+                    $("#usernamegoeshere").text(name.toUpperCase());
+                    $("#usercanhelp").text(name.toUpperCase());
                     $("#about").text(description);
+                    $("#profile-photo").attr("src", picture);
 
                     for(var index = 0; index < skills.length; index++){          
                         let skill = skills[index];              
@@ -24,6 +26,20 @@ function sayHello() {
                             $("#skillsinfo").append($skillset)
                         })
                     }
+
+
+                    Object.keys(tools).forEach(key=>{
+                        if (tools[key] == true) {
+                          let toolitem = key; 
+
+                          $(document).ready(function(){
+                              var $toolkit = '<p>'+ toolitem + '</p>'
+                              $("#toolz").append($toolkit);
+                          })
+
+                      }
+                        
+                    })
 
                 })
         }
