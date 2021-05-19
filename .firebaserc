@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "repairshare-ce54f"
+    "default": "repairshare-ce54f",
+    "repairshare": "repairshare-ce54f"
   }
 }

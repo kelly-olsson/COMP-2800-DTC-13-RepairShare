@@ -15,12 +15,12 @@
  */
 'use strict';
 
-// Signs-in Friendly Chat.
-function signIn() {
-  // Sign into Firebase using popup auth & Google as the identity provider.
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-}
+// // Signs-in Friendly Chat.
+// function signIn() {
+//   // Sign into Firebase using popup auth & Google as the identity provider.
+//   var provider = new firebase.auth.GoogleAuthProvider();
+//   firebase.auth().signInWithPopup(provider);
+// }
 
 // Signs-out of Friendly Chat.
 function signOut() {
@@ -52,7 +52,9 @@ function isUserSignedIn() {
 // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
 function saveMessage(messageText) {
   // Add a new message entry to the database.
-  return firebase.firestore().collection('messages').add({
+  return firebase.auth().onAuthStateChanged(function (somebody) {
+    if (somebody) {
+      firebase.firestore().collection('users').doc(somebody.uid).collection('messages').add({
     name: getUserName(),
     text: messageText,
     profilePicUrl: getProfilePicUrl(),
@@ -349,7 +351,7 @@ var signInSnackbarElement = document.getElementById('must-signin-snackbar');
 // Saves message on form submit.
 messageFormElement.addEventListener('submit', onMessageFormSubmit);
 signOutButtonElement.addEventListener('click', signOut);
-signInButtonElement.addEventListener('click', signIn);
+// signInButtonElement.addEventListener('click', signIn);
 
 // Toggle for the button.
 messageInputElement.addEventListener('keyup', toggleButton);
