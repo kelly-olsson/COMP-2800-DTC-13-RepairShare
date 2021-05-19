@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> RepairShare </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/newprofile.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site_manifest.json">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#ffcd05">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="msapplication-TileColor" content="#ffcd05">
+    <meta name="theme-color" content="#ffcd05">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">RepairShare</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutus.html">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h3> Hello, <span id="name-goes-here">User!</span> </h3>
+        <div class="profile-content">
+            <div class="p-5 text-right bg-white">
+                <div class="avatar text-center"> <img id="profile-photo"
+                        src=https://randomuser.me/api/portraits/men/1.jpg> </div>
+                <div class="name">
+                    <h1 class="mb-3" id='username'>HI, I'M <span id='usernamegoeshere'>BILLY!</span></h1>
+                    <h4 class="subtitle text-muted" id="membersince">Joined May 13th, 2021</h4>
+                    <div class="description" id="rating">
+                        <span class="fa fa-star checked"> 2.5 (189 reviews)</span>
+                        <div class="description text-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="aboutuser">
+        <hr size="3">
+        <span id="quotationMark" class="iconify" data-icon="bx:bxs-quote-alt-left" data-inline="false"
+            data-height="32"></span>
+        <h4 class="subtitle">ABOUT</h4>
+        <p id='about'> What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book it has?</p>
+        <hr id='dividingskills'>
+        <p id="description"> <span class="iconify" id="tooldescription" data-icon="ion:hammer-sharp" data-inline="false"
+                data-height="32"></span> Tool Share Member</p>
+        <p id="description"> <span class="iconify" id="tooldescription" data-icon="bpmn:hand-tool" data-inline="false"
+                data-height="32"></span></span> Handy Certified </p>
+        <p id="description"> <span class="iconify" id="tooldescription" data-icon="fluent:location-16-filled"
+                data-inline="false" data-height="32"></span></span></span> Vancouver, BC </p>
+        <hr size="3">
+
+    </div>
+    <div id="skillscontainer">
+        <h4 class="subtitle" id="skillsheading">BILLY CAN HELP</h4>
+        <div id="helpfulSkills">
+            <div class="card" style="width: 28rem;">
+                <div class="columns">
+                    <p class="title">Skills</p>
+                    <div id="skillsinfo">
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 28rem;">
+                <div class="columns">
+                    <p class="title">Tools</p>
+                    <p>Screwdriver</p>
+                    <p>Hammer</p>
+                    <p>Wrench</p>
+                    <p>Bike tire pump</p>
+                </div>
+            </div>
+        </div>
+        <h5 class="subtitle text-muted" id="learnmore"><a href=#> Learn More</a> about becoming a Repair Share Provider.
+            Start lending a hand today. Standard dummy text standard dummy.</h5>
+        <hr id="dividingline2" size="3">
+    </div>
+
+    <div id="messagechunk">
+        <span id="chaticon" class="iconify" data-icon="bi:chat-left" data-inline="false" data-height="32"></span>
+        <form>
+            <div class="form-group" id="chatbox">
+                <textarea class="form-control text-left" id="exampleFormControlTextarea1" rows="5"></textarea>
+                <button type="button" class="btn btn-secondary btn-lg">Message</button>
+            </div>
+        </form>
+        <hr id="dividingline3" size="3">
+    </div>
+
+    <div id="numberofreviews">
+        <h4 class="subtitle">168 Reviews</h4>
+    </div>
+    <div id="reviews">
+        <div class="card">
+            <div class="card-header">
+                <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p id="reviewer-statement">
+                        Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
+                        told me that it was 'my problem now', I can't believe I trusted someone like him.
+                    </p>
+                    <footer id="reviewer-name" class="blockquote-footer">
+                        Francis Boomer <cite title="Source Title"></cite>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/70.jpg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p id="reviewer-statement">
+                            THE WORST IN TOWN! BILLY SUCKS!
+                        </p>
+                        <footer id="reviewer-name" class="blockquote-footer">
+                            Caleb Krabby <cite title="Source Title"></cite>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <div id="bottomfooter">
+                <a href="index.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
+                        data-inline="false" data-height="48"></span></a>
+                <a href="#"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
+                        data-height="48"></span></a>
+                <a href="#"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
+                        data-height="48"></span></a>
+                <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
+                        data-inline="false" data-height="48"></span></a>
+                <a href="newprofile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
+                        data-inline="false" data-height="48"></span></a>
+            </div>
+        </footer>
+
+
+        <!----------------------------------------------->
+        <!-- JS: Boostrap, JQuery, Firebase, API related    -->
+        <!----------------------------------------------->
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
+            type="text/javascript"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+        <!-- Link to the api keys for your firebase project -->
+        <script src="scripts/firebase_api.js"></script>
+
+        <!--------------------------------------------------------------------->
+        <!-- JS files: Your own JavaScript functions included here    -->
+        <!--------------------------------------------------------------------->
+        <script src="scripts/user-profile.js"></script>
+
+
+</body>
+
+</html>
