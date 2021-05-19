@@ -14,6 +14,7 @@ function initMap() {
                 center: LatLng,
                 zoom: 13,
             };
+            sayHello();
             map = new google.maps.Map(document.getElementById("map"), mapOptions);
         })
     }
@@ -38,6 +39,22 @@ function mapDetailWindow(userID, i) {
             console.log(error)
         })
 }
+
+
+function sayHello() {
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    var n = doc.data().name;
+                    $("#name-goes-here").text(n);
+                })
+        }
+    })
+}
+
 
 function getLocationH(toolKeyword) {
     db.collection("users")
