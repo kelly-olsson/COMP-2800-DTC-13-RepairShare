@@ -93,13 +93,30 @@ body {
     transform: translate(-50%, -50%);
     
     width: 70%;
-    height: 70%;
+    height: 80%;
+    
 
-    border: solid orange;
+    /* border: solid orange; */
     background-color: whitesmoke;
     opacity:0.9;
-  }
+}
+
+.form-body {
+    margin: 0%, 20%;
+}
 
 /* .class_fluid {
     opacity:0.4;
 } */
+
+input {
+    width: 100%;
+}
+
+.form-control {
+    font-size: 1em;
+}
+
+.form-button {
+    font-size: 1em;
+}
