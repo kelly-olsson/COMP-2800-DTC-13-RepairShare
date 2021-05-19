@@ -34,9 +34,13 @@ body {
     margin: 6em 2em;
 }
 
-/* #coverImage{
-    width: 1000px;
-} */
+.img-fluid {
+    margin: auto;
+    /* background-repeat:no-repeat; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #headline {
     font-size: 5em;
@@ -143,5 +147,3 @@ hr{
     width: 6vh;
     height: 6vh;
 }
-
-/* @media (min-width: 400px) { */
