@@ -34,6 +34,8 @@ function mapDetailWindow(userID, i) {
             $('#window-rating_' + i + '').text(rating);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
+            $('#user-id_' + i + '').text(userID);
+            console.log(userID)
         }).catch(function(error){
             console.log(error)
         })
@@ -71,7 +73,7 @@ function setMarkers(map, megaArray){
             position: location  
         });
         markersList.push(marker);
-    let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
+    let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div> <p style='display: none' id='user-id_" + i + "'></p>"
     let infowindow = new google.maps.InfoWindow()
 
     google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
