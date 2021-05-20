@@ -10,7 +10,8 @@ function sayHello() {
                     var description = doc.data().description;
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
-                    let picture = doc.data().profilePicture;
+                    var picture = doc.data().profilePicture;
+                    var userattributes = doc.data().attribute; 
 
 
                     $("#usernamegoeshere").text(name.toUpperCase());
@@ -22,7 +23,7 @@ function sayHello() {
                         let skill = skills[index];              
 
                         $(document).ready(function(){
-                            var $skillset = '<p>' + skill + '</p>';
+                            var $skillset = '<li>' + skill + '</li>';
                             $("#skillsinfo").append($skillset)
                         })
                     }
@@ -32,12 +33,41 @@ function sayHello() {
                           let toolitem = key; 
 
                           $(document).ready(function(){
-                              var $toolkit = '<p>'+ toolitem + '</p>'
+                              var $toolkit = '<li>'+ toolitem + '</li>'
                               $("#toolz").append($toolkit);
                           })
 
                       }
                         
+                    })
+
+                    Object.keys(userattributes).forEach(key=>{
+                        if (userattributes[key] == true && key == 'Handy Certified'){
+
+                            let handy = key;
+                            let handyicon = '<span class="iconify" id="tooldescription" data-icon="bpmn:hand-tool" data-inline="false" data-height="32"></span> '
+
+
+                            $(document).ready(function(){ 
+                                var $handy = '<p id= "description">' + handyicon + handy + '</span>' + '</p>'
+                                $('#userattributes').append($handy);
+                            })
+
+                            console.log('yes')
+                        }
+                        else if (userattributes[key] == true && key == 'Tool Share Member'){
+
+                            let tooly = key; 
+                            let toolicon = '<span class="iconify" id="tooldescription" data-icon="ion:hammer-sharp" data-inline="false" data-height="32"></span> ';
+                            $(document).ready(function(){ 
+                                var $handy = '<p id= "description">' + toolicon + tooly + '</span>' + '</p>'
+                                $('#userattributes').append($handy);
+                            })
+
+
+
+
+                        }
                     })
 
                 })
