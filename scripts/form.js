@@ -38,10 +38,16 @@ function addData(name) {
                 // "fri": fri,
                 // "sat": sat,
                 // "sun": sun
-            })
+            }, {merge: true})
             // .then(function () {
             //     updateDaysArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
             // })
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.log("Error writing document: ", error);
+            })
     })
 }
 
