@@ -3,6 +3,7 @@ function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         var name = document.getElementById("user-name").value;
         let skillsArray = createSkillsArray ();
+        console.log(skillsArray)
         // displayArray(skillsArray);
         // addData(name);
         // resetForm();
@@ -21,59 +22,17 @@ resetFormButton();
 
 // Create an array of skills entered by user.
 function createSkillsArray () {
-    var homeRepair = document.getElementById("home-repair").checked;
-    var automobileRepair = document.getElementById("automobile-repair").checked;
-    var textileRepair = document.getElementById("textile-repair").checked;
-    var electronicRepair = document.getElementById("electronic-repair").checked;
+
+    var skillsArray = [];
+    var skillsCheckboxes = document.querySelectorAll('input[name=skillcheck]:checked');
     
-    var allSkillsArray = [];
-    var skillsArray =[];
-
-    // var skillsCheckboxes = document.getElementsByName("skillcheck")
-    // var test = document.getElementsByName("skillcheck")[0].id;
-    // // console.log(test)
-    // console.log(skillsCheckboxes.item(1))
-
-
-    var array = []
-    var checkboxes = document.querySelectorAll('input[name=skillcheck]:checked')
-    
-    for (var i = 0; i < checkboxes.length; i++) {
-      array.push(checkboxes[i].id)
-    }
-    console.log(array)
-
-
-    for (let i=0; i<skillsCheckboxes.length; i++){
-        if (skillsCheckboxes[i].checked) {
-            skillsArray.push(skillsCheckboxes[i])
-        }
+    for (var i = 0; i < skillsCheckboxes.length; i++) {
+        skillsArray.push(skillsCheckboxes[i].id + " repair")
     }
 
-    // console.log(skillsArray)
-
-    // if (homeRepair == true) {
-    //     skillsArray.push("home repair")
-    // }
-    
-    // $("input:checkbox[name=skillcheck]:checked").each(function() {
-    //     skillsArray.push($(this).checked);
-    // });
-    // console.log(skillsArray)
-
-
-    
-
-
-
+    return skillsArray;
 
 }
-
-
-
-// function displayArray(skillsArray) {
-//     console.log(skillsArray);
-// }
 
 
 // Write data of created habits to Firestore.
@@ -85,6 +44,7 @@ function addData(name) {
     var automobileRepair = document.getElementById("automobile-repair").checked;
     var textileRepair = document.getElementById("textile-repair").checked;
     var electronicRepair = document.getElementById("electronic-repair").checked;
+
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("users").doc(user.uid)
             .collection("Raw Data")
