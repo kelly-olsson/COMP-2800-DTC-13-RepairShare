@@ -70,8 +70,6 @@ function saveMessage(messageText) {
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
   var query = firebase.firestore()
-    .collection('users')
-    .doc(somebody.uid)
     .collection('messages')
     .orderBy('timestamp', 'desc')
     .limit(12);
