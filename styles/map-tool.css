@@ -28,7 +28,7 @@ main{
 }
 
 #map{
-    height: 90%;
+    height: 100%;
     width: 100%;
 }
 
@@ -53,4 +53,9 @@ main{
 #bottomfooter a {
     color: black;
     text-decoration: none;
+}
+
+#iconifyFooter {
+    width: 4vh;
+    height: 4vh;
 }
