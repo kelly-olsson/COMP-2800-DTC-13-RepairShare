@@ -4,8 +4,7 @@ function addSubmitListener() {
         var name = document.getElementById("user-name").value;
         let skillsArray = createSkillsArray ();
         console.log(skillsArray)
-        // displayArray(skillsArray);
-        // addData(name);
+        addData(name, skillsArray);
         // resetForm();
     })
 }
@@ -29,33 +28,24 @@ function createSkillsArray () {
     for (var i = 0; i < skillsCheckboxes.length; i++) {
         skillsArray.push(skillsCheckboxes[i].id + " repair")
     }
-
     return skillsArray;
 
 }
 
 
 // Write data of created habits to Firestore.
-function addData(name) {
+function addData(name, skillsArray) {
     // var name = document.getElementById("user-name").value;
     var description = document.getElementById("user-description").value;
 
-    var homeRepair = document.getElementById("home-repair").checked;
-    var automobileRepair = document.getElementById("automobile-repair").checked;
-    var textileRepair = document.getElementById("textile-repair").checked;
-    var electronicRepair = document.getElementById("electronic-repair").checked;
-
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("users").doc(user.uid)
-            .collection("Raw Data")
-            .add({
+            // .collection("Raw Data")
+            .set({
                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 "description": description,
                 "name": name,
-                "home repair": homeRepair,
-                "automobile repair": automobileRepair,
-                "textile repair": textileRepair,
-                "electronic repair": electronicRepair
+                "skills": skillsArray
 
                 // "mon": mon,
                 // "tue": tue,
@@ -64,10 +54,10 @@ function addData(name) {
                 // "fri": fri,
                 // "sat": sat,
                 // "sun": sun
-            })
-            .then(function () {
-                updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
-            })
+            }, {merge: true})
+            // .then(function () {
+            //     updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
+            // })
             .then(() => {
                 console.log("Document successfully written!");
             })
