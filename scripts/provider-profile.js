@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 let user_identification = params.get("id");
 console.log(user_identification);
 
-function mapDetailWindow(userID) {
+function PopulateProviderProfile(userID) {
     db.collection("users")
         .doc(userID)
         .get()
@@ -73,4 +73,70 @@ function mapDetailWindow(userID) {
         })
 }
 
-mapDetailWindow(user_identification);
+
+function chatButton(providerID){
+    $('#chatboxbutton').attr("href", "chat.html?id=" + user_identification);
+}
+
+
+// function LeaveReview(providerID, userID){
+//     var review = document.getElementById
+
+
+// }
+
+PopulateProviderProfile(user_identification);
+chatButton(user_identification);
+
+
+
+
+function mapDetailWindow(userID, i) {
+    db.collection("users")
+        .doc(userID)
+        .get()
+        .then(function (doc) {
+            let name = doc.data().name;
+            let rating = doc.data().rating;
+            let description = doc.data().description;
+            let picture = doc.data().profilePicture;
+            $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
+            $('#window-rating_' + i + '').text(rating);
+            $('#window-description_' + i + '').text(description);
+            $('.profile-pic_' + i + '').attr("src", picture);
+
+        }).catch(function(error){
+            console.log(error)
+        })
+}
+
+
+
+
+
+// function addData(name, skillsArray, toolsObject) {
+//     // var name = document.getElementById("user-name").value;
+//     var description = document.getElementById("user-description").value;
+
+//     firebase.auth().onAuthStateChanged(function (user) {
+//         db.collection("users").doc(user.uid)
+//             // .collection("Raw Data")
+//             .set({
+//                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
+//                 "description": description,
+//                 // "name": user.uid.name,
+//                 "skills": skillsArray,
+//                 "tools": toolsObject
+
+//             }, {merge: true})
+//             // .then(function () {
+//             //     updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
+//             // })
+//             .then(() => {
+//                 console.log("Document successfully written!");
+//             })
+//             .catch((error) => {
+//                 console.log("Error writing document: ", error);
+//             })
+//     })
+// }
