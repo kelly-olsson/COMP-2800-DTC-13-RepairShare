@@ -161,16 +161,3 @@ firebase.auth().onAuthStateChanged(user => {
         });
     }
 });
-
-
-
-
-function showUploadedPicture(){
-    const fileInput = document.getElementById("profile-pic");   // pointer #1
-    const image = document.getElementById("mypic-goes-here");   // pointer #2
-    fileInput.addEventListener('change', function(e){        //event listener
-        var blob = URL.createObjectURL(e.target.files[0]);
-        image.src = blob;    //change DOM image
-    })
-}
-// showUploadedPicture();
