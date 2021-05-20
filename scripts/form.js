@@ -2,9 +2,11 @@
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         var name = document.getElementById("user-name").value;
-        let skillsArray = createSkillsArray ();
-        console.log(skillsArray)
-        addData(name, skillsArray);
+        let skillsArray = createSkillsArray();
+        // console.log(skillsArray)
+        let toolsObject = createToolsObject();
+        console.log(toolsObject)
+        // addData(name, skillsArray);
         // resetForm();
     })
 }
@@ -20,16 +22,25 @@ resetFormButton();
 
 
 // Create an array of skills entered by user.
-function createSkillsArray () {
+function createSkillsArray() {
 
     var skillsArray = [];
     var skillsCheckboxes = document.querySelectorAll('input[name=skillcheck]:checked');
-    
     for (var i = 0; i < skillsCheckboxes.length; i++) {
         skillsArray.push(skillsCheckboxes[i].id + " repair")
     }
     return skillsArray;
 
+}
+
+function createToolsObject() {
+
+    toolsObject = {};
+    var toolsCheckboxes = document.querySelectorAll('input[name=toolcheck]:checked');
+    for (var i = 0; i < toolsCheckboxes.length; i++) {
+        toolsObject[toolsCheckboxes[i].id] = true;
+    }
+    return toolsObject
 }
 
 
