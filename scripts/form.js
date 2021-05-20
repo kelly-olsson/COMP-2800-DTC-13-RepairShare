@@ -1,13 +1,13 @@
 // Event Listener for clicking the "submit button".
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
-        var name = document.getElementById("user-name").value;
+        // var name = document.getElementById("user-name").value;
         let skillsArray = createSkillsArray();
         // console.log(skillsArray)
         let toolsObject = createToolsObject();
-        console.log(toolsObject)
-        // addData(name, skillsArray);
-        // resetForm();
+        // console.log(toolsObject)
+        addData(name, skillsArray, toolsObject);
+        resetForm();
     })
 }
 addSubmitListener();
@@ -33,6 +33,7 @@ function createSkillsArray() {
 
 }
 
+// Create an object of tools availability according to user input.
 function createToolsObject() {
 
     toolsObject = {};
@@ -45,7 +46,7 @@ function createToolsObject() {
 
 
 // Write data of created habits to Firestore.
-function addData(name, skillsArray) {
+function addData(name, skillsArray, toolsObject) {
     // var name = document.getElementById("user-name").value;
     var description = document.getElementById("user-description").value;
 
@@ -55,16 +56,10 @@ function addData(name, skillsArray) {
             .set({
                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 "description": description,
-                "name": name,
-                "skills": skillsArray
+                // "name": name,
+                "skills": skillsArray,
+                "tools": toolsObject
 
-                // "mon": mon,
-                // "tue": tue,
-                // "wed": wed,
-                // "thurs": thurs,
-                // "fri": fri,
-                // "sat": sat,
-                // "sun": sun
             }, {merge: true})
             // .then(function () {
             //     updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
@@ -111,6 +106,23 @@ function updateSkillsArray(uid, name, mon, tue, wed, thurs, fri, sat, sun) {
             window.location.href = "calendar.html";
         })
 }
+
+
+function sayHello() {
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    var n = doc.data().name;
+                    $("#name-goes-here").text(n);
+                })
+        }
+    })
+}
+sayHello();
+
 
 // Reset form fields after habit is logged in.
 function resetForm() {
