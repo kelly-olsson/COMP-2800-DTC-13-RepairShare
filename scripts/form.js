@@ -1,8 +1,8 @@
 // Event Listener for clicking the "submit button".
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
-        // var name = document.getElementById("habit-name").value;
-        addData();
+        var name = document.getElementById("user-name").value;
+        addData(name);
         resetForm();
     })
 }
@@ -17,7 +17,7 @@ function resetFormButton() {
 resetFormButton();
 
 // Write data of created habits to Firestore.
-function addData() {
+function addData(name) {
     var name = document.getElementById("user-name").value;
     var description = document.getElementById("user-description").value;
     var homeRepair = document.getElementById("home-repair").checked;
@@ -25,12 +25,12 @@ function addData() {
     var wed = document.getElementById("textile-repair").checked;
     var thurs = document.getElementById("electronic-repair").checked;
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("users")
-            .add({
+        db.collection("users").doc(user.uid)
+            .set({
                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 "description": description,
                 "name": name,
-                // "time": time,
+                "home repair": homeRepair,
                 // "mon": mon,
                 // "tue": tue,
                 // "wed": wed,
