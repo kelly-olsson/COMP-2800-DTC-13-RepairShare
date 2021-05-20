@@ -35,6 +35,7 @@ function mapDetailWindow(userID, i) {
             $('#window-rating_' + i + '').text(rating);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
+
         }).catch(function(error){
             console.log(error)
         })

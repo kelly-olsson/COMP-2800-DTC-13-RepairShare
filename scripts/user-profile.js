@@ -1,4 +1,4 @@
-// Read user info from firebase and greet user based on user's name.
+// Read user info from firebase and populates profile page accordingly
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -52,8 +52,6 @@ function sayHello() {
                                 var $handy = '<p id= "description">' + handyicon + handy + '</span>' + '</p>'
                                 $('#userattributes').append($handy);
                             })
-
-                            console.log('yes')
                         }
                         else if (userattributes[key] == true && key == 'Tool Share Member'){
 
@@ -63,13 +61,8 @@ function sayHello() {
                                 var $handy = '<p id= "description">' + toolicon + tooly + '</span>' + '</p>'
                                 $('#userattributes').append($handy);
                             })
-
-
-
-
                         }
                     })
-
                 })
         }
     })
