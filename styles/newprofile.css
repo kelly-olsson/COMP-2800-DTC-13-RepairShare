@@ -156,7 +156,7 @@ body {
     font-size: 3em;
 }
 
-#chatbox button {
+#chatboxbutton {
     font-size: 2.5em;
 }
 
@@ -234,4 +234,10 @@ body {
 
 #numberofreviews{
     margin-left: 10vw;
+}
+
+#writereview{
+    width: 75vw;
+    margin-left: 5vw;
+    margin-top: 2.5vh;
 }
