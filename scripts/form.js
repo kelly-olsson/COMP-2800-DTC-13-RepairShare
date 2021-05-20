@@ -36,7 +36,7 @@ function createSkillsArray () {
 
 
     var array = []
-    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+    var checkboxes = document.querySelectorAll('input[name=skillcheck]:checked')
     
     for (var i = 0; i < checkboxes.length; i++) {
       array.push(checkboxes[i].id)
