@@ -57,7 +57,7 @@ function addData(name, skillsArray, toolsObject) {
             .set({
                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 "description": description,
-                // "name": name,
+                // "name": user.uid.name,
                 "skills": skillsArray,
                 "tools": toolsObject
 
@@ -109,7 +109,7 @@ function uploadUserProfilePic(userUid) {
 
     // firebase.auth().onAuthStateChanged(function (user) {
         const fileInput = document.getElementById("profile-pic");   // pointer #1
-        const image = document.getElementById("mypic-goes-here"); // pointer #2
+        // const image = document.getElementById("mypic-goes-here"); // pointer #2
 
         console.log("line 113")
 
@@ -123,7 +123,7 @@ function uploadUserProfilePic(userUid) {
             // })
             var file = e.target.files[0];
             var blob = URL.createObjectURL(file);
-            image.src = blob;            // display this image
+            // image.src = blob;            // display this image
             console.log("We are inside the change eventlistener")
             //store using this name
             var storageRef = storage.ref("images/" + userUid + ".jpg"); 
@@ -139,7 +139,7 @@ function uploadUserProfilePic(userUid) {
                 .then(function (url) {   // Get URL of the uploaded file
                     console.log(url);    // Save the URL into users collection
                     db.collection("users").doc(userUid).update({
-                        "profilePic": url
+                        "profilePicture": url
                     })
                     .then(function(){
                         console.log('Added Profile Pic URL to Firestore.');
@@ -155,9 +155,7 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         userId = user.uid;
         db.collection("users").doc(user.uid).get().then(function(user) {
-            // let userData = user.data();
             uploadUserProfilePic(userId);
-            // loadUserProfile(userData);
         });
     }
 });
