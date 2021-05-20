@@ -70,6 +70,8 @@ function saveMessage(messageText) {
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
   var query = firebase.firestore()
+    .collection('users')
+    .doc(somebody.uid)
     .collection('messages')
     .orderBy('timestamp', 'desc')
     .limit(12);
@@ -92,7 +94,7 @@ function loadMessages() {
 // This first saves the image in Firebase storage.
 function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
-  firebase.firestore().collection('messages').add({
+  firebase.firestore().collection('users').doc(somebody.uid).collection('messages').add({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl(),
