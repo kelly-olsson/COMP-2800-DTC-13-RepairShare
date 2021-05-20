@@ -163,13 +163,14 @@ var options = {
     console.log(`Longitude: ${crd.longitude}`);
     console.log(`More or less ${crd.accuracy} meters.`);
 
+    locationArray = createLocationArray(crd.latitude, crd.longitude);
+
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             userId = user.uid;
             db.collection("users").doc(user.uid)
             .update({
-                "latitude": crd.latitude,
-                "longitude": crd.longitude
+                "location": locationArray
             })
         }
     });
@@ -186,3 +187,14 @@ var options = {
 //   let latitude, longitude = navigator.geolocation.getCurrentPosition(success, error, options);
 //   console.log(latitude)
 //   console.log(longitude)
+
+
+// Create a location array in the format of (latitude, longitude).
+function createLocationArray(latitude, longitude) {
+    locationArray = [];
+
+    locationArray.push(latitude);
+    locationArray.push(longitude);
+
+    return locationArray;
+}
