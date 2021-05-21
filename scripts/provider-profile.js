@@ -6,45 +6,6 @@ console.log(provider_identification);
 
 
 
-// var postedreview = $('<div id="reviews"></div>');
-// var cardformat = $('<div class="card"></div>');
-// var cardclass = $( '<div class="card-header"></div>');
-// var cardbody = $('<div class="card-body"></div>');
-// var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
-// var reviewerstatement = $('<p id="reviewer-statement"></p>');
-// var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
-
-// blockquote.append(reviewerstatement);
-// blockquote.append(reviewername);
-// cardbody.append(blockquote);
-// cardclass.append(cardbody); 
-// cardformat.append(cardclass);
-// postedreview.append(cardformat);
-
-
-
-
-
-
-// <div id="reviews">
-// <div class="card">
-//     <div class="card-header">
-//         <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
-//     </div>
-//     <div class="card-body">
-//         <blockquote class="blockquote mb-0">
-//             <p id="reviewer-statement">
-//                 Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
-//                 told me that it was 'my problem now', I can't believe I trusted someone like him.
-//             </p>
-//             <footer id="reviewer-name" class="blockquote-footer">
-//                 Francis Boomer <cite title="Source Title"></cite>
-//             </footer>
-//         </blockquote>
-//     </div>
-
-
-
 function PopulateProviderProfile(userID) {
     db.collection("users")
         .doc(userID)
@@ -145,6 +106,7 @@ function grabReviews(providerID) {
                 let enteries = reviews[key];
 
                 Object.keys(enteries).forEach(key => {
+                    
                     if (key == 'review') {
 
                         console.log(enteries[key]);
@@ -155,6 +117,7 @@ function grabReviews(providerID) {
                         var postedreview = $('<div id="reviews"></div>');
                         var cardformat = $('<div class="card"></div>');
                         var cardclass = $('<div class="card-header"></div>');
+                        var avatar = $('<div class="avatar" id= "thisagain"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>')
                         var cardbody = $('<div class="card-body"></div>');
                         var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
                         var reviewerstatement = $('<p id="reviewer-statement"></p>');
@@ -163,6 +126,7 @@ function grabReviews(providerID) {
                         blockquote.append(reviewerstatement);
                         blockquote.append(reviewername);
                         cardbody.append(blockquote);
+                        cardformat.append(avatar);
                         cardclass.append(cardbody);
                         cardformat.append(cardclass);
                         postedreview.append(cardformat);
@@ -172,6 +136,27 @@ function grabReviews(providerID) {
 
 
                     } else if (key == 'rating') {
+
+                        
+                        // var postedreview = $('<div id="reviews"></div>');
+                        // var cardformat = $('<div class="card"></div>');
+                        // var cardclass = $('<div class="card-header"></div>');
+                        // var avatar = $('<div class="avatar" id= "thisagain"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>')
+                        // var cardbody = $('<div class="card-body"></div>');
+                        // var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                        // var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                        // var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+                        // blockquote.append(reviewerstatement);
+                        // blockquote.append(reviewername);
+                        // cardbody.append(blockquote);
+                        // cardformat.append(avatar);
+                        // cardclass.append(cardbody);
+                        // cardformat.append(cardclass);
+                        // postedreview.append(cardformat);
+
+                        // postedreview.find('#reviewer-statement').text(WrittenReviews);
+                        // $('#reviews').append(postedreview);
 
                         console.log(enteries[key])
 
@@ -186,6 +171,22 @@ function grabReviews(providerID) {
 
 
 
+// <div id="reviews">
+// <div class="card">
+//     <div class="card-header">
+//         <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
+//     </div>
+//     <div class="card-body">
+//         <blockquote class="blockquote mb-0">
+//             <p id="reviewer-statement">
+//                 Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
+//                 told me that it was 'my problem now', I can't believe I trusted someone like him.
+//             </p>
+//             <footer id="reviewer-name" class="blockquote-footer">
+//                 Francis Boomer <cite title="Source Title"></cite>
+//             </footer>
+//         </blockquote>
+//     </div>
 
 
 
