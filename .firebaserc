@@ -1,7 +1,5 @@
 {
   "projects": {
-    "default": "repairshare-ce54f",
-    "repairshare": "repairshare-ce54f",
-    "testdeploy": "testfirechat-95cd2"
+    "default": "repairshare-ce54f"
   }
 }
