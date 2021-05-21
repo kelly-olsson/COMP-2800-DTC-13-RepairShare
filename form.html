@@ -48,7 +48,7 @@
         </nav>
     </header>
 
-    <form style="float:clear;" id="user-form">
+    <div style="float:none" id="user-form">
 
         <div class="form-group-name">
             <p> Hello, <span id="name-goes-here">User</span>! Let's enter your info: </p>
@@ -98,12 +98,13 @@
 
             <br>
 
-            <label for="exampleFormControlSelect1">What are the skills you'd like to offer?</label>
+            <label for="exampleFormControlSelect1">What skills would you like to offer?</label>
             <br>
             <div class="form-group-skills">
 
                 <div class="form-check">
-                    <input class="form-check-input check-skills" type="checkbox" value="" id="appliance" name="skillcheck">
+                    <input class="form-check-input check-skills" type="checkbox" value="" id="appliance"
+                        name="skillcheck">
                     <label class="form-check-label" for="defaultCheck1">Appliance repair</label>
                 </div>
 
@@ -135,22 +136,23 @@
                 </div>
 
             </div>
-
             <br>
-
             <label for="formFileLg" class="form-label">Upload your profile picture:</picture></label>
             <input class="form-control form-control-lg" id="profile-pic" type="file" accept="image/*" />
+            <br>
+            <div class="submit-reset-form">
+                <button type="button" id="submit" class="btn-lg btn-outline-success form-button">Submit</button>
+                <button type="button" id="reset-button" class="btn-lg btn-outline-danger form-button">Reset</button>
+            </div>
+            <br>
 
         </div>
-        <br>
 
-        </div>
 
-        <div class="submit-reset-form">
-            <button type="button" id="submit" class="btn-lg btn-outline-success form-button">Submit</button>
-            <button type="button" id="reset-button" class="btn-lg btn-outline-danger form-button">Reset</button>
-        </div>
-    </form>
+    </div>
+
+
+    </div>
 
     <footer>
         <div id="bottomfooter">
