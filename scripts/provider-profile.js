@@ -75,27 +75,27 @@ function PopulateProviderProfile(userID) {
 }
 
 
-// function chatButton(providerID) {
-//     $('#chatboxbutton').attr("href", "chat.html?id=" + provider_identification);
-// }
+function chatButton(providerID) {
+    $('#chatboxbutton').attr("href", "chat.html?id=" + provider_identification);
+}
 
 
-// function LeaveReview(providerID, review) {
-//     db.collection("users").doc(providerID)
-//         .update({
-//             "reviews": review
-//         })
-//         , { merge: true }
-// }
+function LeaveReview(providerID, review) {
+    var storedreviews = db.collection("users").doc(providerID); 
+
+    storedreviews.update({
+        reviews : firebase.firestore.FieldValue.arrayUnion({'review': review, 'score': 12})
+    });
+
+    $("#exampleFormControlTextarea1")[0].value = ""; 
+
+}
 
 
-// let formtext = document.getElementById("exampleFormControlTextarea1");
-// let reviewButton = document.getElementById("reviewsubmit");
+function RateProvider(providerID, rating){ 
 
-// function submitReview(provider_identification, formtext) {
-//     let reviewButton = document.getElementById("reviewsubmit");
-//     reviewButton.addEventListener("click", LeaveReview(provider_identification, formtext));
-// }
+
+}
 
 
 
@@ -109,8 +109,10 @@ function PopulateProviderProfile(userID) {
 
 
 PopulateProviderProfile(provider_identification);
-// reviewButton.onclick = submitReview(provider_identification, formtext);
 chatButton(provider_identification);
+
+document.getElementById("reviewsubmit").addEventListener("click", function(){
+    LeaveReview(provider_identification, $("#exampleFormControlTextarea1")[0].value)});
 
 
 
