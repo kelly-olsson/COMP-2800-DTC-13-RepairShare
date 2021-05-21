@@ -246,6 +246,5 @@ main, #messages-card {
     height: calc(98% - 80px);
     display: flex;
     flex-direction: column;
-    }
   }
 }
