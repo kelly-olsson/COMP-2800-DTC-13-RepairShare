@@ -22,6 +22,16 @@
 //   firebase.auth().signInWithPopup(provider);
 // }
 
+
+// const params = new URLSearchParams(window.location.search); 
+
+// let user_identification = params.get("id");
+// console.log(user_identification);
+
+// let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
+// let currentUser = firebase.auth().currentUser;
+
+
 // Signs-out of Friendly Chat.
 function signOut() {
   // Sign out of Firebase.
@@ -49,22 +59,45 @@ function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
 
+// // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
+// function saveMessage(messageText) {
+//   // Add a new message entry to the database.
+//   return firebase.auth().onAuthStateChanged(function (somebody) {
+//     if (somebody) {
+//       firebase.firestore().collection('users').doc(somebody.uid).collection('messages').add({
+//       // firebase.firestore().collection('messages').add({
+//         name: getUserName(),
+//         text: messageText,
+//         profilePicUrl: getProfilePicUrl(),
+//         timestamp: firebase.firestore.FieldValue.serverTimestamp()
+//       }).catch(function (error) {
+//         console.error('Error writing new message to database', error);
+//       });
+//     }
+//   })}
+
+//OG SAVE
+let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
+let currentUser = firebase.auth().currentUser;
+
+
 // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
 function saveMessage(messageText) {
   // Add a new message entry to the database.
-  return firebase.auth().onAuthStateChanged(function (somebody) {
-    if (somebody) {
-      firebase.firestore().collection('users').doc(somebody.uid).collection('messages').add({
-      // firebase.firestore().collection('messages').add({
-        name: getUserName(),
-        text: messageText,
-        profilePicUrl: getProfilePicUrl(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }).catch(function (error) {
-        console.error('Error writing new message to database', error);
-      });
-    }
-  })}
+  return firebase.firestore().collection('messages').add({
+    name: getUserName(),
+    sender: currentUser,
+    receiver: profileId,
+    text: messageText,
+    profilePicUrl: getProfilePicUrl(),
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(function(error) {
+    console.error('Error writing new message to database', error);
+  });
+}
+
+//END OF OG SAVE
+
 
 // Loads chat messages history and listens for upcoming ones.
 function loadMessages() {
