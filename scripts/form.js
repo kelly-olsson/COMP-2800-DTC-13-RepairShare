@@ -4,7 +4,7 @@ function addSubmitListener() {
         let skillsArray = createSkillsArray();
         let toolsObject = createToolsObject();
         addData(skillsArray, toolsObject);
-        // resetForm();
+        resetForm();
     })
 }
 addSubmitListener();
@@ -12,11 +12,18 @@ addSubmitListener();
 
 // Reset the form when "reset" button gets clicked.
 function resetFormButton() {
-    document.getElementById("reset").addEventListener("click", function () {
+    document.getElementById("reset-button").addEventListener("click", function () {
         resetForm();
     })
 }
-// resetFormButton();
+resetFormButton();
+
+
+// Reset form fields after habit is logged in.
+function resetForm() {
+    document.getElementById("user-form").reset();
+}
+
 
 
 // Create an array of skills entered by user.
@@ -81,12 +88,6 @@ function sayHello() {
     })
 }
 sayHello();
-
-
-// Reset form fields after habit is logged in.
-function resetForm() {
-    document.getElementById("user-form").reset();
-}
 
 
 // Upload user profile image to Cloud Firestore.
