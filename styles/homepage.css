@@ -121,6 +121,7 @@ body{
     border-style: none;
     width: 45rem;
     border-radius: 10%;
+    margin: auto;
 }
 
 #newapproach{
@@ -200,3 +201,39 @@ body{
     margin-bottom: 3vh;
 }
 
+#easter-egg{
+    margin: 60px 0px 200px 0px;
+    text-align: center;
+}
+
+#hammer{
+    width: 15%;
+    margin: auto;
+}
+
+#hammer-text{
+    color: black;
+    margin: 20px 0px 0px 0px;
+}
+
+#phrase{
+    color: black;
+    font-size: 3em;
+}
+
+#dancers{
+    width: 50%;
+}
+
+.animated {
+    left: -30vw;
+    animation: myanimation 3s;
+    position: relative;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes myanimation {
+    from {left: -30vw}
+    to {left: 15vw}
+  }
