@@ -4,6 +4,47 @@ const params = new URLSearchParams(window.location.search);
 let provider_identification = params.get("id");
 console.log(provider_identification);
 
+
+
+// var postedreview = $('<div id="reviews"></div>');
+// var cardformat = $('<div class="card"></div>');
+// var cardclass = $( '<div class="card-header"></div>');
+// var cardbody = $('<div class="card-body"></div>');
+// var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+// var reviewerstatement = $('<p id="reviewer-statement"></p>');
+// var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+// blockquote.append(reviewerstatement);
+// blockquote.append(reviewername);
+// cardbody.append(blockquote);
+// cardclass.append(cardbody); 
+// cardformat.append(cardclass);
+// postedreview.append(cardformat);
+
+
+
+
+
+
+// <div id="reviews">
+// <div class="card">
+//     <div class="card-header">
+//         <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
+//     </div>
+//     <div class="card-body">
+//         <blockquote class="blockquote mb-0">
+//             <p id="reviewer-statement">
+//                 Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
+//                 told me that it was 'my problem now', I can't believe I trusted someone like him.
+//             </p>
+//             <footer id="reviewer-name" class="blockquote-footer">
+//                 Francis Boomer <cite title="Source Title"></cite>
+//             </footer>
+//         </blockquote>
+//     </div>
+
+
+
 function PopulateProviderProfile(userID) {
     db.collection("users")
         .doc(userID)
@@ -80,66 +121,103 @@ function chatButton(providerID) {
 }
 
 
-function LeaveReview(providerID, review) {
-    var storedreviews = db.collection("users").doc(providerID); 
+function LeaveReview(providerID, review, rating) {
+    var storedreviews = db.collection("users").doc(providerID);
 
     storedreviews.update({
-        reviews : firebase.firestore.FieldValue.arrayUnion({'review': review, 'score': 12})
+        reviews: firebase.firestore.FieldValue.arrayUnion({ 'review': review, 'rating': rating })
     });
 
-    $("#exampleFormControlTextarea1")[0].value = ""; 
+    $("#exampleFormControlTextarea1")[0].value = "";
 
 }
 
 
-function RateProvider(providerID, rating){ 
+function grabReviews(providerID) {
+
+    db.collection("users")
+        .doc(providerID)
+        .get()
+        .then(function (doc) {
+            var reviews = doc.data().reviews;
+
+            Object.keys(reviews).forEach(key => {
+                let enteries = reviews[key];
+
+                Object.keys(enteries).forEach(key => {
+                    if (key == 'review') {
+
+                        console.log(enteries[key]);
+
+                        var WrittenReviews = enteries[key];
 
 
+                        var postedreview = $('<div id="reviews"></div>');
+                        var cardformat = $('<div class="card"></div>');
+                        var cardclass = $('<div class="card-header"></div>');
+                        var cardbody = $('<div class="card-body"></div>');
+                        var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                        var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                        var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+                        blockquote.append(reviewerstatement);
+                        blockquote.append(reviewername);
+                        cardbody.append(blockquote);
+                        cardclass.append(cardbody);
+                        cardformat.append(cardclass);
+                        postedreview.append(cardformat);
+
+                        postedreview.find('#reviewer-statement').text(WrittenReviews);
+                        $('#reviews').append(postedreview);
+
+
+                    } else if (key == 'rating') {
+
+                        console.log(enteries[key])
+
+                    }
+                }
+                )
+            })
+        })
 }
 
 
 
-// function addSubmitListener() {
-//     let toolKeyword = document.getElementById("tool-keyword").value;
-//     removeMarkers(markersList);
-//     getLocationH(toolKeyword);
+
+
+
+
+
+
+
+
+
+
+//             Object.keys(reviews).forEach(key => {
+//                 if (key == 'review') {
+
+//                     console.log('you got it you psycho bitch');
+
+//                 }
+//             else {
+//                 console.log('fucking kill me right now')
+//             }})
+
+
+//         })
 // }
 
-// submitButton.onclick = addSubmitListener;
+
+
 
 
 PopulateProviderProfile(provider_identification);
 chatButton(provider_identification);
+grabReviews(provider_identification);
 
-document.getElementById("reviewsubmit").addEventListener("click", function(){
-    LeaveReview(provider_identification, $("#exampleFormControlTextarea1")[0].value)});
-
-
-
-
-// function addData(name, skillsArray, toolsObject) {
-//     // var name = document.getElementById("user-name").value;
-//     var description = document.getElementById("user-description").value;
-
-//     firebase.auth().onAuthStateChanged(function (user) {
-//         db.collection("users").doc(user.uid)
-//             // .collection("Raw Data")
-//             .set({
-//                 // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
-//                 "description": description,
-//                 // "name": user.uid.name,
-//                 "skills": skillsArray,
-//                 "tools": toolsObject
-
-//             }, { merge: true })
-//             // .then(function () {
-//             //     updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
-//             // })
-//             .then(() => {
-//                 console.log("Document successfully written!");
-//             })
-//             .catch((error) => {
-//                 console.log("Error writing document: ", error);
-//             })
-//     })
-// }
+document.getElementById("reviewsubmit").addEventListener("click", function () {
+    let text_review = $("#exampleFormControlTextarea1")[0].value;
+    let rating = parseInt($("#exampleFormControlSelect1")[0].value);
+    LeaveReview(provider_identification, text_review, rating);
+})

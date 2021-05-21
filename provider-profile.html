@@ -49,10 +49,9 @@
         <h3> Hello, <span id="name-goes-here">User!</span> </h3>
         <div class="profile-content">
             <div class="p-5 text-right bg-white">
-                <div class="avatar text-center"> <img id="profile-photo"
-                        src=> </div>
+                <div class="avatar text-center"> <img id="profile-photo" src=> </div>
                 <div class="name">
-                    <h1 class="mb-3" id='username'>HI, I'M  <span class='usernamegoeshere'></span></h1>
+                    <h1 class="mb-3" id='username'>HI, I'M <span class='usernamegoeshere'></span></h1>
                     <h4 class="subtitle text-muted" id="membersince">Joined May 13th, 2021</h4>
                     <div class="description" id="rating">
                         <span class="fa fa-star checked"> 2.5 (189 reviews)</span>
@@ -72,7 +71,7 @@
         <p id='about'> </p>
         <hr id='dividingskills'>
         <div id="userattributes">
-            </div> 
+        </div>
         <hr size="3">
     </div>
     <div id="skillscontainer">
@@ -101,27 +100,51 @@
     <div id="messagechunk">
         <span id="chaticon" class="iconify" data-icon="bi:chat-left" data-inline="false" data-height="32"></span>
         <h4 class="subtitle">CHAT WITH <span class='usernamegoeshere'></span></h4>
-        <a type="button" class="btn btn-secondary btn-lg" id= "chatboxbutton">Message</a>
+        <a type="button" class="btn btn-secondary btn-lg" id="chatboxbutton">Message</a>
         <hr id="dividingline3" size="3">
     </div>
 
-    <div id="writereview"> 
-        <h4 class="subtitle">LEAVE <span class="usernamegoeshere"></span> A REVIEW</h4>
+
+    <div id="writereview">
+
+        <h4 class="subtitle">RATE AND REVIEW <span class="usernamegoeshere"></span></h4> <br>
+
+        <!-- <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>
+              <button type="button" class="btn btn-secondary bg-white" id="2star"><img src= "./images/1200px-Gold_Star.svg.png"></button>
+              <button type="button" class="btn btn-secondary bg-white" id="3star"><img src= "./images/1200px-Gold_Star.svg.png"></button>
+              <button type="button" class="btn btn-secondary bg-white" id="4star"><img src= "./images/1200px-Gold_Star.svg.png"></button>
+              <button type="button" class="btn btn-secondary bg-white" id="5star"><img src= "./images/1200px-Gold_Star.svg.png"></button>
+            </div>
+        </div> -->
+
+        
         <form>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" style="font-size: 1.5em;">Rate <span class="usernamegoeshere"></span> out of five: </label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
             <div class="form-group" id="chatbox">
                 <textarea class="form-control text-left" id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
-            <button type="button" class="btn btn-secondary btn-lg" id= "reviewsubmit">Submit</button>
+            <button type="button" class="btn btn-secondary btn-lg" id="reviewsubmit">Submit</button>
         </form>
         <hr id="dividingline3" size="3">
 
-        </div>
+    </div>
 
     <div id="numberofreviews">
         <h4 class="subtitle">168 Reviews</h4>
     </div>
     <div id="reviews">
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-header">
                 <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
             </div>
@@ -151,10 +174,10 @@
                         </footer>
                     </blockquote>
                 </div>
-            </div>
+            </div> -->
         </div>
 
-        
+
 
 
         <footer>
