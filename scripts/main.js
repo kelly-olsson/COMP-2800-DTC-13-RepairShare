@@ -23,13 +23,13 @@
  // }
  
  
- // const params = new URLSearchParams(window.location.search); 
+ const params = new URLSearchParams(window.location.search); 
  
- // let user_identification = params.get("id");
- // console.log(user_identification);
+ let user_identification = params.get("id");
+//  console.log(user_identification);
  
- // let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
- // let currentUser = firebase.auth().currentUser;
+//  let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
+//  let currentUser = firebase.auth().currentUser;
  
  
  // Signs-out of Friendly Chat.
@@ -53,6 +53,10 @@
  function getUserName() {
    return firebase.auth().currentUser.displayName;
  }
+
+ function getUserId() {
+  return firebase.auth().currentUser.uid;
+}
  
  // Returns true if a user is signed-in.
  function isUserSignedIn() {
@@ -87,16 +91,15 @@
  
  
  //OG SAVE
- let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
- // let currentUser = firebase.auth().currentUser;
+//  let currentUser = firebase.auth().currentUser;
  let chatID;
+ console.log(currentUser.uid)
  
  
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
  function saveMessage(messageText) {
    // Add a new message entry to the database.
-   let currentUser = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
-   chatID = createchatId(profileId, currentUser);
+   chatID = createchatId(user_identification, getUserId());
    return firebase.firestore().collection('messages').add({
      name: getUserName(),
      sender: currentUser,
