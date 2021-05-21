@@ -3,7 +3,7 @@ function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         let skillsArray = createSkillsArray();
         let toolsObject = createToolsObject();
-        addData(name, skillsArray, toolsObject);
+        addData(skillsArray, toolsObject);
         // resetForm();
     })
 }
