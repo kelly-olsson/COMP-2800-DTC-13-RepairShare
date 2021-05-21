@@ -20,6 +20,11 @@ html, body {
 main, #messages-card {
   height: 100%;
   padding-bottom: 0;
+  margin: 0px 0px 70px 0px;
+}
+#main-header {
+  background-color: #5e96ae;
+  color: white;
 }
 #messages-card-container {
   height: calc(100% - 35px);
@@ -27,6 +32,7 @@ main, #messages-card {
 }
 #messages-card {
   margin-top: 15px;
+  width: 85%;
 }
 .mdl-layout__header-row span {
   margin-left: 15px;
@@ -177,7 +183,7 @@ main, #messages-card {
   }
   #user-container {
     top: 72px;
-    background-color: rgb(3,155,229);
+    background-color: #5e96ae;
     height: 38px;
     padding-top: 3px;
     padding-right: 2px;
@@ -190,12 +196,55 @@ main, #messages-card {
   }
 }
 .mdl-textfield__label:after {
-  background-color: #0288D1;
+  background-color: #5e96ae;
 }
 .mdl-textfield--floating-label.is-focused .mdl-textfield__label {
-  color: #0288D1;
+  color: #5e96ae;
 }
 .mdl-button .material-icons {
   top: -1px;
   margin-right: 5px;
+}
+#bottomfooter {
+  background-color: white;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+#bottomfooter a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1.2em 0em 1.2em 0em;
+}
+#iconifyFooter {
+  width: 4vh;
+  height: 4vh;
+}
+
+@media screen and (min-width: 1000px) {
+  main, #messages-card {
+    margin: 0px 0px 130px 0px;
+    font-size: 10em;
+  }
+  .mdl-textfield__label {
+    font-size: 100px;
+  }
+  /* .mdl-textfield {
+    height: 200px;
+  } */
+  #message-form {
+    height: 1000px;
+  }
+  #messages {
+    overflow-y: auto;
+    margin-bottom: 10px;
+    height: calc(98% - 80px);
+    display: flex;
+    flex-direction: column;
+  }
 }
