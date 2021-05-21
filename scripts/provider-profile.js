@@ -23,6 +23,8 @@ function PopulateProviderProfile(userID) {
             $("#usercanhelp").text(name.toUpperCase());
             $("#about").text(description);
             $("#profile-photo").attr("src", picture);
+            $('#chatboxbutton').attr("href", "chat.html?id=" + userID);
+
 
 
             for (var index = 0; index < skills.length; index++) {
