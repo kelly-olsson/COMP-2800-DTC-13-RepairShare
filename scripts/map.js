@@ -77,6 +77,15 @@ function getLocationH(toolKeyword) {
         
 }
 
+function zoomBasedonMarkers(markers){
+    var bounds = new google.maps.LatLngBounds();
+    for(i=0;i<markers.length;i++) {
+        bounds.extend(markers[i].getPosition());
+}
+map.setCenter(bounds.getCenter());
+
+}
+
 function setMarkers(map, megaArray){
     for (let i = 0; i < megaArray.length; i++){  
 
@@ -101,7 +110,7 @@ function setMarkers(map, megaArray){
         };
         
     })(marker,content,infowindow)); 
-    }; 
+    }zoomBasedonMarkers(markersList); 
 }
 
 
