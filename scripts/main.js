@@ -22,14 +22,9 @@
  //   firebase.auth().signInWithPopup(provider);
  // }
  
- 
  const params = new URLSearchParams(window.location.search); 
- 
- let user_identification = params.get("id");
-//  console.log(user_identification);
- 
-//  let profileId = "sC1n34ukb7RFTJCBi7zsjuqKkyr1"
-//  let currentUser = firebase.auth().currentUser;
+
+
  
  
  // Signs-out of Friendly Chat.
@@ -54,32 +49,25 @@
    return firebase.auth().currentUser.displayName;
  }
 
- function getUserId() {
-  return firebase.auth().currentUser.uid;
-}
- 
+//  function getUserId() {
+//   firebase.auth().onAuthStateChanged(function(user) {
+//     if (user) {
+//       console.log(user.uid)
+//       let loggedInUser = user.uid
+//       console.log(loggedInUser)
+//       return loggedInUser
+//     } else {
+//       console.log("User is not logged in to firebase!")
+//     }
+//   });
+// }
+
+
  // Returns true if a user is signed-in.
  function isUserSignedIn() {
    return !!firebase.auth().currentUser;
  }
- 
- // // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
- // function saveMessage(messageText) {
- //   // Add a new message entry to the database.
- //   return firebase.auth().onAuthStateChanged(function (somebody) {
- //     if (somebody) {
- //       firebase.firestore().collection('users').doc(somebody.uid).collection('messages').add({
- //       // firebase.firestore().collection('messages').add({
- //         name: getUserName(),
- //         text: messageText,
- //         profilePicUrl: getProfilePicUrl(),
- //         timestamp: firebase.firestore.FieldValue.serverTimestamp()
- //       }).catch(function (error) {
- //         console.error('Error writing new message to database', error);
- //       });
- //     }
- //   })}
- 
+
  function createchatId(profile, user){
    if (profile < user){
      return profile + user
@@ -90,20 +78,22 @@
  }
  
  
- //OG SAVE
-//  let currentUser = firebase.auth().currentUser;
- let chatID;
- console.log(currentUser.uid)
+ let user_identification = params.get("id");
+ console.log(user_identification);
  
- 
+ var chatID;
+
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
  function saveMessage(messageText) {
-   // Add a new message entry to the database.
-   chatID = createchatId(user_identification, getUserId());
+  let loggedInUser = firebase.auth().currentUser.uid
+  chatID = createchatId(user_identification, loggedInUser);
+  console.log(chatID)
+  console.log(loggedInUser)
+  // chatID = "sC1n34ukb7RFTJCBi7zsjuqKkyr1sC1n34ukb7RFTJCBi7zsjuqKkyr1" 
    return firebase.firestore().collection('messages').add({
      name: getUserName(),
-     sender: currentUser,
-     receiver: profileId,
+    //  sender: getUserId(),
+    //  receiver: user_identification,
      chat: chatID,
      text: messageText,
      profilePicUrl: getProfilePicUrl(),
@@ -119,11 +109,16 @@
  // Loads chat messages history and listens for upcoming ones.
  function loadMessages() {
    // Create the query to load the last 12 messages and listen for new ones.
+   console.log("load message inside")
+   let loggedInUser = firebase.auth().currentUser.uid
+   chatID = createchatId(user_identification, loggedInUser);
+   console.log(chatID)
    var query = firebase.firestore()
      .collection('messages')
-     .where('chat', '==', 'sC1n34ukb7RFTJCBi7zsjuqKkyr1sC1n34ukb7RFTJCBi7zsjuqKkyr1')
+     .where('chat', '==', chatID)
      .orderBy('timestamp', 'desc');
- 
+     console.log("LINE 123")
+
    // Start listening to the query.
    query.onSnapshot(function (snapshot) {
      snapshot.docChanges().forEach(function (change) {
@@ -203,6 +198,7 @@
    e.preventDefault();
    // Check that the user entered a message and is signed in.
    if (messageInputElement.value && checkSignedInWithMessage()) {
+     console.log(messageInputElement.value)
      saveMessage(messageInputElement.value).then(function () {
        // Clear message text field and re-enable the SEND button.
        resetMaterialTextfield(messageInputElement);
@@ -217,6 +213,7 @@
      // Get the signed-in user's profile pic and name.
      var profilePicUrl = getProfilePicUrl();
      var userName = getUserName();
+     console.log("line 223")
  
      // Set the user's profile pic and name.
      userPicElement.style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(profilePicUrl) + ')';
@@ -228,7 +225,7 @@
      signOutButtonElement.removeAttribute('hidden');
  
      // Hide sign-in button.
-     signInButtonElement.setAttribute('hidden', 'true');
+    //  signInButtonElement.setAttribute('hidden', 'true');
  
      // We save the Firebase Messaging Device token and enable notifications.
      saveMessagingDeviceToken();
@@ -239,7 +236,7 @@
      signOutButtonElement.setAttribute('hidden', 'true');
  
      // Show sign-in button.
-     signInButtonElement.removeAttribute('hidden');
+    //  signInButtonElement.removeAttribute('hidden');
    }
  }
  
@@ -396,13 +393,13 @@
  var mediaCaptureElement = document.getElementById('mediaCapture');
  var userPicElement = document.getElementById('user-pic');
  var userNameElement = document.getElementById('user-name');
- var signInButtonElement = document.getElementById('sign-in');
- var signOutButtonElement = document.getElementById('sign-out');
+//  var signInButtonElement = document.getElementById('sign-in');
+//  var signOutButtonElement = document.getElementById('sign-out');
  var signInSnackbarElement = document.getElementById('must-signin-snackbar');
  
  // Saves message on form submit.
  messageFormElement.addEventListener('submit', onMessageFormSubmit);
- signOutButtonElement.addEventListener('click', signOut);
+//  signOutButtonElement.addEventListener('click', signOut);
  // signInButtonElement.addEventListener('click', signIn);
  
  // Toggle for the button.
@@ -422,5 +419,14 @@
  // TODO: Enable Firebase Performance Monitoring.
  
  // We load currently existing chat messages and listen to new ones.
- loadMessages();
+
+ function loadMessagedAfterStateChange() {
+  firebase.auth().onAuthStateChanged(function (somebody) {
+      if (somebody) {
+        loadMessages();
+      }
+  })
+}
+loadMessagedAfterStateChange();
+//  loadMessages();
  
