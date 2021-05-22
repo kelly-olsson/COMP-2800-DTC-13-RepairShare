@@ -91,15 +91,18 @@ function LeaveReview(providerID, review, rating) {
                 .doc(somebody.uid)
                 .get()
                 .then(function (doc) {
-                    console.log("leave review")
+
                     var name = doc.data().name;
+                    var profilePicture = doc.data().profilePicture;
                     
-                    $(".usernamegoeshere").text(name);
+                    // $(".usernamegoeshere").text(name);
                     console.log(doc.id)
+                    console.log(name)
+                    console.log(profilePicture)
 
                     var storedreviews = db.collection("users").doc(providerID);
                     storedreviews.update({
-                        reviews: firebase.firestore.FieldValue.arrayUnion({'review': review, 'rating': rating, 'userID': doc.id })
+                        reviews: firebase.firestore.FieldValue.arrayUnion({'review': review, 'rating': rating, 'userID': doc.id, "name": name, "profilePicture": profilePicture})
                     });
                 
                     $("#exampleFormControlTextarea1")[0].value = "";
@@ -121,6 +124,9 @@ function grabReviews(providerID) {
 
                 let WrittenReviews = reviews[i].review;
                 let rating = reviews[i].rating;
+                let name = reviews[i].name;
+                let profilePicture = reviews[i].profilePicture;
+
 
                 var postedreview = $('<div id="reviews"></div>');
                 var cardformat = $('<div class="card"></div>');
@@ -142,18 +148,12 @@ function grabReviews(providerID) {
 
                 postedreview.find('#thisagain').append(StarCreation(rating));
                 postedreview.find('#reviewer-statement').text(WrittenReviews);
+                postedreview.find('#reviewer-name').text(name);
+                postedreview.find('#reviewer-photo').attr("src", profilePicture);
                 $('#reviews').append(postedreview);
             }
         })
 }
-
-
-// Helper function for 
-function getReviewerInfo(providerID) {
-
-
-}
-getReviewerInfo(provider_identification);
 
 
 
@@ -321,7 +321,7 @@ function sayHello() {
                 .get()
                 .then(function (doc) {
                     var n = doc.data().name;
-                    $("#name-goes-here").text(n);
+                    $("#usernamegoeshere").text(n);
                 })
         }
     })
