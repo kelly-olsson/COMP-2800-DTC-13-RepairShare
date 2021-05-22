@@ -68,4 +68,89 @@ function sayHello() {
     })
 }
 
+/// Grab reviews connected to userID stored in firebase
+
+function grabReviews(providerID) {
+
+    db.collection("users")
+        .doc(providerID)
+        .get()
+        .then(function (doc) {
+            var reviews = doc.data().reviews;
+
+            for (let i = 0; i < reviews.length; i++) {
+
+                let WrittenReviews = reviews[i].review;
+                let rating = reviews[i].rating;
+
+                var postedreview = $('<div id="reviews"></div>');
+                var cardformat = $('<div class="card"></div>');
+                var cardclass = $('<div class="card-header"></div>');
+                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');
+                var cardbody = $('<div class="card-body"></div>');
+                var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+                blockquote.append(reviewerstatement);
+                blockquote.append(reviewername);
+                cardbody.append(blockquote);
+                cardformat.append(avatar);
+                cardclass.append(cardbody);
+                cardformat.append(cardclass);
+                postedreview.append(cardformat);
+
+
+                postedreview.find('#thisagain').append(StarCreation(rating));
+                postedreview.find('#reviewer-statement').text(WrittenReviews);
+                $('#reviews').append(postedreview);
+            }
+        })
+}
+
+
+/// Filter through review
+
+function filterReviews(providerID, desiredRating) {
+
+    db.collection("users")
+        .doc(providerID)
+        .get()
+        .then(function (doc) {
+            var reviews = doc.data().reviews;
+
+            for (let i = 0; i < reviews.length; i++) {
+
+                if (reviews[i].rating == desiredRating){ 
+
+                let WrittenReviews = reviews[i].review;
+                let rating = reviews[i].rating;
+
+                var postedreview = $('<div id="reviews"></div>');
+                var cardformat = $('<div class="card"></div>');
+                var cardclass = $('<div class="card-header"></div>');
+                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');
+                var cardbody = $('<div class="card-body"></div>');
+                var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+                blockquote.append(reviewerstatement);
+                blockquote.append(reviewername);
+                cardbody.append(blockquote);
+                cardformat.append(avatar);
+                cardclass.append(cardbody);
+                cardformat.append(cardclass);
+                postedreview.append(cardformat);
+
+
+                postedreview.find('#thisagain').append(StarCreation(rating));
+                postedreview.find('#reviewer-statement').text(WrittenReviews);
+                $('#reviews').append(postedreview);
+            }} 
+        })
+}
+
 sayHello();
+
+grabReviews(provider_identification);

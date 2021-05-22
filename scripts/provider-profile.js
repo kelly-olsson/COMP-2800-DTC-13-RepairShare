@@ -175,20 +175,6 @@ function filterReviews(providerID, desiredRating) {
 }
 
 
-// function filterReviews(id, desiredrating) {
-
-//     db.collection("users")
-//         .where('rating', '==', desiredrating)
-//         .get()
-//         .then(function () {
-//             grabReviews(id)
-//             })
-//         .catch((error) => {
-//             console.log("Error getting documents: ", error);
-//         })
-// };
-
-
 PopulateProviderProfile(provider_identification);
 chatButton(provider_identification);
 grabReviews(provider_identification);
