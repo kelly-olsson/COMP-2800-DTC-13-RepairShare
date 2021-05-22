@@ -269,8 +269,9 @@ main, #messages-card {
   }
   #upper-left-brand{
     font-size: 1em;
-  }
-  .material-icons{
     height: 1em;
   }
+  .material-icons{
+    /* height: 4em;
+  } */
 }
