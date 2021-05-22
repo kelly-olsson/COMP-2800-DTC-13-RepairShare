@@ -67,6 +67,7 @@ function sayHello() {
         }
     })
 }
+sayHello();
 
 /// Grab reviews connected to userID stored in firebase
 
