@@ -34,6 +34,7 @@ function PopulateProviderProfile(userID) {
                 })
             }
 
+           
             Object.keys(tools).forEach(key => {
                 if (tools[key] == true) {
                     let toolitem = key;
@@ -47,28 +48,29 @@ function PopulateProviderProfile(userID) {
 
             })
 
-            Object.keys(userattributes).forEach(key => {
-                if (userattributes[key] == true && key == 'Handy Certified') {
+            // Object.keys(userattributes).forEach(key => {
+            //     if (userattributes[key] == true && key == 'Handy Certified') {
 
-                    let handy = key;
-                    let handyicon = '<span class="iconify" id="tooldescription" data-icon="bpmn:hand-tool" data-inline="false" data-height="32"></span> '
+            //         let handy = key;
+            //         let handyicon = '<span class="iconify" id="tooldescription" data-icon="bpmn:hand-tool" data-inline="false" data-height="32"></span> '
 
 
-                    $(document).ready(function () {
-                        var $handy = '<p id= "description">' + handyicon + handy + '</span>' + '</p>'
-                        $('#userattributes').append($handy);
-                    })
-                }
-                else if (userattributes[key] == true && key == 'Tool Share Member') {
+            //         $(document).ready(function () {
+            //             var $handy = '<p id= "description">' + handyicon + handy + '</span>' + '</p>'
+            //             $('#userattributes').append($handy);
+            //         })
+            //     }
+            //     else if (userattributes[key] == true && key == 'Tool Share Member') {
 
-                    let tooly = key;
-                    let toolicon = '<span class="iconify" id="tooldescription" data-icon="ion:hammer-sharp" data-inline="false" data-height="32"></span> ';
-                    $(document).ready(function () {
-                        var $handy = '<p id= "description">' + toolicon + tooly + '</span>' + '</p>'
-                        $('#userattributes').append($handy);
-                    })
-                }
-            })
+            //         let tooly = key;
+            //         let toolicon = '<span class="iconify" id="tooldescription" data-icon="ion:hammer-sharp" data-inline="false" data-height="32"></span> ';
+            //         $(document).ready(function () {
+            //             var $handy = '<p id= "description">' + toolicon + tooly + '</span>' + '</p>'
+            //             $('#userattributes').append($handy);
+            //         })
+            //     }
+            // })
+            // */
 
 
         }).catch(function (error) {
@@ -83,16 +85,29 @@ function chatButton(providerID) {
 
 
 function LeaveReview(providerID, review, rating) {
-    var storedreviews = db.collection("users").doc(providerID);
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    console.log("leave review")
+                    var name = doc.data().name;
+                    
+                    $(".usernamegoeshere").text(name);
+                    console.log(doc.id)
 
-    storedreviews.update({
-        reviews: firebase.firestore.FieldValue.arrayUnion({ 'review': review, 'rating': rating })
-    });
-
-    $("#exampleFormControlTextarea1")[0].value = "";
-
+                    var storedreviews = db.collection("users").doc(providerID);
+                    storedreviews.update({
+                        reviews: firebase.firestore.FieldValue.arrayUnion({'review': review, 'rating': rating, 'userID': doc.id })
+                    });
+                
+                    $("#exampleFormControlTextarea1")[0].value = "";
+                
+                })
+        }
+    })
 }
-
 
 function grabReviews(providerID) {
 
@@ -131,6 +146,14 @@ function grabReviews(providerID) {
             }
         })
 }
+
+
+// Helper function for 
+function getReviewerInfo(providerID) {
+
+
+}
+getReviewerInfo(provider_identification);
 
 
 

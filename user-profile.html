@@ -68,7 +68,7 @@
         <hr size="3">
         <span id="quotationMark" class="iconify" data-icon="bx:bxs-quote-alt-left" data-inline="false"
             data-height="32"></span>
-        <h4 class="subtitle">TELL THE COMMUNITY ABOUT YOURSELF</h4>
+        <h4 class="subtitle">YOUR STORY</h4>
         <p id='about'> </p>
         <hr id='dividingskills'>
         <div id="userattributes">
@@ -99,53 +99,25 @@
         <hr id="dividingline2" size="3">
     </div>
 
-    <div id="messagechunk">
-        <span id="chaticon" class="iconify" data-icon="bi:chat-left" data-inline="false" data-height="32"></span>
-        <form>
-            <div class="form-group" id="chatbox">
-                <textarea class="form-control text-left" id="exampleFormControlTextarea1" rows="5"></textarea>
-                <button type="button" class="btn btn-secondary btn-lg">Message</button>
-            </div>
-        </form>
-        <hr id="dividingline3" size="3">
-    </div>
-
     <div id="numberofreviews">
-        <h4 class="subtitle">168 Reviews</h4>
+        <h4 class="subtitle" id='totalreview'> Community Reviews <br></h4>
+        <form style='width: 75vw;'>
+            <div class="form-group col-md-4">
+                <select id="searchRating" class="form-control" style = "font-size: 1.5em;">
+                  <option selected>Filter By Rating</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
+        </form>
     </div>
     <div id="reviews">
-        <div class="card">
-            <div class="card-header">
-                <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p id="reviewer-statement">
-                        Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
-                        told me that it was 'my problem now', I can't believe I trusted someone like him.
-                    </p>
-                    <footer id="reviewer-name" class="blockquote-footer">
-                        Francis Boomer <cite title="Source Title"></cite>
-                    </footer>
-                </blockquote>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/70.jpg>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p id="reviewer-statement">
-                            THE WORST IN TOWN! BILLY SUCKS!
-                        </p>
-                        <footer id="reviewer-name" class="blockquote-footer">
-                            Caleb Krabby <cite title="Source Title"></cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
+    </div>
+
 
 
         <footer>
