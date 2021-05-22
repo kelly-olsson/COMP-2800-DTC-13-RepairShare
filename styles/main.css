@@ -198,8 +198,9 @@ main, #messages-card {
 .mdl-textfield__label:after {
   background-color: #5e96ae;
 }
-.mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label{
   color: #5e96ae;
+  font-size: 0.9em;
 }
 .mdl-button .material-icons {
   top: -1px;
@@ -229,18 +230,8 @@ main, #messages-card {
 @media screen and (min-width: 1000px) {
   main, #messages-card {
     margin: 0px 0px 130px 0px;
-    font-size: 10em;
-  }
-  .mdl-textfield__label {
-    font-size: 5em;
-    padding: 0.2em 0em 0em 0em;
-  }
-  /* .mdl-textfield {
-    height: 200px;
-  } */
-  #message-form {
-    height: 1000px;
-  }
+    width: 100%;
+  } 
   #messages {
     overflow-y: auto;
     margin-bottom: 10px;
@@ -248,30 +239,49 @@ main, #messages-card {
     display: flex;
     flex-direction: column;
   }
-  .mdl-button{
+  /* .mdl-button{
     font-size: 3em;
-    height: 3em;
+    height: 2em;
     width: 3em;
-  }
+  }  */
   #message{
-    height: 4em;
+    height: 2.5em;
     padding: 3em 0em 0em 0em;
   }
   #main-header {
     height: 2em;
     font-size: 8em;
   }
-  .mdl-cell{
-    /* height: 3em; */
-    /* margin: 0em;
-    padding: 0em; */
-    /* font-size: 1.1em; */
-  }
   #upper-left-brand{
     font-size: 1em;
     height: 1em;
   }
-  .material-icons{
-    /* height: 4em;
-  } */
+  #message.mdl-textfield__input{
+    padding: 0em;
+  }
+  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.is-upgraded{
+    font-size: 1.8em; /*Enlarged text when not focused on*/
+  }
+  .mdl-textfield__label {
+    font-size: 5em;
+    padding: 0.3em 0em 0em 0em;
+  }
+  .mdl-textfield__input{
+    font-size: 3em;  /* This will change the text you type*/
+    padding: 0em;
+  }
+  .mdl-textfield--floating-label.is-focused{
+    font-size: 3em; /*This is message after being clicked*/
+    padding: 0em 0em 1.3em 0em; /*Pushes the "message..." text up after being clicked*/
+  }
+  .mdl-textfield__label::after{
+    /* font-size: 2em; */
+  }
+  #message-form{
+    /* width: 90%; Control width of input bar */
+    /* display: block; */
+  }
+  #image-form{
+    /* display: block; */
+  }
 }
