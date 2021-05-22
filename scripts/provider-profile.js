@@ -110,7 +110,7 @@ function grabReviews(providerID) {
                 var postedreview = $('<div id="reviews"></div>');
                 var cardformat = $('<div class="card"></div>');
                 var cardclass = $('<div class="card-header"></div>');
-                var avatar = $('<div class="avatar" id= "thisagain"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>');
+                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');
                 var cardbody = $('<div class="card-body"></div>');
                 var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
                 var reviewerstatement = $('<p id="reviewer-statement"></p>');
@@ -133,9 +133,67 @@ function grabReviews(providerID) {
 }
 
 
+
+function filterReviews(providerID, desiredRating) {
+
+    db.collection("users")
+        .doc(providerID)
+        .get()
+        .then(function (doc) {
+            var reviews = doc.data().reviews;
+
+            for (let i = 0; i < reviews.length; i++) {
+
+                if (reviews[i].rating == desiredRating){ 
+
+                let WrittenReviews = reviews[i].review;
+                let rating = reviews[i].rating;
+
+                var postedreview = $('<div id="reviews"></div>');
+                var cardformat = $('<div class="card"></div>');
+                var cardclass = $('<div class="card-header"></div>');
+                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');
+                var cardbody = $('<div class="card-body"></div>');
+                var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+
+                blockquote.append(reviewerstatement);
+                blockquote.append(reviewername);
+                cardbody.append(blockquote);
+                cardformat.append(avatar);
+                cardclass.append(cardbody);
+                cardformat.append(cardclass);
+                postedreview.append(cardformat);
+
+
+                postedreview.find('#thisagain').append(StarCreation(rating));
+                postedreview.find('#reviewer-statement').text(WrittenReviews);
+                $('#reviews').append(postedreview);
+            }} 
+        })
+}
+
+
+// function filterReviews(id, desiredrating) {
+
+//     db.collection("users")
+//         .where('rating', '==', desiredrating)
+//         .get()
+//         .then(function () {
+//             grabReviews(id)
+//             })
+//         .catch((error) => {
+//             console.log("Error getting documents: ", error);
+//         })
+// };
+
+
 PopulateProviderProfile(provider_identification);
 chatButton(provider_identification);
 grabReviews(provider_identification);
+averageRating(provider_identification);
+
 
 document.getElementById("reviewsubmit").addEventListener("click", function () {
     let text_review = $("#exampleFormControlTextarea1")[0].value;
@@ -144,51 +202,100 @@ document.getElementById("reviewsubmit").addEventListener("click", function () {
 })
 
 
+document.getElementById("filterbutton").addEventListener("click", function(){
+    let search_number = parseInt($("#searchRating")[0].value);
+    $("#reviews").empty();
+    filterReviews(provider_identification, search_number);
+}
+)
+
+
+
+
+/// calculate average rating of a user 
+
+function averageRating(userId) {
+
+    db.collection("users")
+        .doc(userId)
+        .get()
+        .then(function (doc) {
+            var reviews = doc.data().reviews;
+
+            totalrating = 0;
+
+            for (let i = 0; i < reviews.length; i++) {
+                totalrating += reviews[i].rating;
+            }
+
+            let average_rating = totalrating / reviews.length;
+
+            console.log(average_rating);
+
+            $("#reviewnumber").text('Average Rating: ' + average_rating.toFixed(2) + ' / 5 Stars (' + reviews.length + ' Reviews)');
+            $(".starspot").append(StarCreation(average_rating));
+            $("#totalreview").text(reviews.length + ' Reviews');
+
+        })
+}
 
 /// create star list aligning with user rating 
+
+
 
 function StarCreation(ratingscore) {
 
     var starsheet = $('<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="starchart"></div>')
     var classgrouping = $('<div class="btn-group mr-2" role="group" aria-label="First group"></div>')
 
-    if (ratingscore == 1) {
+    if (ratingscore == 1 || ratingscore < 2) {
 
-        var starrating1 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>')
+        var starrating1 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
         classgrouping.append(starrating1);
 
-    } else if (ratingscore == 2) {
+    } else if (ratingscore == 2 || ratingscore < 3) {
 
-        var starrating2 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button><button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>')
+        var starrating2 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png">\
+         </button><button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
         classgrouping.append(starrating2);
 
 
-    } else if (ratingscore == 3){
+    } else if (ratingscore == 3 || ratingscore < 4) {
 
-        var starrating3 =$('<button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
-        <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>')
+        var starrating3 = $('<button type="button" class="btn btn-secondary bg-white" id="1star" ><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
 
-         classgrouping.append(starrating3);
+        classgrouping.append(starrating3);
 
-    } else if (ratingscore == 4){
+    } else if (ratingscore == 4 || ratingscore < 5) {
 
-        var starrating4 =$('<button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
-        <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>') 
-        
-         classgrouping.append(starrating4);
+        var starrating4 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> ')
 
-    } else if (ratingscore == 5 ){
+        classgrouping.append(starrating4);
 
-        var starrating4 =$('<button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
-        <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
-         <button type="button" class="btn btn-secondary bg-white" id="1star"><img src= "./images/1200px-Gold_Star.svg.png"> </button>') 
+    } else if (ratingscore == 5 || ratingscore < 6) {
 
-         classgrouping.append(starrating5);
+        var starrating5 = $('<button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none" ><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>')
+
+        classgrouping.append(starrating5);
     }
 
     starsheet.append(classgrouping);
@@ -197,55 +304,17 @@ function StarCreation(ratingscore) {
 
 }
 
-
-
-//  Hannah
-
-// function sayHello() {
-//     firebase.auth().onAuthStateChanged(function (somebody) {
-//         if (somebody) {
-//             db.collection("users")
-//                 .doc(somebody.uid)
-//                 .get()
-//                 .then(function (doc) {
-//                     var n = doc.data().name;
-//                     $("#name-goes-here").text(n);
-
-//                     var reviews = doc.data().reviews;
-//                     console.log(reviews)
-
-//                     for (let i = 0; i < reviews.length; i++) {
-
-//                         let WrittenReviews = reviews[i].review;
-//                         let rating = reviews[i].rating;
-
-//                         console.log(reviews[i].review)
-//                         console.log(reviews[i].score)
-
-//                         var postedreview = $('<div id="reviews"></div>');
-//                         var cardformat = $('<div class="card"></div>');
-//                         var cardclass = $('<div class="card-header"></div>');
-//                         var avatar = $('<div class="avatar" id= "thisagain"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>')
-//                         var cardbody = $('<div class="card-body"></div>');
-//                         var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
-//                         var reviewerstatement = $('<p id="reviewer-statement"></p>');
-//                         var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
-
-//                         blockquote.append(reviewerstatement);
-//                         blockquote.append(reviewername);
-//                         cardbody.append(blockquote);
-//                         cardformat.append(avatar);
-//                         cardclass.append(cardbody);
-//                         cardformat.append(cardclass);
-//                         postedreview.append(cardformat);
-
-
-//                         postedreview.find('#thisagain').text(rating);
-//                         postedreview.find('#reviewer-statement').text(WrittenReviews);
-//                         $('#reviews').append(postedreview);
-//                     }
-//                 })
-//         }
-//     })
-// }
-// sayHello();
+function sayHello() {
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    var n = doc.data().name;
+                    $("#name-goes-here").text(n);
+                })
+        }
+    })
+}
+sayHello();

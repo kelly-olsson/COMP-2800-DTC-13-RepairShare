@@ -213,9 +213,9 @@ body {
 
 #reviews {
     margin-top: 2vh;
-    margin-left: 5vw;
+    margin-left: 2.5vw;
     margin-bottom: 10vh;
-    width: 85vw;
+    width: 75vw;
 }
 
 #reviewer-photo{
@@ -233,7 +233,8 @@ body {
 }
 
 #numberofreviews{
-    margin-left: 10vw;
+    width: 75vw;
+    margin-left: 5vw;
 }
 
 #writereview{
@@ -247,6 +248,6 @@ body {
 
 }
 
-#starchart{
-    border-style: none;
+#reviewnumber {
+    color: darkblue;
 }
