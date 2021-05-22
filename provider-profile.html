@@ -46,7 +46,7 @@
                 </div>
             </div>
         </nav>
-        <h3> Hello, <span id="name-goes-here">User!</span> </h3>
+
         <div class="profile-content">
             <div class="p-5 text-right bg-white">
                 <div class="avatar text-center"> <img id="profile-photo" src=> </div>
@@ -55,7 +55,7 @@
                     <h1 class="mb-3" id='username'>HI, I'M <span class='usernamegoeshere'></span></h1>
                     <h4 class="subtitle text-muted" id="membersince">Joined May 13th, 2021</h4>
                     <div class="description" id="rating">
-                        <span class="fa fa-star checked"> 2.5 (189 reviews)</span>
+                        <span class="starspot"> <span id="reviewnumber"></span></span>
                         <div class="description text-center">
                         </div>
                     </div>
@@ -109,18 +109,19 @@
     <div id="writereview">
 
         <h4 class="subtitle">RATE AND REVIEW <span class="usernamegoeshere"></span></h4> <br>
-        
+
         <form>
             <div class="form-group">
-                <label for="exampleFormControlSelect1" style="font-size: 1.5em;">Rate <span class="usernamegoeshere"></span> out of five: </label>
+                <label for="exampleFormControlSelect1" style="font-size: 2em;">PROVIDE <span
+                        class="usernamegoeshere"></span> A RATING OUT OF FIVE STARS: </label>
                 <select class="form-control" id="exampleFormControlSelect1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
-              </div>
+            </div>
             <div class="form-group" id="chatbox">
                 <textarea class="form-control text-left" id="exampleFormControlTextarea1" rows="5"></textarea>
             </div>
@@ -131,85 +132,66 @@
     </div>
 
     <div id="numberofreviews">
-        <h4 class="subtitle">168 Reviews</h4>
+        <h4 class="subtitle" id='totalreview'> Reviews <br></h4>
+        <form style='width: 75vw;'>
+            <div class="form-group col-md-4">
+                <select id="searchRating" class="form-control" style = "font-size: 1.5em;">
+                  <option selected>Filter By Rating</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
+        </form>
     </div>
     <div id="reviews">
-        <!-- <div class="card">
-            <div class="card-header">
-                <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> </div>
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p id="reviewer-statement">
-                        Billy was incredibly rude and did not fix my problem in the slightest. He broke my toilet and
-                        told me that it was 'my problem now', I can't believe I trusted someone like him.
-                    </p>
-                    <footer id="reviewer-name" class="blockquote-footer">
-                        Francis Boomer <cite title="Source Title"></cite>
-                    </footer>
-                </blockquote>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/70.jpg>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p id="reviewer-statement">
-                            THE WORST IN TOWN! BILLY SUCKS!
-                        </p>
-                        <footer id="reviewer-name" class="blockquote-footer">
-                            Caleb Krabby <cite title="Source Title"></cite>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div> -->
+    </div>
+
+    <footer>
+        <div id="bottomfooter">
+            <a href="index.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="#"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
+                    data-height="48"></span></a>
+            <a href="#"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
+                    data-height="48"></span></a>
+            <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="newprofile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
+                    data-inline="false" data-height="48"></span></a>
         </div>
-
-        <footer>
-            <div id="bottomfooter">
-                <a href="index.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
-                        data-inline="false" data-height="48"></span></a>
-                <a href="#"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
-                        data-height="48"></span></a>
-                <a href="#"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
-                        data-height="48"></span></a>
-                <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
-                        data-inline="false" data-height="48"></span></a>
-                <a href="newprofile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
-                        data-inline="false" data-height="48"></span></a>
-            </div>
-        </footer>
+    </footer>
 
 
-        <!----------------------------------------------->
-        <!-- JS: Boostrap, JQuery, Firebase, API related    -->
-        <!----------------------------------------------->
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
-            type="text/javascript"></script>
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, JQuery, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
+        type="text/javascript"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
 
-        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
-        <!-- Link to the api keys for your firebase project -->
-        <script src="scripts/firebase_api.js"></script>
+    <!-- Link to the api keys for your firebase project -->
+    <script src="scripts/firebase_api.js"></script>
 
-        <!--------------------------------------------------------------------->
-        <!-- JS files: Your own JavaScript functions included here    -->
-        <!--------------------------------------------------------------------->
-        <script src="scripts/provider-profile.js"></script>
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script src="scripts/provider-profile.js"></script>
 
 
 </body>
