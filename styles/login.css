@@ -1,8 +1,12 @@
 body {
-    background-image: url('../images/repairwall.jpg');
-    background-position: center center;
+    background-image: url('../images/pexels-ksenia-chernaya-5691656.jpg');
+    background-position: 0px 200px ;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #192734;
+    background-color: #e1dddc;
+}
+#welcome{
+    width: 50%;
+    margin: 0 auto;
 }
