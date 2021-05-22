@@ -1,7 +1,8 @@
 // Hannah Test on prodiver-profile.js
+const params = new URLSearchParams(window.location.search);
+const provider_identification = params.get("id");
 
-
-function sayHello() {
+function authReview() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
             db.collection("users")
@@ -9,7 +10,7 @@ function sayHello() {
                 .get()
                 .then(function (doc) {
                     var name = doc.data().name;
-                    // $(".usernamegoeshere").text(name);
+                    $(".usernamegoeshere").text(name);
 
                     var reviews = doc.data().reviews;
 
@@ -46,4 +47,66 @@ function sayHello() {
         }
     })
 }
-sayHello();
+// authReview();
+
+
+
+function LeaveReview(providerID, review, rating) {
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    console.log("leave review")
+                    var name = doc.data().name;
+                    
+                    $(".usernamegoeshere").text(name);
+                    console.log(doc.id)
+
+                    var storedreviews = db.collection("users").doc(providerID);
+                    storedreviews.update({
+                        reviews: firebase.firestore.FieldValue.arrayUnion({ 'review': review, 'rating': rating, 'userID': doc.id })
+                    });
+                
+                    $("#exampleFormControlTextarea1")[0].value = "";
+                
+                })
+        }
+    })
+}
+// sayHello();
+
+
+
+
+
+function MaxLeaveReview(providerID, review, rating) {
+    // console.log("leave review")
+    var storedreviews = db.collection("users").doc(providerID);
+    // console.log(doc.id)
+
+    storedreviews.update({
+        reviews: firebase.firestore.FieldValue.arrayUnion({ 'review': review, 'rating': rating })
+    });
+
+    $("#exampleFormControlTextarea1")[0].value = "";
+
+}
+
+
+document.getElementById("reviewsubmit").addEventListener("click", function () {
+    console.log("clicked")
+    let text_review = $("#exampleFormControlTextarea1")[0].value;
+    let rating = parseInt($("#exampleFormControlSelect1")[0].value);
+
+    console.log(text_review)
+    console.log(rating)
+
+    LeaveReview(provider_identification, text_review, rating);
+    console.log("line after leave review")
+})
+
+
+
+
