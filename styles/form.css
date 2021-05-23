@@ -7,8 +7,15 @@
 }
 
 .navbar-toggler {
+<<<<<<< HEAD
     height: 4vh;
     width: 10vw;
+=======
+    height: 4em;
+    width: 4em;
+    margin: 0em 1.5em 0em 0em;
+    padding: 0em 0.85em 0em 0.4em;
+>>>>>>> user_form
 }
 
 .navbar-light .navbar-toggler {
@@ -16,8 +23,13 @@
 }
 
 .navbar-toggler-icon {
+<<<<<<< HEAD
     height: 4vh;
     width: 6vw;
+=======
+    height: 3em;
+    width: 3em;
+>>>>>>> user_form
 }
 
 .container-fluid {
@@ -87,6 +99,7 @@ body {
 } */
 
 #user-form {
+<<<<<<< HEAD
     position: absolute;
     top: 50%;
     left: 50%;
@@ -94,11 +107,34 @@ body {
     
     width: 70%;
     height: 80%;
+=======
+
+    font-size: 2.5em;   
+    padding: 0% 3%;
+
+    position: relative;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    
+    width: 70%;
+    /* height: 100%; */
+>>>>>>> user_form
     
 
     /* border: solid orange; */
     background-color: whitesmoke;
+<<<<<<< HEAD
     opacity:0.9;
+=======
+    opacity: 0.9;
+
+    margin: 5em auto;
+    /* margin-top: 5em;
+    margin-bottom: 1em;  */
+    /* padding-bottom: 10vh; */
+
+>>>>>>> user_form
 }
 
 .form-body {
