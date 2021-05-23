@@ -68,6 +68,22 @@ function sayHello() {
     })
 }
 
+
+document.getElementById("deleteaccount").addEventListener("click", function () {
+   
+    var user = firebase.auth().currentUser;
+
+    user.delete().then(function() {
+    }).catch(function(error) {
+    });
+
+})
+
+
+
+
+
+
 /// Grab reviews connected to userID stored in firebase
 
 // function grabReviews(providerID) {
@@ -154,6 +170,6 @@ function sayHello() {
 //         }
 
 
-// sayHello();
+sayHello();
 
 // grabReviews();
