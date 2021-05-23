@@ -23,6 +23,8 @@ function PopulateProviderProfile(userID) {
             $("#usercanhelp").text(name.toUpperCase());
             $("#about").text(description);
             $("#profile-photo").attr("src", picture);
+            // $('#chatboxbutton').attr("href", "chat.html?id=" + userID);
+
 
 
             for (var index = 0; index < skills.length; index++) {
@@ -79,8 +81,8 @@ function PopulateProviderProfile(userID) {
 }
 
 
-function chatButton(providerID) {
-    $('#chatboxbutton').attr("href", "chat.html?id=" + providerID);
+function chatButton(provider_identification) {
+    $('#chatboxbutton').attr("href", "chat.html?id=" + provider_identification);
 }
 
 
