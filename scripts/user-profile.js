@@ -33,7 +33,7 @@ function sayHello() {
                             const toolitem = key;
 
                             $(document).ready(function () {
-                                const $toolkit = '<li>' + toolitem + " ahhh" + "<img id='update-tools' src='images/delete.png'>" + '</li>'
+                                const $toolkit = '<li>' + toolitem + '</li>'
 
                                 $("#toolz").append($toolkit);
                                 
@@ -41,13 +41,7 @@ function sayHello() {
                         }    
                     })
 
-                    $(document).ready(function () {
-                        $("#update-tools").click(function () {
-                            alert("Handler for .click() called.");
-                        });
-                    })
-
-                                    
+                                   
                     
                     // Object.keys(userattributes).forEach(key=>{
                     //     if (userattributes[key] == true && key == 'Handy Certified'){
@@ -94,33 +88,6 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
 });
 
 
-// Button to update tools list of the user
-// function updateToolsButton() {
-//     document.getElementById("update-tools").addEventListener("click", function () {
-//         alert("here");
-//         // firebase.auth().onAuthStateChanged(function (somebody) {
-//         //     if (somebody) {
-//         //         db.collection("users")
-//         //             .doc(somebody.uid)
-//         //             .get()
-//         //             .then(function (doc) {
-//         //                 console.log("here")
-
-//         //             })
-//         //     }
-//         // })
-//     })
-// }
-// updateToolsButton();
-
-
-$("#update-tools").click(function () {
-    console.log("here")
-})
-
-$("#update-tools").click(function () {
-    alert("Handler for .click() called");
-});
 
 /// Grab reviews connected to userID stored in firebase
 
