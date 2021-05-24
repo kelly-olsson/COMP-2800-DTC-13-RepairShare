@@ -79,12 +79,6 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
                         description: firebase.firestore.FieldValue.delete()
                     })
 
-                    //             }
-
-                    // user.delete().then(function() {
-                    // }).catch(function(error) {
-                    // });
-
                 })
         }
     })
