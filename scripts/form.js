@@ -59,11 +59,16 @@ function addData(skillsArray, toolsObject) {
             .set({
                 "description": description,
                 "skills": skillsArray,
-                "tools": toolsObject
 
             }, { merge: true })
             .then(() => {
-                console.log("Document successfully written!");
+                db.collection("users").doc(user.uid)
+                .update({
+                    "tools": toolsObject
+                })
+            })
+            .then(() => {
+                console.log("Document successfully written!")
             })
             .catch((error) => {
                 console.log("Error writing document: ", error);
