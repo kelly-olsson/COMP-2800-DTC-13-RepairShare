@@ -68,6 +68,8 @@ function sayHello() {
     })
 }
 
+sayHello();
+
 document.getElementById("deleteaccount").addEventListener("click", function () {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -175,6 +177,6 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
 //         }
 
 
-sayHello();
+
 
 // grabReviews();
