@@ -1,5 +1,6 @@
 
 function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
+    console.log("INSIDE CREATION")
     for (let i = 0; i < allChatInfo.length; i++) {
         let userName = allChatInfo[i][0]
         let chatID = allChatInfo[i][1]
@@ -30,32 +31,53 @@ function chatButton(chatId) {
 
 //   var setID = "MNfZqn3fQ1Q1gZkTutxxp3Sxz5m1YasR9vy0hkdtI2fA9VWl7KdFCK93"
 function getChatData(uniqueChatlist) {
+    var allChatInfo = [];
+    let sadArray = [];
     for (let i = 0; i < uniqueChatlist.length; i++) {
+        sadArray.push(uniqueChatlist[i])
+    }
         firebase.firestore()
             .collection('messages')
-            .where('chat', '==', uniqueChatlist[i])
+            .where('chat', 'in', sadArray)
             .get()
             .then(function (snapshot) {
-                let allChatInfo = [];
                 snapshot.forEach(function (doc) {
                     let tempArray = []
                     tempArray.push(doc.data().name) //allchatinfo[i][0]
                     tempArray.push(doc.data().chat)//allchatinfo[i][1]
-                    // tempArray.push(doc.id)
+                    tempArray.push(doc.id)//allchatinfo[i][2]
                     allChatInfo.push(tempArray)
-                    console.log(allChatInfo)
                     console.log(tempArray)
                 })
                 console.log(allChatInfo)
-                createAndInsertChatHistory(allChatInfo)
+                var myFinalList = removeDuplicates(allChatInfo)
+                createAndInsertChatHistory(myFinalList)
 
             })
             .catch(function (error) {
                 console.log(error)
             })
-    }
+    
+
 }
 
+function removeDuplicates(allChatInfo){
+    let finalList = [];
+    let uidList = []
+    for (let i = 0; i < allChatInfo.length; i++){
+        if (uidList.includes(allChatInfo[i][1])){
+            console.log("duplicate");
+            console.log(allChatInfo[i][1]);
+        }
+        else{
+            uidList.push(allChatInfo[i][1])
+            finalList.push(allChatInfo[i])
+            console.log(allChatInfo[i])
+    }
+ }
+    console.log(finalList)
+    return finalList
+}
 
 
 function grabChatsAfterStateChange() {
@@ -94,6 +116,7 @@ async function grabAllChatsWithUserId() {
     const chatArray = senderArray.concat(receiverArray);
     return chatArray;
 }
+
 
 grabChatsAfterStateChange();
 
