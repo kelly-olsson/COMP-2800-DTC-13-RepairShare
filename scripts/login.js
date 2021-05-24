@@ -21,7 +21,7 @@ var uiConfig = {
                     email: user.email                          //with authenticated user's ID (user.uid)
                 }).then(function () {
                     console.log("New user added to firestore");
-                    window.location.assign("chat.html");       //re-direct to map-tool.html after signup
+                    window.location.assign("form.html");       //re-direct to map-tool.html after signup
                 })
                     .catch(function (error) {
                         console.log("Error adding new user: " + error);
