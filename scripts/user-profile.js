@@ -67,8 +67,6 @@ function sayHello() {
         }
     })
 }
-sayHello();
-
 
 document.getElementById("deleteaccount").addEventListener("click", function () {
     firebase.auth().onAuthStateChanged(function (somebody) {
