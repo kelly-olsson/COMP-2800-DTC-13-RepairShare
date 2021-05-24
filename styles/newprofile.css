@@ -260,3 +260,8 @@ body {
 #deleteaccount{
     font-size: 2em;
 }
+
+#update-tools {
+    height: 50px;
+    width: 50px;
+}
