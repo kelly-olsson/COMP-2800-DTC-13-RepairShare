@@ -33,7 +33,7 @@ function sayHello() {
                             let toolitem = key;
 
                             $(document).ready(function () {
-                                var $toolkit = '<li>' + toolitem + '</li>'
+                                var $toolkit = '<li>' + toolitem + "<img class='update-tools' src='images/delete.png'>" + '</li>' 
                                 $("#toolz").append($toolkit);
                             })
 
