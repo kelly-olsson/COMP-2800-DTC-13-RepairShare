@@ -76,7 +76,7 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             db.collection("users").doc(user.uid)
-                .set({}, {merge: false})
+                .delete()
                 .then(() =>{
                     alert("You have clicked on the button of death! All your information is GONE!")
                 })
