@@ -78,17 +78,15 @@
  }
  
  
- let user_identification = params.get("id");
- console.log(user_identification);
- 
- var chatID;
+ let chatID = params.get("id");
+
 
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
  function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
-  chatID = createchatId(user_identification, loggedInUser);
-  console.log(chatID)
-  console.log(loggedInUser)
+//   chatID = createchatId(user_identification, loggedInUser);
+//   console.log(chatID)
+//   console.log(loggedInUser)
   // chatID = "sC1n34ukb7RFTJCBi7zsjuqKkyr1sC1n34ukb7RFTJCBi7zsjuqKkyr1" 
    return firebase.firestore().collection('messages').add({
      name: getUserName(),
@@ -96,7 +94,7 @@
     //  receiver: user_identification,
      chat: chatID,
      sender: loggedInUser,
-     receiver: user_identification,
+    //  receiver: user_identification,
      text: messageText,
      profilePicUrl: getProfilePicUrl(),
      timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -112,8 +110,8 @@
  function loadMessages() {
    // Create the query to load the last 12 messages and listen for new ones.
    console.log("load message inside")
-   let loggedInUser = firebase.auth().currentUser.uid
-   chatID = createchatId(user_identification, loggedInUser);
+//    let loggedInUser = firebase.auth().currentUser.uid
+//    chatID = createchatId(user_identification, loggedInUser);
    console.log(chatID)
    var query = firebase.firestore()
      .collection('messages')
