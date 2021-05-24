@@ -1,25 +1,29 @@
 // Event Listener for clicking the "submit button".
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
-        // var name = document.getElementById("user-name").value;
         let skillsArray = createSkillsArray();
-        // console.log(skillsArray)
         let toolsObject = createToolsObject();
-        // console.log(toolsObject)
-        addData(name, skillsArray, toolsObject);
-        // uploadUserProfilePic();
-        // resetForm();
+        addData(skillsArray, toolsObject);
+        resetForm();
     })
 }
 addSubmitListener();
 
+
 // Reset the form when "reset" button gets clicked.
 function resetFormButton() {
-    document.getElementById("reset").addEventListener("click", function () {
+    document.getElementById("reset-button").addEventListener("click", function () {
         resetForm();
     })
 }
-// resetFormButton();
+resetFormButton();
+
+
+// Reset form fields after habit is logged in.
+function resetForm() {
+    document.getElementById("user-form").reset();
+}
+
 
 
 // Create an array of skills entered by user.
@@ -47,24 +51,17 @@ function createToolsObject() {
 
 
 // Write data of created habits to Firestore.
-function addData(name, skillsArray, toolsObject) {
-    // var name = document.getElementById("user-name").value;
+function addData(skillsArray, toolsObject) {
     var description = document.getElementById("user-description").value;
 
     firebase.auth().onAuthStateChanged(function (user) {
         db.collection("users").doc(user.uid)
-            // .collection("Raw Data")
             .set({
-                // "timestamp": firebase.firestore.FieldValue.serverTimestamp(),
                 "description": description,
-                // "name": user.uid.name,
                 "skills": skillsArray,
                 "tools": toolsObject
 
-            }, {merge: true})
-            // .then(function () {
-            //     updateSkillsArray(user.uid, name, mon, tue, wed, thurs, fri, sat, sun);
-            // })
+            }, { merge: true })
             .then(() => {
                 console.log("Document successfully written!");
             })
@@ -75,6 +72,7 @@ function addData(name, skillsArray, toolsObject) {
 }
 
 
+// Display logged in user name at the start of the form.
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -91,12 +89,6 @@ function sayHello() {
 sayHello();
 
 
-// Reset form fields after habit is logged in.
-function resetForm() {
-    document.getElementById("user-form").reset();
-}
-
-
 // Upload user profile image to Cloud Firestore.
 function uploadUserProfilePic(userUid) {
 
@@ -104,42 +96,85 @@ function uploadUserProfilePic(userUid) {
     // This is set in your firebase console storage "rules" tab
     if (!userUid) { console.err("Not logged in!"); return };
 
-        const fileInput = document.getElementById("profile-pic");   
+    const fileInput = document.getElementById("profile-pic");
 
-        // listen for file selection
-        fileInput.addEventListener('change', function (e) {
+    // listen for file selection
+    fileInput.addEventListener('change', function (e) {
 
-            var file = e.target.files[0];
+        var file = e.target.files[0];
 
-            //store using this name
-            var storageRef = storage.ref("images/" + userUid + ".jpg"); 
-            
-            //upload the picked file
-            storageRef.put(file) 
-                .then(function(){
-                    console.log('Uploaded to Cloud Storage.');
+        //store using this name
+        var storageRef = storage.ref("images/" + userUid + ".jpg");
+
+        //upload the picked file
+        storageRef.put(file)
+            .then(function () {
+                console.log('Uploaded to Cloud Storage.');
+            })
+
+        //get the URL of stored file
+        storageRef.getDownloadURL()
+            .then(function (url) {   // Get URL of the uploaded file
+                console.log(url);    // Save the URL into users collection
+                db.collection("users").doc(userUid).update({
+                    "profilePicture": url
                 })
-
-			//get the URL of stored file
-            storageRef.getDownloadURL()
-                .then(function (url) {   // Get URL of the uploaded file
-                    console.log(url);    // Save the URL into users collection
-                    db.collection("users").doc(userUid).update({
-                        "profilePicture": url
-                    })
-                    .then(function(){
+                    .then(function () {
                         console.log('Added Profile Pic URL to Firestore.');
                     })
-                })
-        })
+            })
+    })
 }
 
 // Load user's data
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         userId = user.uid;
-        db.collection("users").doc(user.uid).get().then(function(user) {
+        db.collection("users").doc(user.uid).get().then(function (user) {
             uploadUserProfilePic(userId);
         });
     }
 });
+
+
+// // Obtains the current location of the user accessing the form, and write location into Firestore as an array.
+// https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
+function success(pos) {
+    var crd = pos.coords;
+
+    locationArray = createLocationArray(crd.latitude, crd.longitude);
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            userId = user.uid;
+            db.collection("users").doc(user.uid)
+                .update({
+                    "location": locationArray
+                })
+        }
+    });
+}
+
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+// Create a location array in the format of (latitude, longitude).
+function createLocationArray(latitude, longitude) {
+    locationArray = [];
+
+    locationArray.push(latitude);
+    locationArray.push(longitude);
+
+    return locationArray;
+}
