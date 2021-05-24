@@ -21,6 +21,72 @@ function initMap() {
 
 }
 
+
+/// create star list aligning with user rating 
+
+function StarCreation(ratingscore) {
+
+    var starsheet = $('<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="starchart"></div>')
+    var classgrouping = $('<div class="btn-group mr-2" role="group" aria-label="First group"></div>')
+
+    if (ratingscore == 1 || ratingscore < 2) {
+
+        var starrating1 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
+        classgrouping.append(starrating1);
+
+    } else if (ratingscore == 2 || ratingscore < 3) {
+
+        var starrating2 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png">\
+         </button><button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
+        classgrouping.append(starrating2);
+
+
+    } else if (ratingscore == 3 || ratingscore < 4) {
+
+        var starrating3 = $('<button type="button" class="btn btn-secondary bg-white" id="1star" ><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> \
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button>')
+
+        classgrouping.append(starrating3);
+
+    } else if (ratingscore == 4 || ratingscore < 5) {
+
+        var starrating4 = $('<button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1024px-Empty_Star.svg.png"> </button> ')
+
+        classgrouping.append(starrating4);
+
+    } else if (ratingscore == 5 || ratingscore < 6) {
+
+        var starrating5 = $('<button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"></button>\
+        <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none" ><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star" style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>\
+         <button type="button" class="btn btn-secondary bg-white" id="1star"  style= "border: none"><img src= "./images/1200px-Gold_Star.svg.png"> </button>')
+
+        classgrouping.append(starrating5);
+    }
+
+    starsheet.append(classgrouping);
+
+    return starsheet;
+
+}
+
+
+
 // Being called by an event listener
 function mapDetailWindow(userID, i) {
     db.collection("users")
@@ -28,11 +94,21 @@ function mapDetailWindow(userID, i) {
         .get()
         .then(function (doc) {
             let name = doc.data().name;
-            let rating = doc.data().rating;
             let description = doc.data().description;
             let picture = doc.data().profilePicture;
+            let reviews = doc.data().reviews;
+
+            totalrating = 0;
+
+            for (let i = 0; i < reviews.length; i++) {
+                totalrating += reviews[i].rating;
+            }
+
+            let average_rating = totalrating / reviews.length;
+
+
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
-            $('#window-rating_' + i + '').text(rating);
+            $('#window-rating_' + i + '').append(StarCreation(average_rating));
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
