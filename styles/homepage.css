@@ -137,18 +137,18 @@ body{
 }
 
 #card-title-provider{
-    margin: 0.5em 0em 0em 0.3em;
+    /* margin: 0.5em 0em 0em 0.3em; */
     font-size: 4em;
 }
 
 #card-text-provider{
     font-size: 3em;
-    margin: 0.5em 0em 0em 0.3em;
+    /* margin: 0.5em 0em 0em 0.3em; */
 }
 
 #providercard > button{
     font-size: 2.3em;
-    margin: 0.5em 0em 0em 0.3em;
+    /* margin: 0.5em 0em 0em 0.3em; */
 }
 
 #newapproach{
@@ -222,7 +222,7 @@ body{
 
 .animated {
     left: -30vw;
-    animation: myanimation 3s;
+    animation: myanimation 2s;
     position: relative;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -230,5 +230,5 @@ body{
 
 @keyframes myanimation {
     from {left: -30vw}
-    to {left: 15vw}
+    to {left: 0.6vw}
   }
