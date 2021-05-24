@@ -56,7 +56,6 @@ body{
 #searchhome{
     width: 15rem;
     border-radius: 2em;
-
 }
 
 #exploretools{
@@ -68,14 +67,19 @@ body{
 #AvailableTools{
     color: black;
     font-weight: bold;
-    font-size: 36px;
-    /* margin-left: 7.5vw; */
+    font-size: 5em;
+    margin: 0em 0em 1em 0em;
 }
 
 #paintbrush{
     margin-top: 2vh;
     border-style: none;
  
+}
+
+.card{
+    width: 25rem;
+    height: 18rem;
 }
 
 .card-img-top{
@@ -94,17 +98,22 @@ body{
 
 #communityoffering{
     color: black;
+    font-size: 2.5em;
 }
 
 #anchorlinks {
     display: grid;
     position: relative;
     justify-content: center;
-    margin: 0em 0em 0em 2.5em;
+    margin: 0em 0em 15em 2.5em;
     grid-template-areas:
         "First Second"
         "Third Fourth";
     gap: 90px;
+}
+
+#infocards{
+    margin: 0em 0em 30em 0em;
 }
 
 #info{
@@ -127,8 +136,8 @@ body{
 #newapproach{
     color: black;
     font-weight: bold;
-    font-size: 36px;
-    margin-top: 2.5vh;
+    font-size: 5em;
+    margin: 0em 0em 1.4em 0em;
 }
 
 #bottomfooter {
@@ -152,6 +161,15 @@ body{
 #iconifyFooter {
     width: 4vh;
     height: 4vh;
+}
+
+#communityoffering-title{
+    color: black;
+    font-size: 3em;
+}
+
+.col-md-4{
+    width: 22rem;
 }
 
 @media (max-width: 768px) {
