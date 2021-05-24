@@ -177,7 +177,7 @@ function filterReviews(providerID, desiredRating) {
                 var postedreview = $('<div id="reviews"></div>');
                 var cardformat = $('<div class="card"></div>');
                 var cardclass = $('<div class="card-header"></div>');
-                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');
+                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=> <div id= "thisagain"></div></div>');
                 var cardbody = $('<div class="card-body"></div>');
                 var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
                 var reviewerstatement = $('<p id="reviewer-statement"></p>');
