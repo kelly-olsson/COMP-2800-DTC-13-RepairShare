@@ -47,9 +47,7 @@ function sayHello() {
                         });
                     })
 
-
-                    
-
+                                    
                     
                     // Object.keys(userattributes).forEach(key=>{
                     //     if (userattributes[key] == true && key == 'Handy Certified'){
@@ -81,16 +79,15 @@ function sayHello() {
 sayHello();
 
 document.getElementById("deleteaccount").addEventListener("click", function () {
-    firebase.auth().onAuthStateChanged(function (somebody) {
-        if (somebody) {
-            db.collection("users")
-                .doc(somebody.uid)
-                .get()
-                .then(function (doc) {
-                    doc.update({
-                        description: firebase.firestore.FieldValue.delete()
-                    })
-
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            db.collection("users").doc(user.uid)
+                .set({}, {merge: false})
+                .then(() =>{
+                    alert("You have clicked on the button of death! All your information is GONE!")
+                })
+                .catch((error) => {
+                    console.log("Error executing the button of death: ", error)
                 })
         }
     })
