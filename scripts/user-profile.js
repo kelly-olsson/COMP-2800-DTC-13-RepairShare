@@ -30,22 +30,27 @@ function sayHello() {
 
                     Object.keys(tools).forEach(key => {
                         if (tools[key] == true) {
-                            let toolitem = key;
+                            const toolitem = key;
 
                             $(document).ready(function () {
-                                var $toolkit = '<li>' + toolitem + "<img id='update-tools' src='images/delete.png'>" + '</li>'
+                                const $toolkit = '<li>' + toolitem + " ahhh" + "<img id='update-tools' src='images/delete.png'>" + '</li>'
 
                                 $("#toolz").append($toolkit);
-
-                                $("#update-tools").click(function () {
-                                    alert("Handler for .click() called.");
-                                });
+                                
                             })
-
-                        }
-
+                        }    
                     })
 
+                    $(document).ready(function () {
+                        $("#update-tools").click(function () {
+                            alert("Handler for .click() called.");
+                        });
+                    })
+
+
+                    
+
+                    
                     // Object.keys(userattributes).forEach(key=>{
                     //     if (userattributes[key] == true && key == 'Handy Certified'){
 
@@ -95,7 +100,7 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
 // Button to update tools list of the user
 // function updateToolsButton() {
 //     document.getElementById("update-tools").addEventListener("click", function () {
-//         console.log("here")
+//         alert("here");
 //         // firebase.auth().onAuthStateChanged(function (somebody) {
 //         //     if (somebody) {
 //         //         db.collection("users")
@@ -117,7 +122,7 @@ $("#update-tools").click(function () {
 })
 
 $("#update-tools").click(function () {
-    alert("Handler for .click() called.");
+    alert("Handler for .click() called");
 });
 
 /// Grab reviews connected to userID stored in firebase
