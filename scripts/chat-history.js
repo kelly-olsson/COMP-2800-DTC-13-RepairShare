@@ -38,7 +38,7 @@
 
 //     }//end of for loop
 //     // return div;
-}
+// }
 function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
     console.log("INSIDE CREATION")
     for (let i = 0; i < allChatInfo.length; i++) {
