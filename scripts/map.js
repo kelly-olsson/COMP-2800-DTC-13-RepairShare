@@ -98,6 +98,9 @@ function mapDetailWindow(userID, i) {
             let picture = doc.data().profilePicture;
             let reviews = doc.data().reviews;
 
+
+        if (reviews.length > 1) {
+
             totalrating = 0;
 
             for (let i = 0; i < reviews.length; i++) {
@@ -112,7 +115,15 @@ function mapDetailWindow(userID, i) {
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
-        }).catch(function(error){
+        }
+        else { 
+                
+            $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
+            $('#window-rating_' + i + '').text('No Ratings');
+            $('#window-description_' + i + '').text(description);
+            $('.profile-pic_' + i + '').attr("src", picture);
+
+            }}).catch(function(error){
             console.log(error)
         })
 }
