@@ -118,7 +118,7 @@ function mapDetailWindow(userID, i) {
 
 
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
-            $('#window-rating_' + i + '').append(stars);
+            $('#window-rating_' + i + '').append(overallRating);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
@@ -135,8 +135,8 @@ function sayHello() {
                 .doc(somebody.uid)
                 .get()
                 .then(function (doc) {
-                    var n = doc.data().name;
-                    $("#name-goes-here").text(n);
+                    // var n = doc.data().name;
+                    // $("#name-goes-here").text(n);
                 })
         }
     })
@@ -200,19 +200,19 @@ function setMarkers(map, megaArray){
 }
 
 // Read user info from firebase and greet user based on user's name.
-function sayHello() {
-    firebase.auth().onAuthStateChanged(function (somebody) {
-        if (somebody) {
-            db.collection("users")
-                .doc(somebody.uid)
-                .get()
-                .then(function (doc) {
-                    var n = doc.data().name;
-                    $("#name-goes-here").text(n);
-                })
-        }
-    })
-}
+// function sayHello() {
+//     firebase.auth().onAuthStateChanged(function (somebody) {
+//         if (somebody) {
+//             db.collection("users")
+//                 .doc(somebody.uid)
+//                 .get()
+//                 .then(function (doc) {
+//                     var n = doc.data().name;
+//                     $("#name-goes-here").text(n);
+//                 })
+//         }
+//     })
+// }
 
 function removeMarkers(markersList){
     for(let j=0; j<markersList.length; j++){
