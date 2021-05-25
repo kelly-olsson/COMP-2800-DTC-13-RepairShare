@@ -112,7 +112,7 @@ function mapDetailWindow(userID, i) {
 
 
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
-            $('#window-rating_' + i + '').append(overallRating);
+            $('#window-rating_' + i + '').append(stars);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
