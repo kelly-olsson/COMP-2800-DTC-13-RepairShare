@@ -183,3 +183,8 @@ function createLocationArray(latitude, longitude) {
 
     return locationArray;
 }
+
+
+document.getElementById("submit").onclick = function () {
+    location.href = "user-profile.html";
+};
