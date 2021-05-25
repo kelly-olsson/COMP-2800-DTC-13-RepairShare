@@ -88,6 +88,10 @@ document.getElementById("deleteaccount").addEventListener("click", function () {
 });
 
 
+document.getElementById("enter-info").onclick = function () {
+    location.href = "form.html";
+};
+
 
 /// Grab reviews connected to userID stored in firebase
 
