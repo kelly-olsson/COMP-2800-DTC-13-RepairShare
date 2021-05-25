@@ -1,3 +1,7 @@
+.navbar-custom {
+    background-color: white !important;
+}
+
 .navbar-brand {
     font-size: 2.5em;
 }
@@ -252,14 +256,12 @@ body {
     color: darkblue;
 }
 
-#buttonOfdeath{
-    width: 75vw;
+
+#deleteaccount, #enter-info{
+    font-size: 2em;
     margin-left: 5vw;
 }
 
-#deleteaccount{
-    font-size: 2em;
-}
 
 #update-tools {
     height: 50px;
