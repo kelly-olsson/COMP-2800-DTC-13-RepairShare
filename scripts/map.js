@@ -113,7 +113,7 @@ function mapDetailWindow(userID, i) {
             let picture = doc.data().profilePicture;
             let reviews = doc.data().reviews;
 
-            let overallRating = averageRating(reviews);
+            let overallRating = AverageRating(reviews);
             let stars = StarCreation(overallRating);
 
 
