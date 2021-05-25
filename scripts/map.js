@@ -97,24 +97,44 @@ function mapDetailWindow(userID, i) {
             let description = doc.data().description;
             let picture = doc.data().profilePicture;
             let reviews = doc.data().reviews;
+            console.log(reviews)
+            let average_rating = calculateRating(reviews)
+            // let totalrating = 0;
+            let stars = StarCreation(average_rating);
+            console.log(description)
+            console.log(picture)
 
-            totalrating = 0;
+            // for (let i = 0; i < reviews.length; i++) {
+            //     totalrating += reviews[i].rating;
+            // }
 
-            for (let i = 0; i < reviews.length; i++) {
-                totalrating += reviews[i].rating;
-            }
-
-            let average_rating = totalrating / reviews.length;
+            // let average_rating = totalrating / reviews.length;
 
 
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
-            $('#window-rating_' + i + '').append(StarCreation(average_rating));
+            $('#window-rating_' + i + '').append(stars);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
         }).catch(function(error){
             console.log(error)
         })
+}
+
+{/* <h6> Name: <a id='window-name_" + i + "'></a></h6> 
+<h6> Rating: <span id='window-rating_" + i + "'></span> </h6> 
+<h6> Description: <span id='window-description_" + i + "'></span> </h6> 
+<div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div> */}
+
+function calculateRating(reviews){
+
+    let totalrating = 0;
+
+    for (let i = 0; i < reviews.length; i++) {
+        totalrating += reviews[i].rating;
+    }
+    let average_rating = totalrating / reviews.length;
+    return average_rating
 }
 
 
