@@ -54,6 +54,10 @@ body{
     color: whitesmoke;
 }
 
+#history div{
+    font-size: 3em;
+}
+
 #search-form{
     margin-top: -2vh;
 }
