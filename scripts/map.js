@@ -86,6 +86,21 @@ function StarCreation(ratingscore) {
 }
 
 
+/// function averages rating of a user 
+
+function AverageRating(reviews){
+
+    let totalrating = 0; 
+
+    for(let i=0; i < reviews.length; i){
+
+        totalrating += reviews[i].rating; 
+    }
+
+    let average_rating = totalrating / reviews.length;
+    return average_rating;
+}
+
 
 // Being called by an event listener
 function mapDetailWindow(userID, i) {
@@ -98,17 +113,12 @@ function mapDetailWindow(userID, i) {
             let picture = doc.data().profilePicture;
             let reviews = doc.data().reviews;
 
-            totalrating = 0;
-
-            for (let i = 0; i < reviews.length; i++) {
-                totalrating += reviews[i].rating;
-            }
-
-            let average_rating = totalrating / reviews.length;
+            let overallRating = averageRating(reviews);
+            let stars = StarCreation(overallRating);
 
 
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
-            $('#window-rating_' + i + '').append(StarCreation(average_rating));
+            $('#window-rating_' + i + '').append(stars);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
