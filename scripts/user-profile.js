@@ -72,22 +72,6 @@ function sayHello() {
 
 sayHello();
 
-// document.getElementById("deleteaccount").addEventListener("click", function () {
-//     firebase.auth().onAuthStateChanged(function (user) {
-//         if (user) {
-//             db.collection("users").doc(user.uid)
-//                 .set({}, {merge: false})
-//                 .then(() =>{
-//                     confirm("Are you sure you want to delete");
-//                     alert("You have clicked on the button of death! All your information is GONE!")
-//                 })
-//                 .catch((error) => {
-//                     console.log("Error executing the button of death: ", error)
-//                 })
-//         }
-//     })
-// });
-
 
 document.getElementById("deleteaccount").onclick = function() {
     firebase.auth().onAuthStateChanged(function (user) {
