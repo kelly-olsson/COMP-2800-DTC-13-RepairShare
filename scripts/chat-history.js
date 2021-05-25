@@ -2,12 +2,12 @@
 function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
     console.log("INSIDE CREATION")
     for (let i = 0; i < allChatInfo.length; i++) {
-        let userName = allChatInfo[i][0]
+        // let userName = allChatInfo[i][0]
         let chatID = allChatInfo[i][1]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
         // singleChatDiv.textContent = userName
-        let link = document.createTextNode(userName);
+        let link = document.createTextNode("Chat#" + i);
         let connectButton = document.createElement('a');
         connectButton.appendChild(link)
         // connectButton.setAttribute('value', 'Message')
