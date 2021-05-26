@@ -15,13 +15,3 @@ const auth = firebase.auth();
 var storage = firebase.storage();
 
 db.settings({timestampInSnapshots: true});
-
-// https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js
-
-// const logout = document.querySelector("#logout")
-// logout.addEventListener("click", (event) => {
-//     event.preventDefault;
-//     auth.signOut().then(() => {
-//         alert("You have signed out!")
-//     })
-// })
