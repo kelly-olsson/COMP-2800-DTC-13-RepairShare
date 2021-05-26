@@ -77,26 +77,51 @@
    }
  }
  
- 
+ async function getReceiverName(recieverID){
+  let user = firebase.firestore().collection("users").doc(recieverID);
+  let usersName = await user.get();
+  return usersName.data().name;
+ }
+
+ async function getReceiverPic(recieverID){
+  let user = firebase.firestore().collection("users").doc(recieverID);
+  let usersName = await user.get();
+  return usersName.data().profilePicture;
+ }
+
+ async function getSenderPic(senderID){
+  let user = firebase.firestore().collection("users").doc(senderID);
+  let usersName = await user.get();
+  return usersName.data().profilePicture;
+ }
+
  let chatID = params.get("id");
 
+ function extractReceiverIdfromChatId(chatID, senderID){
+   let receiverId = chatID.replace(senderID, '');
+   return receiverId
+ }
 
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
- function saveMessage(messageText) {
+ async function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
+  let recieverID = extractReceiverIdfromChatId(chatID, loggedInUser)
+  let nameOfReceiver = await getReceiverName(recieverID);
+  let picOfReceiver = await getReceiverPic(recieverID);
+  let picOfSender = await getSenderPic(loggedInUser);
 //   chatID = createchatId(user_identification, loggedInUser);
 //   console.log(chatID)
 //   console.log(loggedInUser)
   // chatID = "sC1n34ukb7RFTJCBi7zsjuqKkyr1sC1n34ukb7RFTJCBi7zsjuqKkyr1" 
    return firebase.firestore().collection('messages').add({
-     name: getUserName(),
-    //  sender: getUserId(),
-    //  receiver: user_identification,
-     chat: chatID,
-     sender: loggedInUser,
-    //  receiver: user_identification,
-     text: messageText,
-     profilePicUrl: getProfilePicUrl(),
+    name: getUserName(),
+    receiverName: nameOfReceiver,
+    receiverPic: picOfReceiver,
+    chat: chatID,
+    sender: loggedInUser,
+    receiver: recieverID,
+    text: messageText,
+    profilePicUrl: picOfSender,
      timestamp: firebase.firestore.FieldValue.serverTimestamp()
    }).catch(function(error) {
      console.error('Error writing new message to database', error);
