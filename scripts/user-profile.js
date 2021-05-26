@@ -72,20 +72,30 @@ function sayHello() {
 
 sayHello();
 
-document.getElementById("deleteaccount").addEventListener("click", function () {
+
+document.getElementById("deleteaccount").onclick = function() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            db.collection("users").doc(user.uid)
-                .set({}, {merge: false})
+            var confirmDelete = confirm("Are you sure you want to delete your profile?")
+            if (confirmDelete == true) {
+                db.collection("users").doc(user.uid)
+                .delete()
                 .then(() =>{
-                    alert("You have clicked on the button of death! All your information is GONE!")
+                    alert("You have clicked on the BUTTON OF DEATH! All your information is GONE!")
                 })
                 .catch((error) => {
                     console.log("Error executing the button of death: ", error)
                 })
+            }
+            else {
+                alert("Your user information will be safe.")
+            }
+        }
+        else {
+            alert("You're not logged in! Please log in to delete your profile.")
         }
     })
-});
+}
 
 
 document.getElementById("enter-info").onclick = function () {
