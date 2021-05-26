@@ -76,24 +76,55 @@
    return user + profile
    }
  }
- 
- 
+
+//  function PopulateProviderProfile(userID) {
+//   db.collection("users")
+//       .doc(userID)
+//       .get()
+//       .then(function (doc) {
+//           var name = doc.data().name;
+//           var description = doc.data().description;
+//           var skills = doc.data().skills;
+//           var tools = doc.data().tools;
+//           var picture = doc.data().profilePicture;
+//           var userattributes = doc.data().attribute;})}
+
+//           // firebase.auth().currentUser.displayName
+
+
+
  let user_identification = params.get("id");
  console.log(user_identification);
  
  var chatID;
 
+
+//  firebase.firestore().collection("users")
+//  .doc(recieverID)
+//  .get()
+//  .then(function (doc) {
+//    let name = doc.data().name;
+//    console.log(name)
+//    return name
+//  }).catch(function (error) {
+//    console.log(error)
+
+ async function getReceiverName(recieverID){
+  let user = firebase.firestore().collection("users").doc(recieverID);
+  let usersName = await user.get();
+  return usersName.data().name;
+ }
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
- function saveMessage(messageText) {
+ async function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
+  let nameOfReceiver = await getReceiverName(user_identification);
   chatID = createchatId(user_identification, loggedInUser);
   console.log(chatID)
   console.log(loggedInUser)
   // chatID = "sC1n34ukb7RFTJCBi7zsjuqKkyr1sC1n34ukb7RFTJCBi7zsjuqKkyr1" 
    return firebase.firestore().collection('messages').add({
      name: getUserName(),
-    //  sender: getUserId(),
-    //  receiver: user_identification,
+     receiverName: nameOfReceiver,
      chat: chatID,
      sender: loggedInUser,
      receiver: user_identification,
