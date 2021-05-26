@@ -39,10 +39,15 @@
    firebase.auth().onAuthStateChanged(authStateObserver);
  }
  
+//  // Returns the signed-in user's profile pic URL.
+//  function getProfilePicUrl() {
+//    return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+//  }
+
  // Returns the signed-in user's profile pic URL.
  function getProfilePicUrl() {
-   return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
- }
+  return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+}
  
  // Returns the signed-in user's display name.
  function getUserName() {
@@ -114,10 +119,25 @@
   let usersName = await user.get();
   return usersName.data().name;
  }
+
+ async function getReceiverPic(recieverID){
+  let user = firebase.firestore().collection("users").doc(recieverID);
+  let usersName = await user.get();
+  return usersName.data().profilePicture;
+ }
+
+ async function getSenderPic(senderID){
+  let user = firebase.firestore().collection("users").doc(senderID);
+  let usersName = await user.get();
+  return usersName.data().profilePicture;
+ }
+
  // Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
  async function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
   let nameOfReceiver = await getReceiverName(user_identification);
+  let picOfReceiver = await getReceiverPic(user_identification);
+  let picOfSender = await getSenderPic(loggedInUser);
   chatID = createchatId(user_identification, loggedInUser);
   console.log(chatID)
   console.log(loggedInUser)
@@ -125,11 +145,13 @@
    return firebase.firestore().collection('messages').add({
      name: getUserName(),
      receiverName: nameOfReceiver,
+     receiverPic: picOfReceiver,
      chat: chatID,
      sender: loggedInUser,
      receiver: user_identification,
      text: messageText,
-     profilePicUrl: getProfilePicUrl(),
+     profilePicUrl: picOfSender,
+    //  profilePicUrl: getProfilePicUrl(),
      timestamp: firebase.firestore.FieldValue.serverTimestamp()
    }).catch(function(error) {
      console.error('Error writing new message to database', error);
@@ -137,7 +159,7 @@
  }
  
  //END OF OG SAVE
- 
+
  
  // Loads chat messages history and listens for upcoming ones.
  function loadMessages() {
