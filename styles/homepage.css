@@ -88,14 +88,13 @@ body{
 #AvailableTools{
     color: black;
     font-weight: bold;
-    font-size: 5em;
-    margin: 0em 0em 1em 0em;
+    font-size: 4em;
+    margin: 0em 0em 0.5em 0em;
 }
 
 #paintbrush{
     margin-top: 2vh;
     border-style: none;
- 
 }
 
 .card{
@@ -141,6 +140,10 @@ body{
     float: right;
 }
 
+div#carouselExampleCaptions{
+    margin: 5em 0em 0em 4em;
+}
+
 #provider-container{
     margin-top: 4vh;
 }
@@ -154,7 +157,6 @@ body{
     width: 50rem;
     height: 60rem;
     border-radius: 10%;
-    margin: auto;
 }
 
 #providercard{
@@ -177,7 +179,7 @@ body{
     color: black;
     font-weight: bold;
     font-size: 5em;
-    margin: 0em 0em 1.4em 0em;
+    margin: 0em 0em 0em 1em;
 }
 
 .class-slide-title{
