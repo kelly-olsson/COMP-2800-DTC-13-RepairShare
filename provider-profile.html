@@ -131,19 +131,27 @@
 
     <div id="numberofreviews">
         <h4 class="subtitle" id='totalreview'> Reviews <br></h4>
+
+            <div id="ratingBar5" class="ratingBar"></div><span id="desc5"></span> Five Star Ratings
+            <div id="ratingBar4" class="ratingBar"></div><span id="desc4"></span> Four Star Ratings
+            <div id="ratingBar3" class="ratingBar"></div><span id="desc3"></span> Three Star Ratings
+            <div id="ratingBar2" class="ratingBar"></div><span id="desc2"></span> Two Star Ratings
+            <div id="ratingBar1" class="ratingBar"></div><span id="desc1"></span> One Star Ratings
+
         <form style='width: 75vw;'>
             <div class="form-group col-md-4">
-                <select id="searchRating" class="form-control" style = "font-size: 1.5em;">
-                  <option selected>Filter By Rating</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <select id="searchRating" class="form-control" style="font-size: 1.5em;">
+                    <option selected>Filter By Rating</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
-              </div>
-              <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
+            </div>
+            <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
         </form>
+
     </div>
     <div id="reviews">
     </div>
@@ -152,10 +160,10 @@
         <div class="navbar" id="bottomfooter">
             <a href="homepage.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
                     data-inline="false" data-height="48"></span></a>
-            <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
-                    data-height="48"></span></a>
-            <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
-                    data-height="48"></span></a>
+            <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech"
+                    data-inline="false" data-height="48"></span></a>
             <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
                     data-inline="false" data-height="48"></span></a>
             <a href="user-profile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
@@ -170,6 +178,7 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
         type="text/javascript"></script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>

@@ -267,3 +267,25 @@ body {
     height: 50px;
     width: 50px;
 }
+
+
+
+
+.ratingBar {
+    height: 30px;
+  }
+  #ratingBar1 {
+    background-color: #ff6f31;
+  }
+  #ratingBar2 {
+    background-color: #ff9f02;
+  }
+  #ratingBar3 {
+    background-color: #ffcf02;
+  }
+  #ratingBar4 {
+    background-color: #88b131;
+  }
+  #ratingBar5 {
+    background-color: #99cc00;
+  }
