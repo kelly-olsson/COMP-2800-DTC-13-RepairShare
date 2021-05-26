@@ -246,6 +246,21 @@ function averageRating(userId) {
 }
 
 
+/// dynamically create a div representing the statistical breakdown of review percentages 
+
+function createStatBar(){
+
+    var fivestar = $('<div class ="divworld"> <span id="ratingnumber1"> 5 Star </span><div id="ratingBar5" class="ratingBar"></div><span id="desc5"></span></div>');
+    var fourstar = $('<div class ="divworld"><span id="ratingnumber2"> 4 Star </span><div id="ratingBar4" class="ratingBar"></div><span id="desc4"></span></div>');
+    var threestar = $('<div id="ratingBar3" class="ratingBar"></div><span id="desc3"></span> Three Star Ratings');
+    var twostar = $('<div id="ratingBar2" class="ratingBar"></div><span id="desc2"></span> Two Star Ratings');
+    var onestar = $('<div id="ratingBar1" class="ratingBar"></div><span id="desc1"></span> One Star Rating');
+
+    $('#statspot').append(fivestar, fourstar, threestar, twostar, onestar);
+
+
+}
+
 /// store ratings in managable array
 
 function statisticRatings(userID) {
@@ -256,11 +271,13 @@ function statisticRatings(userID) {
             var reviews = doc.data().reviews;
             var allratings = [];
 
-            if (reviews.length === 0) {
+            if (reviews.length == []) {
                 console.log("This user does not yet have any ratings");
                 return
 
-            }
+            } else { 
+
+                createStatBar();
 
             for (let i = 0; i < reviews.length; i++) {
 
@@ -274,18 +291,18 @@ function statisticRatings(userID) {
             //// This segment of code comes from stackoverflow:
             /// https://stackoverflow.com/questions/47871201/calculate-values-for-multiple-rating-bars
 
-            
+
             for (let i = 1; i <= 5; i++) {
 
                 var bar = $("#ratingBar" + i);
                 var desc = $("#desc" + i);
                 var width = sortedRatings[i].length / allratings.length;
                 bar.width((width * 100) + '%');
-                desc.html(sortedRatings[i].length)
+                desc.html(sortedRatings[i].length + ' ratings')
             }
 
 
-        }
+        }}
         )
 }
 
