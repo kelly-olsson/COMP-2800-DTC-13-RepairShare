@@ -44,10 +44,12 @@ function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chr
     for (let i = 0; i < allChatInfo.length; i++) {
         // let userName = allChatInfo[i][0]
         let chatID = allChatInfo[i][1]
+        let receiverName = allChatInfo[i][3]
+        let recieverPic = allChatInfo[i][4]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
         // singleChatDiv.textContent = userName
-        let link = document.createTextNode("Chat#" + i);
+        let link = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
         connectButton.appendChild(link)
         // connectButton.setAttribute('value', 'Message')
@@ -86,6 +88,8 @@ function getChatData(uniqueChatlist) {
                     tempArray.push(doc.data().name) //allchatinfo[i][0]
                     tempArray.push(doc.data().chat)//allchatinfo[i][1]
                     tempArray.push(doc.id)//allchatinfo[i][2]
+                    tempArray.push(doc.data().receiverName)//allchatinfo[i][3]
+                    tempArray.push(doc.data().profilePicUrl)//allchatinfo[i][4]
                     allChatInfo.push(tempArray)
                     console.log(tempArray)
                 })
