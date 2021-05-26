@@ -269,23 +269,52 @@ body {
 }
 
 
+.divworld{
+    display: flex;
 
+
+}
 
 .ratingBar {
-    height: 30px;
+    height: 2vh;
+    margin-top: 1vh;
   }
-  #ratingBar1 {
-    background-color: #ff6f31;
+
+#ratingnumber1{
+    margin-top: 1.5vh;
+    margin-right: 1vw;
+}
+
+#ratingBar1 {
+    background-color: gold;
   }
-  #ratingBar2 {
-    background-color: #ff9f02;
+
+#desc5{
+    margin-top: 1.5vh;
+}
+
+/* style up to this point */
+
+
+#ratingBar2 {
+    background-color: gold;
   }
-  #ratingBar3 {
-    background-color: #ffcf02;
+
+#ratingBar3 {
+    background-color: gold;
   }
+
   #ratingBar4 {
-    background-color: #88b131;
+    background-color: gold;
   }
+
   #ratingBar5 {
-    background-color: #99cc00;
+    background-color: gold;
+  }
+
+
+
+
+  .ratingnumber{
+      font-size: 2rem;
   }
