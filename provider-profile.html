@@ -18,6 +18,26 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=406396073699983&autoLogAppEvents=1"
+        nonce="7vI5Rbvy"></script>
+        <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          
+            t._e = [];
+            t.ready = function(f) {
+              t._e.push(f);
+            };
+          
+            return t;
+          }(document, "script", "twitter-wjs"));</script>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
             <div class="container-fluid">
@@ -71,7 +91,19 @@
             data-height="32"></span>
         <h4 class="subtitle">ABOUT</h4>
         <p id='about'> </p>
-        <!-- <hr id='dividingskills'> -->
+        <hr id='dividingskills'>
+        <div class="fb-share-button" data-href="https://repairshare-ce54f.web.app/index.html" data-layout="button"
+        data-size="large"><a target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frepairshare-ce54f.web.app%2Findex.html&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore" id="fbbutton">Share</a></div>
+        <div> 
+            <a class="twitter-share-button"
+            href="https://twitter.com/intent/tweet"
+            data-size="large"
+            data-text="Share your tools, Repair with the community"
+            data-url="https://repairshare-ce54f.web.app/">
+          Tweet
+          </a> </div>
         <div id="userattributes">
         </div>
         <hr size="3">
