@@ -43,7 +43,12 @@ function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
 
-
+/**
+ * 
+ * @param {*} profile The uid of the user that the logged-in user is chatting with
+ * @param {*} user The uid of the logged-in user
+ * @returns A chat ID unique to two users
+ */
 function createchatId(profile, user) {
   if (profile < user) {
     return profile + user
@@ -53,26 +58,40 @@ function createchatId(profile, user) {
   }
 }
 
-
+/**
+ * 
+ * @param {*} recieverID The uid of the person with whom the user is chatting with 
+ * @returns The name of the user with whom the user is chatting with
+ */
 async function getReceiverName(recieverID) {
   let user = firebase.firestore().collection("users").doc(recieverID);
   let usersName = await user.get();
   return usersName.data().name;
 }
 
+/**
+ * 
+ * @param {*} recieverID The uid of the person with whom the user is chatting with 
+ * @returns The profile picture of the user with whom the user is chatting with
+ */
 async function getReceiverPic(recieverID) {
   let user = firebase.firestore().collection("users").doc(recieverID);
   let usersName = await user.get();
   return usersName.data().profilePicture;
 }
 
+/**
+ * 
+ * @param {*} senderID The uid of the logged-in user
+ * @returns The profile picture of the logged-in user
+ */
 async function getSenderPic(senderID) {
   let user = firebase.firestore().collection("users").doc(senderID);
   let usersName = await user.get();
   return usersName.data().profilePicture;
 }
 
-// Saves a new message to your Cloud Firestore database. THIS NEEDS TO CHANGE IN ORDER TO NOT MESS WITH OUR DB$$$$$$$$$$$
+// Saves a new message to your Cloud Firestore database. 
 async function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
   let nameOfReceiver = await getReceiverName(user_identification);
