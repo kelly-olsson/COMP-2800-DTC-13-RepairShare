@@ -267,3 +267,9 @@ body {
     height: 50px;
     width: 50px;
 }
+
+.twitter-share-button { 
+    min-width: 80px !important;
+    width: auto !important;
+    margin-top: .5vh;
+}
