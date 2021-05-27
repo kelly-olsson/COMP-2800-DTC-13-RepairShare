@@ -55,21 +55,16 @@ function addData(skillsArray, toolsObject) {
     var description = document.getElementById("user-description").value;
 
     firebase.auth().onAuthStateChanged(function (user) {
-        db.collection("users").doc(user.uid)
-            .set({
+        let userRef = db.collection("users").doc(user.uid)
+        
+        userRef.set({
                 "description": description,
                 "skills": skillsArray,
 
             }, { merge: true })
-            .then(() => {
-                db.collection("users").doc(user.uid)
-                .update({
+            userRef.update({
                     "tools": toolsObject
                 })
-            })
-            .then(() => {
-                console.log("Document successfully written!")
-            })
             .catch((error) => {
                 console.log("Error writing document: ", error);
             })
