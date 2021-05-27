@@ -1,57 +1,3 @@
-<<<<<<< HEAD
-function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
-    console.log("INSIDE CREATION")
-    for (let i = 0; i < allChatInfo.length; i++) {
-        let userName = allChatInfo[i][0]
-        let chatID = allChatInfo[i][1]
-
-        var divformat =$('<div></div>'); 
-        var cardheader = $('<div class="card-header" id="namegoeshere"></div>');
-        var cardbody = $(' <div class="card-body"> </div>');
-        var title = $('<h5 class = "card-text"> Reconnect</h5>');
-        var bigbutton = $('<a href="#" class="btn btn-primary id="connectbutton"">Chat</a>');
-
-        divformat.append(cardheader);
-        cardbody.append(title); 
-        cardbody.append(bigbutton);
-        divformat.append(cardbody);
-        
-
-
-
-
-        
-
-        // let historyDiv = document.getElementById('history');
-        // let singleChatDiv = document.createElement('div');
-        // singleChatDiv.textContent = userName
-        // let link = document.createTextNode(userName);
-        // let connectButton = document.createElement('a');
-        // connectButton.appendChild(link)
-        // connectButton.setAttribute('value', 'Message')
-        // connectButton.setAttribute('type', 'button')
-        // connectButton.setAttribute('href',"personal-chat.html?id=" + chatID)
-        // singleChatDiv.appendChild(connectButton)
-        // historyDiv.appendChild(singleChatDiv)
-
-
-
-        divformat.find("#namegoeshere").attr(userName);
-        divformat.find("#connectbutton").attr("href", "personal-chat.html?id=", chatID);
-        $('#history').append(divformat);
-
-        console.log("END OF CREATE DIV")
-
-    }//end of for loop
-    // return div;
-}
-
-
-
-
-
-
-=======
 // function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
 //     console.log("INSIDE CREATION")
 //     for (let i = 0; i < allChatInfo.length; i++) {
@@ -93,7 +39,6 @@ function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chr
 //     }//end of for loop
 //     // return div;
 // }
->>>>>>> b96751553347e9d2500ca03ffec996f1b3e03e36
 function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
     console.log("INSIDE CREATION")
     for (let i = 0; i < allChatInfo.length; i++) {
