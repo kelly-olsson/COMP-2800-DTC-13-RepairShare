@@ -267,3 +267,105 @@ body {
     height: 50px;
     width: 50px;
 }
+
+.twitter-share-button { 
+    min-width: 80px !important;
+    width: auto !important;
+    margin-top: .5vh;
+}
+
+.divworld{
+    display: flex;
+
+}
+
+.ratingBar {
+    height: 2vh;
+    margin-top: 1vh;
+  }
+
+#ratingnumber1{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#ratingBar1 {
+    background-color: gold;
+  }
+
+#desc1{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+
+#ratingnumber2{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc2{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+
+#ratingnumber3{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc3{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingnumber4{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc4{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingnumber5{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc5{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingBar2 {
+    background-color: gold;
+  }
+
+#ratingBar3 {
+    background-color: gold;
+  }
+
+#ratingBar4 {
+    background-color: gold;
+  }
+
+#ratingBar5 {
+    background-color: gold;
+  }
+
+.ratingnumber{
+      font-size: 2rem;
+  }
