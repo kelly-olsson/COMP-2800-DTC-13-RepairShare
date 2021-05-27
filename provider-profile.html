@@ -18,6 +18,26 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=406396073699983&autoLogAppEvents=1"
+        nonce="7vI5Rbvy"></script>
+        <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          
+            t._e = [];
+            t.ready = function(f) {
+              t._e.push(f);
+            };
+          
+            return t;
+          }(document, "script", "twitter-wjs"));</script>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
             <div class="container-fluid">
@@ -71,7 +91,19 @@
             data-height="32"></span>
         <h4 class="subtitle">ABOUT</h4>
         <p id='about'> </p>
-        <!-- <hr id='dividingskills'> -->
+        <hr id='dividingskills'>
+        <div class="fb-share-button" data-href="https://repairshare-ce54f.web.app/index.html" data-layout="button"
+        data-size="large"><a target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frepairshare-ce54f.web.app%2Findex.html&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore" id="fbbutton">Share</a></div>
+        <div> 
+            <a class="twitter-share-button"
+            href="https://twitter.com/intent/tweet"
+            data-size="large"
+            data-text="Share your tools, Repair with the community"
+            data-url="https://repairshare-ce54f.web.app/">
+          Tweet
+          </a> </div>
         <div id="userattributes">
         </div>
         <hr size="3">
@@ -134,19 +166,31 @@
 
     <div id="numberofreviews">
         <h4 class="subtitle" id='totalreview'> Reviews <br></h4>
+
+        <div id= "statspot"> 
+
+            <!-- <div id="ratingBar5" class="ratingBar"></div><span id="desc5"></span> Five Star Ratings
+            <div id="ratingBar4" class="ratingBar"></div><span id="desc4"></span> Four Star Ratings
+            <div id="ratingBar3" class="ratingBar"></div><span id="desc3"></span> Three Star Ratings
+            <div id="ratingBar2" class="ratingBar"></div><span id="desc2"></span> Two Star Ratings
+            <div id="ratingBar1" class="ratingBar"></div><span id="desc1"></span> One Star Ratings -->
+        
+        </div>
+
         <form style='width: 75vw;'>
             <div class="form-group col-md-4">
-                <select id="searchRating" class="form-control" style = "font-size: 1.5em;">
-                  <option selected>Filter By Rating</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <select id="searchRating" class="form-control" style="font-size: 1.5em;">
+                    <option selected>Filter By Rating</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
-              </div>
-              <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
+            </div>
+            <button type="button" class="btn btn-secondary btn-lg" id="filterbutton">Search</button>
         </form>
+
     </div>
     <div id="reviews">
     </div>
@@ -155,10 +199,10 @@
         <div class="navbar" id="bottomfooter">
             <a href="homepage.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
                     data-inline="false" data-height="48"></span></a>
-            <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
-                    data-height="48"></span></a>
-            <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
-                    data-height="48"></span></a>
+            <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech"
+                    data-inline="false" data-height="48"></span></a>
             <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
                     data-inline="false" data-height="48"></span></a>
             <a href="user-profile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
@@ -173,6 +217,7 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
         type="text/javascript"></script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>

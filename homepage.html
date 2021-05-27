@@ -27,25 +27,11 @@
 
 <body>
     <div id="fb-root"></div>
+
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=406396073699983&autoLogAppEvents=1"
         nonce="7vI5Rbvy"></script>
-        <script>window.twttr = (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0],
-              t = window.twttr || {};
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          
-            t._e = [];
-            t.ready = function(f) {
-              t._e.push(f);
-            };
-          
-            return t;
-          }(document, "script", "twitter-wjs"));</script>
+
     <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">RepairShare</a>
@@ -83,17 +69,31 @@
             <h1 class="mb-3" id="headline">GET THE JOB DONE</h1>
         </div>
     </div>
-    <div class="fb-share-button" data-href="https://repairshare-ce54f.web.app/index.html" data-layout="button"
+    <!-- <div class="fb-share-button" data-href="https://repairshare-ce54f.web.app/index.html" data-layout="button"
         data-size="large"><a target="_blank"
             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frepairshare-ce54f.web.app%2Findex.html&amp;src=sdkpreparse"
-            class="fb-xfbml-parse-ignore">Share</a></div>
-            <a class="twitter-share-button"
-            href="https://twitter.com/intent/tweet"
-            data-size="large"
-            data-text="Share your tools, Repair with the community"
-            data-url="https://repairshare-ce54f.web.app/">
-          Tweet
-          </a>
+            class="fb-xfbml-parse-ignore">Share</a></div> -->
+
+            <!-- <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large"
+            data-text="Share your tools, Repair with the community" data-url="https://repairshare-ce54f.web.app/">
+            Tweet
+        </a> -->
+
+        <!-- <a class="twitter popup" href="http://twitter.com/share">First</a><script> $('.popup').click(function(event) { var width = 575, height = 400, left = ($(window).width() - width) / 2, top = ($(window).height() - height) / 2, url = this.href, opts = 'status=1' + ',width=' + width + ',height=' + height + ',top=' + top + ',left=' + left; window.open(url, 'twitter', opts); return false; });</script>
+        <a class="twitter popup" href="http://twitter.com/share?text=This%20is%20so%20easy">Second</a>
+        <a target=_blank href="https://twitter.com/share?text=Check%20out%20{$items[$i]['name']}%20at%20completeset.us/item/{$items[$i]['item_id']}&url=&via=cmpltst\"  class=\"twitter\  onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" >Third</a>
+
+
+
+    <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large"
+        data-text="Share your tools, Repair with the community" data-url="https://repairshare-ce54f.web.app/">
+        share-button
+    </a>
+    <a href="https://twitter.com/intent/tweet" data-url="https://repairshare-ce54f.web.app/">
+    fifth</a>
+    <a href="https://twitter.com/intent/tweet?in_reply_to=463440424141459456">Reply</a>
+    <a href="https://twitter.com/intent/retweet?tweet_id=463440424141459456" data-text="Share your tools">Retweet</a>
+    <a href="https://twitter.com/intent/like?tweet_id=463440424141459456">Like</a> -->
     <div id="exploretools">
         <h4 class="subtitle" id="AvailableTools">Explore The Community</h4>
         <div id="anchorlinks">
@@ -255,6 +255,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <!-- <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script> -->
+    <script src="scripts/twitter.js"></script>
+
+
 
     <!-- Link to the api keys for your firebase project -->
     <script src="scripts/firebase_api.js"></script>
