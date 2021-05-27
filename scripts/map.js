@@ -155,7 +155,7 @@ function sayHello() {
 
 function getLocationH(toolKeyword) {
     db.collection("users")
-        .where("tools." + toolKeyword, '==', true)
+        .where("tools." + toolKeyword.toLowerCase(), '==', true)
         .get()
         .then(function (snapshot) {
             megaArray = []  
