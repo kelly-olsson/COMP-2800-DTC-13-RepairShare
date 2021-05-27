@@ -250,11 +250,11 @@ function averageRating(userId) {
 
 function createStatBar(){
 
-    var fivestar = $('<div class ="divworld"> <span id="ratingnumber1"> 5 Star </span><div id="ratingBar5" class="ratingBar"></div><span id="desc5"></span></div>');
-    var fourstar = $('<div class ="divworld"><span id="ratingnumber2"> 4 Star </span><div id="ratingBar4" class="ratingBar"></div><span id="desc4"></span></div>');
-    var threestar = $('<div id="ratingBar3" class="ratingBar"></div><span id="desc3"></span> Three Star Ratings');
-    var twostar = $('<div id="ratingBar2" class="ratingBar"></div><span id="desc2"></span> Two Star Ratings');
-    var onestar = $('<div id="ratingBar1" class="ratingBar"></div><span id="desc1"></span> One Star Rating');
+    var fivestar = $('<div class ="divworld"> <span id="ratingnumber5"> 5 Star </span><div id="ratingBar5" class="ratingBar"></div><span id="desc5"></span></div>');
+    var fourstar = $('<div class ="divworld"><span id="ratingnumber4"> 4 Star </span><div id="ratingBar4" class="ratingBar"></div><span id="desc4"></span></div>');
+    var threestar = $('<div class ="divworld"><span id="ratingnumber3"> 3 Star </span><div id="ratingBar3" class="ratingBar"></div><span id="desc3"></span></div>');
+    var twostar = $('<div class ="divworld"><span id="ratingnumber2"> 2 Star </span><div id="ratingBar2" class="ratingBar"></div><span id="desc2"></span></div>');
+    var onestar = $('<div class ="divworld"><span id="ratingnumber1"> 1 Star </span><div id="ratingBar1" class="ratingBar"></div><span id="desc1"></span></div>');
 
     $('#statspot').append(fivestar, fourstar, threestar, twostar, onestar);
 
