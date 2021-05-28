@@ -1,4 +1,9 @@
 // Event Listener for clicking the "submit button".
+
+/**
+ * Click event listener for submit button which adds arrays created by helper functions createSkillsArray() and createToolsObject() and adds them to firebase.  
+ */
+
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         let skillsArray = createSkillsArray();
@@ -10,7 +15,10 @@ function addSubmitListener() {
 addSubmitListener();
 
 
-// Reset the form when "reset" button gets clicked.
+/**
+ * Click event listener for 'reset-button' which clears the form of all input. 
+ */
+
 function resetFormButton() {
     document.getElementById("reset-button").addEventListener("click", function () {
         resetForm();
@@ -19,14 +27,20 @@ function resetFormButton() {
 resetFormButton();
 
 
-// Reset form fields after habit is logged in.
+/**
+ * Resets all input fields to an empty valid who's Id is 'user-form' 
+ */
+
 function resetForm() {
     document.getElementById("user-form").reset();
 }
 
+/**
+ * Populate and create an array with all user selected skill items from input field skillcheck
+ * 
+ * @returns an array populated by user selection in a specific input field 
+ */
 
-
-// Create an array of skills entered by user.
 function createSkillsArray() {
 
     var skillsArray = [];
@@ -39,6 +53,13 @@ function createSkillsArray() {
 }
 
 // Create an object of tools availability according to user input.
+
+/**
+ * Populate and create an array with all user selected (checked) tool items from input field toolcheck 
+ * 
+ * @returns an array populated by all user selected (checked) tool items from input field toolcheck
+ */
+
 function createToolsObject() {
 
     toolsObject = {};
@@ -51,6 +72,14 @@ function createToolsObject() {
 
 
 // Write data of created habits to Firestore.
+
+/**
+ * Write data stored in passed arguments, skillsArray and toolsObject, to Firebase. 
+ * 
+ * @param {Array} skillsArray an array of strings representing user skills  
+ * @param {Array} toolsObject an array of strings representing tools
+ */
+
 function addData(skillsArray, toolsObject) {
     var description = document.getElementById("user-description").value;
 
@@ -72,7 +101,11 @@ function addData(skillsArray, toolsObject) {
 }
 
 
-// Display logged in user name at the start of the form.
+
+/**
+ * Display name and authenticate user currently logged into application. 
+ */
+
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -89,7 +122,12 @@ function sayHello() {
 sayHello();
 
 
-// Upload user profile image to Cloud Firestore.
+/**
+ * Upload user profile image to Cloud Firestore. 
+ * 
+ * @param {string} userUid A string representing a corresponding firebase collection identification number (or a user)
+ * @returns if an error occurs, function returns an error message of 'not logged in' 
+ */
 function uploadUserProfilePic(userUid) {
 
     // Let's assume my storage is only enabled for authenticated users 
@@ -126,7 +164,10 @@ function uploadUserProfilePic(userUid) {
     })
 }
 
-// Load user's data
+/**
+ * Load user's data.
+ */
+
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         userId = user.uid;
@@ -137,14 +178,24 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 
-// // Obtains the current location of the user accessing the form, and write location into Firestore as an array.
-// https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+
+/**
+ * Obtains the current location of the user accessing the form, and write location into Firestore as an array. 
+ * Adapted from code found here: 
+ * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+ */
 
 var options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
 };
+
+/**
+ * Update location coordinates in Firebase
+ * 
+ * @param {object} pos an object representing geololocational coordinates
+ */
 
 function success(pos) {
     var crd = pos.coords;
@@ -162,14 +213,35 @@ function success(pos) {
     });
 }
 
+
+/**
+ * Produce console error message.
+ * 
+ * @param {error} err GelocationPositionError object
+ */
+
 function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
+/**
+ * End of adapted code: 
+ * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+ */
 
-// Create a location array in the format of (latitude, longitude).
+
+
+/**
+ * Create a location array in the format of (latitude, longitude). 
+ * 
+ * @param {flaot} latitude float representing latitude
+ * @param {float} longitude float representing longitude
+ * @returns an array containing latitude and longitude
+ */
+
+
 function createLocationArray(latitude, longitude) {
     locationArray = [];
 
@@ -179,6 +251,10 @@ function createLocationArray(latitude, longitude) {
     return locationArray;
 }
 
+
+/**
+ * Click event listener for html element with Id submit, which redirects to a user-profile page.
+ */
 
 document.getElementById("submit").onclick = function () {
     location.href = "user-profile.html";
