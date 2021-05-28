@@ -1,11 +1,12 @@
-// CITATION FOR GEOLOCATION: https://www.aspsnippets.com/Articles/Show-users-current-location-on-Google-Map-using-GeoLocation-API-in-website.aspx
-
-var megaArray;
-var newMEGAArray;
+var toolProviders;
 var map;
 var markersList = []
-// https://developers.google.com/maps/documentation/javascript/overview?hl=en_US#maps_map_simple-javascript
 
+/**
+ * I adapted this code from https://developers.google.com/maps/documentation/javascript/overview
+ * 
+ * It intializes a google map 
+ */
 function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (p) {
@@ -21,9 +22,12 @@ function initMap() {
 
 }
 
-
-/// create star list aligning with user rating 
-
+/**
+ * Render a div with a set of stars (between 1-5), as determined by ratingscore. 
+ * 
+ * @param {number} ratingscore 
+ * @returns A div with a number of stars determined by the passed value of ratingscore 
+ */
 function StarCreation(ratingscore) {
 
     var starsheet = $('<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" id="starchart"></div>')
@@ -86,8 +90,14 @@ function StarCreation(ratingscore) {
 }
 
 
-
-// Being called by an event listener
+/**
+ * Dynamically poplulates the infoWindow of each marker on the google map
+ * with the description, picture, and rating of the person.
+ * 
+ * @param {*} userID The firebase uid of the person whose marker is clicked on 
+ * @param {Number} i A number used for looping through all the users that match the search 
+ * parameter of the user and whose info needs to be populated in the infoWindow
+ */
 function mapDetailWindow(userID, i) {
     db.collection("users")
         .doc(userID)
@@ -97,36 +107,28 @@ function mapDetailWindow(userID, i) {
             let description = doc.data().description;
             let picture = doc.data().profilePicture;
             let reviews = doc.data().reviews;
-            console.log(reviews)
             let average_rating = calculateRating(reviews)
-            // let totalrating = 0;
             let stars = StarCreation(average_rating);
-            console.log(description)
-            console.log(picture)
-
-            // for (let i = 0; i < reviews.length; i++) {
-            //     totalrating += reviews[i].rating;
-            // }
-
-            // let average_rating = totalrating / reviews.length;
-
 
             $('#window-name_' + i + '').attr("href", "provider-profile.html?id=" + userID).text(name);
             $('#window-rating_' + i + '').append(stars);
             $('#window-description_' + i + '').text(description);
             $('.profile-pic_' + i + '').attr("src", picture);
 
-        }).catch(function(error){
+        }).catch(function (error) {
             console.log(error)
         })
 }
 
-{/* <h6> Name: <a id='window-name_" + i + "'></a></h6> 
-<h6> Rating: <span id='window-rating_" + i + "'></span> </h6> 
-<h6> Description: <span id='window-description_" + i + "'></span> </h6> 
-<div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div> */}
-
-function calculateRating(reviews){
+/**
+ * Calculates the average rating of the user based on all the ratings
+ * they have received from other users
+ * 
+ * 
+ * @param {Array} reviews An array of maps of the users ratings and reviews
+ * @returns A number representing the average rating of the user
+ */
+function calculateRating(reviews) {
 
     let totalrating = 0;
 
@@ -138,6 +140,10 @@ function calculateRating(reviews){
 }
 
 
+/**
+ * It authenticates the user via firebase.
+ * 
+ */
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -145,158 +151,116 @@ function sayHello() {
                 .doc(somebody.uid)
                 .get()
                 .then(function (doc) {
-                    // var n = doc.data().name;
-                    // $("#name-goes-here").text(n);
                 })
         }
     })
 }
 
 
-function getLocationH(toolKeyword) {
+/**
+ * Grabs the location data of the user from the firebase.
+ * 
+ * @param {string} toolKeyword The tool (e.g., "hammer") that the user is searching for
+ */
+function getLocation(toolKeyword) {
     db.collection("users")
         .where("tools." + toolKeyword.toLowerCase(), '==', true)
         .get()
         .then(function (snapshot) {
-            megaArray = []  
+            toolProviders = []
             snapshot.forEach(function (doc) {
-                let tempArray = []
-                tempArray.push(doc.data().location)
-                tempArray.push(doc.id)
-                megaArray.push(tempArray)
+                let singleProviderInfo = []
+                singleProviderInfo.push(doc.data().location)
+                singleProviderInfo.push(doc.id)
+                toolProviders.push(singleProviderInfo)
             })
 
-            setMarkers(map, megaArray)})
-            .catch(function(error){
-                console.log(error)
-            })
-        
+            setMarkers(map, toolProviders)
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+
 }
 
-function zoomBasedonMarkers(markers){
+/**
+ * Based on the position of each marker's location on the map, 
+ * readjusts the zoom and location of the map to their center.
+ * 
+ * @param {Array} markers An array of google map marker objects
+ */
+function zoomBasedonMarkers(markers) {
     var bounds = new google.maps.LatLngBounds();
-    for(i=0;i<markers.length;i++) {
+    for (i = 0; i < markers.length; i++) {
         bounds.extend(markers[i].getPosition());
-}
-map.setCenter(bounds.getCenter());
+    }
+    map.setCenter(bounds.getCenter());
 
 }
 
-function setMarkers(map, megaArray){
-    for (let i = 0; i < megaArray.length; i++){  
+/**
+ * Adapted from https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example
+ * 
+ * For each user that fits the search criteria, creates a marker, adds it to the google map
+ * and attaches an infoWindow that is populated with the user's information that will pop up 
+ * when it is clicked on.
+ * 
+ * @param {*} map A google map object
+ * @param {*} toolProviders An array of arrays each containing a single user's location and firebase uid
+ */
+function setMarkers(map, toolProviders) {
+    for (let i = 0; i < toolProviders.length; i++) {
 
-        let lat = megaArray[i][0][0]
-        let lng = megaArray[i][0][1]
-        let userID = megaArray[i][1]
+        let lat = toolProviders[i][0][0]
+        let lng = toolProviders[i][0][1]
+        let userID = toolProviders[i][1]
         let location = new google.maps.LatLng(lat, lng);
-        let marker = new google.maps.Marker({  
-            map: map, 
-            position: location  
+        let marker = new google.maps.Marker({
+            map: map,
+            position: location
         });
         markersList.push(marker);
-    let content = "<h6> Name: <a id='window-name_" + i + "'></a></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
-    let infowindow = new google.maps.InfoWindow()
+        let content = "<h6> Name: <a id='window-name_" + i + "'></a></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" + i + "' alt='Profile Picture'></div>"
+        let infowindow = new google.maps.InfoWindow()
 
-    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-        return function() {
-            infowindow.close();
-            mapDetailWindow(userID, i);  
-            infowindow.setContent(content);
-            infowindow.open(map,marker); 
-        };
-        
-    })(marker,content,infowindow)); 
-    }zoomBasedonMarkers(markersList); 
+        google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+            return function () {
+                infowindow.close();
+                mapDetailWindow(userID, i);
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            };
+
+        })(marker, content, infowindow));
+    } zoomBasedonMarkers(markersList);
 }
 
-// Read user info from firebase and greet user based on user's name.
-// function sayHello() {
-//     firebase.auth().onAuthStateChanged(function (somebody) {
-//         if (somebody) {
-//             db.collection("users")
-//                 .doc(somebody.uid)
-//                 .get()
-//                 .then(function (doc) {
-//                     var n = doc.data().name;
-//                     $("#name-goes-here").text(n);
-//                 })
-//         }
-//     })
-// }
-
-function removeMarkers(markersList){
-    for(let j=0; j<markersList.length; j++){
+/**
+ * Removes all the markers that are on the map.
+ * 
+ * @param {Array} markersList An array containing google map markers
+ */
+function removeMarkers(markersList) {
+    for (let j = 0; j < markersList.length; j++) {
         markersList[j].setMap(null);
     }
     markersList.length = 0
 }
 
+
 let submitButton = document.getElementById("submit");
+
+/**
+ * Adds an event listener to the search bar of the map page. Once
+ * the user searches for a tool, first, all the previous markers (if there are any)
+ * are removed from the map, and then the search parameter is passed on to the getLocation function.
+ */
 function addSubmitListener() {
     let toolKeyword = document.getElementById("tool-keyword").value;
     removeMarkers(markersList);
-    getLocationH(toolKeyword);
+    getLocation(toolKeyword);
 }
 
 submitButton.onclick = addSubmitListener;
 initMap();
 sayHello();
-
-// function setMarkers(map, megaArray){
-//     for (let i = 0; i < megaArray.length; i++){  
-
-//         let lat = megaArray[i][0][0]
-//         let lng = megaArray[i][0][1]
-//         let userID = megaArray[i][1]
-//         let location = new google.maps.LatLng(lat, lng);
-//         let marker = new google.maps.Marker({  
-//             map: map, 
-//             position: location  
-//         });
-//         markersList.push(marker);
-//     let content = "<h6> Name: <span id='window-name_" + i + "'></span></h6> <h6> Rating: <span id='window-rating_" + i + "'></span> </h6> <h6> Description: <span id='window-description_" + i + "'></span> </h6> <div><img src='' class='profile-pic_" +i + "' alt='Profile Picture'></div>"
-//     mapDetailWindow(userID, i);  
-//     let infowindow = new google.maps.InfoWindow({
-//         content: content
-//     })
-//     // infowindow.setContent(content);
-//     // mapDetailWindow(userID, i);  
-
-
-//     google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-//         return function() {
-//             infowindow.close();
-//             infowindow.open(map,marker);
-//             mapDetailWindow(userID, i);  
-
-            
-//         };
-        
-//     })(marker,content,infowindow)); 
-//     }; 
-// }
-
-
-// [[GOOLEOBJECTMARKER , UID], [GOOLEOBJECTMARKER , UID]]
-// function addInfoWindow(newMEGAArray){
-//     for (let i = 0; i < megaArray.length; i++) {
-//         var detailWindow = new google.maps.InfoWindow({
-//             content: "<h3> Name: <span id='window-name'>User</span> </h3> <h3> Rating: <span id='window-rating'></span> </h3> <h3> Description: <span id='window-description'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
-//         });
-//             var marker = newMEGAArray[i][0]
-//             var userID = newMEGAArray[i][1]
-//             //this pops open the content that was set 
-//             marker.addListener("click", () => {
-//                 detailWindow.open(map, marker);
-//                 console.log("Issue is map detail window");
-//                 console.log(userID);
-//                 mapDetailWindow(userID);
-        
-//             })
-// }
-// }
-
-
-
-
-// let content = "<h3> Name: <span id='window-name_" + i + "'></span> </h3><h3> Rating: <span id='window-rating_" + i + "'></span> </h3> <h3> Description: <span id='window-description_" + i + "'></span> </h3> <h3> Tools: <span id='window-tools'></span> </h3>"
