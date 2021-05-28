@@ -244,6 +244,11 @@ div#carouselExampleCaptions{
     width: 50%;
 }
 
+#history a {
+    text-decoration: none;
+    color: white;
+}
+
 .animated {
     left: -30vw;
     animation: myanimation 2s;

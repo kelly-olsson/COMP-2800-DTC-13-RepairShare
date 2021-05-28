@@ -263,6 +263,7 @@ async function authStateObserver(user) {
 
     // Set the user's profile pic and name.
     userPicElement.style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(profilePicUrl) + ')';
+    // userPicElement.href = "https://repairshare-ce54f.web.app/provider-profile.html?id=" + user_identification
     userNameElement.textContent = userName;
 
     // Show user's profile and sign-out button.
