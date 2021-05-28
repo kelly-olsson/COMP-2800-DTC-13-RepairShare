@@ -51,6 +51,7 @@ function populateUser() {
 /**
  * Authentic current logged in user. 
  */
+
 function sayHello() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {
@@ -139,6 +140,7 @@ function StarCreation(ratingscore) {
  * rating, profile picture and name, pulled from firebase.
  * 
  */
+
 function grabReviews() {
 
     firebase.auth().onAuthStateChanged(function (somebody) {
@@ -281,6 +283,7 @@ function filterReviews(desiredRating) {
 /**
  * Click event listener that grabs value from filter drop down window, accepts a value between 1-5. 
  */
+
  document.getElementById("filterbutton").addEventListener("click", function () {
     let search_number = parseInt($("#searchRating")[0].value);
     $("#reviews").empty();
@@ -292,6 +295,7 @@ function filterReviews(desiredRating) {
 /**
  * Click event listener for button with Id of "enter-info", which redirects a user to form.html. 
  */
+
  document.getElementById("enter-info").onclick = function () {
     location.href = "form.html";
 };
