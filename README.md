@@ -7,7 +7,8 @@ Projects 2 Coursework!
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Sources](#sources)
-* [Contents](#content)
+* [Roadmap](#roadmap)
+* [Contributing & Installation](#Contributing-and-Installation)
 
 ## Developers
 Kelly Olsson
@@ -29,6 +30,7 @@ Technologies used for this project:
 * JQuery
 * Bootstrap 
 * Firebase
+* Firestore noSQL Database
 * Google Maps API
 
 ## Sources
@@ -60,26 +62,49 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-## Installation
-
 ## Roadmap
+* Implmenting a Help Request Board
+* Optimizing tools and skills search on map search page
+* Adding more exciting features to RepairShare 
 
 
-## Contributing
+## Contributing-and-Installation
+
+To begin working on RepairShare, you should be ready to rely heavily on Jquery, Javascript, CSS, and HTML.
+
+We built this application on Visual Studio Code, and recommend that incoming developers also use this IDE. 
+
+RepairShare is built around Firebase. This online database allows for the storage of messages, user skills, personal information and tools. 
+
+As a result, Firebase is an integral aspect of RepairShare. A strong working knowledge of Firebase and the way in which other google APIs (google maps) is a nessecary component for meaningful commitments to the RepairShare source code. 
+
+If you wish to wade gently into firebase, we recommend you review our code on provider-profile.js. This code shows the way in which we read, write, and filter through our database. 
 
 
-Tell the new developer how to use the GitHub repo to begin working on your web app, including:
+### Which 3rd party APIs and frameworks does the developer need to download?  
 
-* What does the developer need to install (don’t leave anything out!) like:
-language(s)
-IDEs
-Database(s)
-Other software
+A contributing developer will need to download the following APIs:
+1) google maps 
+2) facebook 
+3) firestore
 
-* Which 3rd party APIs and frameworks does the developer need to download?
-* Do they need any API keys?
-* In which order should they install things? Does installation location matter?
+### Do they need any API keys?
+
+The API keys can be found below, but are also included in the file: 
+
+Google Map API: AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE
+Firebase API: AIzaSyAdM3ePl65L34esirhXE7smv_aUNjECrnc
+Facebook App ID: 406396073699983
+
+### Installation location 
+
+Installation location and installation order have no bearing on the installation process.
+
 * Include detailed configuration instructions and any additional notes including passwords to servers, etc.
-* Include a link to the testing plan you have completed so the new developer can see your testing history and maybe contribute to a minor bug fix!
 
 
+### Testing Plan
+
+Testing Plan: https://bit.ly/3c2DxOy
+
+Selenium IDE Test file "DTC-Team13-SeleniumTests.side" is located in the "Testing" folder
