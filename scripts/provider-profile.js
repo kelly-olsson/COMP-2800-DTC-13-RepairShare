@@ -7,7 +7,7 @@ let provider_identification = params.get("id");
 /**
  * Populate the provider profile page with information (ie. name, description, skills, tools and picture) pulled from correct firebase collection. 
  * 
- * @param {string} userID A string representing a corresponding firebase collection identification (or user)
+ * @param {string} userID A string representing a corresponding firebase collection identification number (or user)
  */
 
 function PopulateProviderProfile(userID) {
@@ -59,7 +59,7 @@ function PopulateProviderProfile(userID) {
 /**
  * Create dynamically an anchor tag (with direct reference to a firebase collection ID) to allow a user to access RepairShare chat feature.
  * 
- * @param {string} provider_identification A string representing a corresponding firebase collection identification (or user)
+ * @param {string} provider_identification A string representing a corresponding firebase collection identification number (or user)
  */
 function chatButton(provider_identification) {
     $('#chatboxbutton').attr("href", "chat.html?id=" + provider_identification);
@@ -69,7 +69,7 @@ function chatButton(provider_identification) {
 /**
  * Add review information such as a written statement, rating, profile picture and name, to an array of maps stored in firebase. 
  * 
- * @param {string} providerID A string representing a corresponding firebase collection identification (or user)
+ * @param {string} providerID A string representing a corresponding firebase collection identification number (or user)
  * @param {string} review A string grabbed from user input representing a written review.
  * @param {number} rating A number grabbed from user input representing a rating between 1-5.
  */
@@ -103,7 +103,7 @@ function LeaveReview(providerID, review, rating) {
  * Construct and populate a div with all user related review information, such as a written statement, 
  * rating, profile picture and name, pulled from firebase.
  * 
- * @param {string} providerID A string representing a corresponding firebase collection identification (or a user)
+ * @param {string} providerID A string representing a corresponding firebase collection identification number (or a user)
  */
 function grabReviews(providerID) {
 
@@ -154,7 +154,7 @@ function grabReviews(providerID) {
 /**
  * Filter and render user reviews as determined by numerical value of desired rating. 
  * 
- * @param {stirng} providerID  A string representing a corresponding firebase collection identification (or a user)
+ * @param {stirng} providerID  A string representing a corresponding firebase collection identification number (or a user)
  * @param {number} desiredRating An integer between 1-5 as entered by user 
  */
 function filterReviews(providerID, desiredRating) {
@@ -204,7 +204,7 @@ function filterReviews(providerID, desiredRating) {
 /**
  * Calculate average of a selected user's ratings, as stored in a map within the review array stored in firebase. 
  * 
- * @param {String} userId A string representing a corresponding firebase collection identification (or a user)
+ * @param {String} userId A string representing a corresponding firebase collection identification number (or a userID)
  */
 
 function averageRating(userId) {
@@ -301,7 +301,7 @@ function organizeRatings(ratings) {
  * Render a set of bars representing a percentage breakdown of a user's ratings, as determined by the 
  * rating value stored in Firebase. 
  * 
- * @param {String} userID A string representing a corresponding firebase collection identification (or a user)
+ * @param {String} userID A string representing a corresponding firebase collection identification number (or a user)
  */
 function statisticRatings(userID) {
     db.collection("users")
