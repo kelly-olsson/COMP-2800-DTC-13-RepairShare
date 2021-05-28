@@ -34,8 +34,6 @@ const params = new URLSearchParams(window.location.search);
 let chatID = params.get("id");
 
 
-
-
 // Signs-out of Friendly Chat.
 function signOut() {
   // Sign out of Firebase.
@@ -176,7 +174,6 @@ async function saveMessage(messageText) {
     .collection('messages')
     .where('chat', '==', chatID)
     .orderBy('timestamp', 'desc');
-  console.log("LINE 123")
 
   // Start listening to the query.
   query.onSnapshot(function (snapshot) {
@@ -233,16 +230,6 @@ async function saveImageMessage(file) {
   });
 }
 
-// Saves the messaging device token to the datastore.
-function saveMessagingDeviceToken() {
-  // TODO 10: Save the device token in the realtime datastore
-}
-
-// Requests permissions to show notifications.
-function requestNotificationsPermissions() {
-  // TODO 11: Request permissions to send notifications.
-}
-
 // Triggered when a file is selected via the media picker.
 function onMediaFileSelected(event) {
   event.preventDefault();
@@ -271,7 +258,6 @@ function onMessageFormSubmit(e) {
   e.preventDefault();
   // Check that the user entered a message and is signed in.
   if (messageInputElement.value && checkSignedInWithMessage()) {
-    console.log(messageInputElement.value)
     saveMessage(messageInputElement.value).then(function () {
       // Clear message text field and re-enable the SEND button.
       resetMaterialTextfield(messageInputElement);
@@ -495,10 +481,14 @@ mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 // initialize Firebase
 initFirebaseAuth();
 
-// TODO: Enable Firebase Performance Monitoring.
 
-// We load currently existing chat messages and listen to new ones.
 
+/** OG
+ * 
+ * Calls the loadMessages function after the user is logged into firebase. 
+ * 
+ * This is to ensure that the loadMessages does not get called prematurely.
+ */
 function loadMessagedAfterStateChange() {
   firebase.auth().onAuthStateChanged(function (somebody) {
     if (somebody) {
@@ -507,4 +497,3 @@ function loadMessagedAfterStateChange() {
   })
 }
 loadMessagedAfterStateChange();
-//  loadMessages();
