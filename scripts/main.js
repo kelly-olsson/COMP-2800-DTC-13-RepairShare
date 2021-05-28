@@ -13,6 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/*
+* Creates a chatroom linked to firebase.
+* I found this code on https://firebase.google.com/codelabs/firebase-web#0
+*
+* The original code would create a chatroom accessible to anyone logged in. 
+* I had to overhaul the existing functions and struture in order to make it 
+* suitable for our app. 
+*
+* I will mark completely original functions by "OG" and the adapted ones by
+* "AD". The rest are untouched and are coppied without any modification. 
+* 
+*/
+
 'use strict';
 
 const params = new URLSearchParams(window.location.search);
@@ -43,11 +57,13 @@ function isUserSignedIn() {
   return !!firebase.auth().currentUser;
 }
 
-/**
+/** OG
  * 
- * @param {*} profile The uid of the user that the logged-in user is chatting with
- * @param {*} user The uid of the logged-in user
- * @returns A chat ID unique to two users
+ * Creates a chat ID unique between two users.
+ * 
+ * @param {*} profile The firebase UID of the person with whom the logged in user is chatting with
+ * @param {*} user The firebase UID of the logged in user 
+ * @returns A chat ID unique to the two users
  */
 function createchatId(profile, user) {
   if (profile < user) {
@@ -58,10 +74,12 @@ function createchatId(profile, user) {
   }
 }
 
-/**
+/** OG
  * 
- * @param {*} recieverID The uid of the person with whom the user is chatting with 
- * @returns The name of the user with whom the user is chatting with
+ * Returns the name of the receiver of the chat message.
+ * 
+ * @param {*} recieverID The firebase UID of the person with whom the logged in user is chatting with
+ * @returns The name of the person with whom the logged in user is chatting with
  */
 async function getReceiverName(recieverID) {
   let user = firebase.firestore().collection("users").doc(recieverID);
@@ -69,10 +87,12 @@ async function getReceiverName(recieverID) {
   return usersName.data().name;
 }
 
-/**
+/** OG
  * 
- * @param {*} recieverID The uid of the person with whom the user is chatting with 
- * @returns The profile picture of the user with whom the user is chatting with
+ * Returns the profile picture of the receiver of the chat message.
+ * 
+ * @param {*} recieverID The firebase UID of the person with whom the logged in user is chatting with
+ * @returns The profile picture of the person with whom the logged in user is chatting with
  */
 async function getReceiverPic(recieverID) {
   let user = firebase.firestore().collection("users").doc(recieverID);
@@ -80,10 +100,13 @@ async function getReceiverPic(recieverID) {
   return usersName.data().profilePicture;
 }
 
-/**
+
+/** OG
  * 
- * @param {*} senderID The uid of the logged-in user
- * @returns The profile picture of the logged-in user
+ * Returns the profile picture of the sender of the chat message (logged in user).
+ * 
+ * @param {*} recieverID The firebase UID of the logged in user
+ * @returns The profile picture of the sender of the chat message (logged in user)
  */
 async function getSenderPic(senderID) {
   let user = firebase.firestore().collection("users").doc(senderID);
@@ -91,7 +114,14 @@ async function getSenderPic(senderID) {
   return usersName.data().profilePicture;
 }
 
-// Saves a new message to your Cloud Firestore database. 
+/** AD
+ * 
+ * Saves a new message to the Cloud Firestore database. 
+ * 
+ * @param {*} messageText The value of the text that is typed in my the person chatting
+ * @returns Saves a single message alongside the names of the two users chatting, their profile
+ *          pictures, their firebase chatID, their uid, and the timestamp of the message.
+ */
 async function saveMessage(messageText) {
   let loggedInUser = firebase.auth().currentUser.uid
   let nameOfReceiver = await getReceiverName(user_identification);
@@ -114,17 +144,18 @@ async function saveMessage(messageText) {
 }
 
 
-// Loads chat messages history and listens for upcoming ones.
+/** AD
+ * 
+ * Loads chat messages based on the chatID that is unique to the two users and listens for upcoming ones.
+ * 
+ */
 function loadMessages() {
-  console.log("load message inside")
   let loggedInUser = firebase.auth().currentUser.uid
   chatID = createchatId(user_identification, loggedInUser);
-  console.log(chatID)
   var query = firebase.firestore()
     .collection('messages')
     .where('chat', '==', chatID)
     .orderBy('timestamp', 'desc');
-  console.log("LINE 123")
 
   // Start listening to the query.
   query.onSnapshot(function (snapshot) {
@@ -141,8 +172,12 @@ function loadMessages() {
 }
 
 
-// Saves a new message containing an image in Firebase.
-// This first saves the image in Firebase storage.
+/** AD
+ * 
+ * Saves a new message containing an image in Firebase.
+ * 
+ * @param {*} file An image file
+ */
 async function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
   let loggedInUser = firebase.auth().currentUser.uid
@@ -206,7 +241,6 @@ function onMessageFormSubmit(e) {
   e.preventDefault();
   // Check that the user entered a message and is signed in.
   if (messageInputElement.value && checkSignedInWithMessage()) {
-    console.log(messageInputElement.value)
     saveMessage(messageInputElement.value).then(function () {
       // Clear message text field and re-enable the SEND button.
       resetMaterialTextfield(messageInputElement);
@@ -215,21 +249,7 @@ function onMessageFormSubmit(e) {
   }
 }
 
-// async function saveMessage(messageText) {
-//   let loggedInUser = firebase.auth().currentUser.uid
-//   let nameOfReceiver = await getReceiverName(user_identification);
-//   let picOfReceiver = await getReceiverPic(user_identification);
-//   let picOfSender = await getSenderPic(loggedInUser);
-//   chatID = createchatId(user_identification, loggedInUser);
-//   return firebase.firestore().collection('messages').add({
-//     name: getUserName(),
-//     receiverName: nameOfReceiver,
-//     receiverPic: picOfReceiver,
-//     chat: chatID,
-//     sender: loggedInUser,
-//     receiver: user_identification,
-//     text: messageText,
-//     profilePicUrl: picOfSender,
+
 
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
 async function authStateObserver(user) {
@@ -439,7 +459,12 @@ mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 initFirebaseAuth();
 
 
-// We load currently existing chat messages and listen to new ones.
+/** OG
+ * 
+ * Calls the loadMessages function after the user is logged into firebase. 
+ * 
+ * This is to ensure that the loadMessages does not get called prematurely.
+ */
 function loadMessagedAfterStateChange() {
   firebase.auth().onAuthStateChanged(function (somebody) {
     if (somebody) {
