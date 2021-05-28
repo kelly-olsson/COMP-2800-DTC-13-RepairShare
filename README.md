@@ -32,13 +32,42 @@ Technologies used for this project:
 * Google Maps API
 
 ## Sources
-* 
-* 
-	
-## Content
-Content of the project folder:
 
-## Tell the new developer how to use the GitHub repo to begin working on your web app, including:
+* https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/set-up-twitter-for-websites
+* https://stackoverflow.com/questions/47871201/calculate-values-for-multiple-rating-bars
+* https://firebase.google.com/codelabs/firebase-web#0
+* https://stackoverflow.com/a/47781432/4816918
+* https://developers.google.com/maps/documentation/javascript/overview
+* https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example
+* https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js
+* https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
+* https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+* https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+
+
+Copyright 2018 Google Inc. All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+## Installation
+
+## Roadmap
+
+
+## Contributing
+
+
+Tell the new developer how to use the GitHub repo to begin working on your web app, including:
 
 * What does the developer need to install (don’t leave anything out!) like:
 language(s)
@@ -51,25 +80,5 @@ Other software
 * In which order should they install things? Does installation location matter?
 * Include detailed configuration instructions and any additional notes including passwords to servers, etc.
 * Include a link to the testing plan you have completed so the new developer can see your testing history and maybe contribute to a minor bug fix!
-
-
-## We will be looking for the following when we examining your code:
-
-* App organization, i.e., files are organized into subdirectories, JS/CSS is externally linked
-* Modularity, i.e., classes are coherent and loosely coupled, functions are atomic, etc.
-* Architecture, i.e., there is a clear distinction between model (database), view (presentation), and controller (server side)
-* Your code style, variable names, indentation, commenting, etc. is consistent and meet or exceed BCIT and industry standards
-* There is evidence of testing, i.e., unit tests (how we do love unit tests!), user testing, results, etc.
-* Thoughtful and correct use of GitHub, meaningful commit comments, and consistent application of the gitflow workflow.
-
-## Installation
-
-## Roadmap
-
-
-## Contributing
-
-
-
 
 

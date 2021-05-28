@@ -5,7 +5,7 @@ var markersList = []
 /**
  * I adapted this code from https://developers.google.com/maps/documentation/javascript/overview
  * 
- * It intializes a google map 
+ * It intializes a google map.
  */
 function initMap() {
     if (navigator.geolocation) {
