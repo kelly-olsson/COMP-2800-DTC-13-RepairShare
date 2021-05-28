@@ -43,6 +43,7 @@ Technologies used for this project:
 * https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
 * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+* https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
 
 
 Copyright 2018 Google Inc. All Rights Reserved.
