@@ -198,6 +198,7 @@ async function saveMessage(messageText) {
  */
 async function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
+  let loggedInUser = firebase.auth().currentUser.uid
   let recieverID = extractReceiverIdfromChatId(chatID, loggedInUser)
   let nameOfReceiver = await getReceiverName(recieverID);
   let picOfReceiver = await getReceiverPic(recieverID);
