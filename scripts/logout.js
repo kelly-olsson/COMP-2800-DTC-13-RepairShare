@@ -1,7 +1,10 @@
-// https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js
-// https://www.youtube.com/watch?v=eS-yU_6aKEE
-
 const logout = document.querySelector("#logout")
+/**
+ * Logs out the user when the click on the logout button.
+ * 
+ * Code taken from: https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js
+ * 
+ */
 logout.addEventListener("click", (event) => {
     event.preventDefault;
     auth.signOut().then(() => {
