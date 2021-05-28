@@ -46,6 +46,7 @@ Technologies used for this project:
 * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 * https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
+* https://firebase.google.com/docs/web/setup
 
 
 Copyright 2018 Google Inc. All Rights Reserved.
@@ -99,9 +100,6 @@ Facebook App ID: 406396073699983
 ### Installation location 
 
 Installation location and installation order have no bearing on the installation process.
-
-* Include detailed configuration instructions and any additional notes including passwords to servers, etc.
-
 
 ### Testing Plan
 
