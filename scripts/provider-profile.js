@@ -5,7 +5,7 @@ let provider_identification = params.get("id");
 
 
 /**
- * Populate the provider profile page with information (ie. name, description, skills, tools and picture) pulled from correct firebase collection. 
+ * Populate the provider profile page with information (ie. name, description, skills, tools and picture) pulled from corresponding firebase collection. 
  * 
  * @param {string} userID A string representing a corresponding firebase collection identification number (or user)
  */
@@ -37,7 +37,7 @@ function PopulateProviderProfile(userID) {
                 })
             }
 
-           
+
             Object.keys(tools).forEach(key => {
                 if (tools[key] == true) {
                     let toolitem = key;
@@ -86,9 +86,9 @@ function LeaveReview(providerID, review, rating) {
 
                     var storedreviews = db.collection("users").doc(providerID);
                     storedreviews.update({
-                        reviews: firebase.firestore.FieldValue.arrayUnion({'review': review, 'rating': rating, 'userID': doc.id, "name": name, "profilePicture": profilePicture})
+                        reviews: firebase.firestore.FieldValue.arrayUnion({ 'review': review, 'rating': rating, 'userID': doc.id, "name": name, "profilePicture": profilePicture })
                     });
-                
+
                     $("#exampleFormControlTextarea1")[0].value = "";
 
                 }).catch(function (error) {
@@ -167,31 +167,35 @@ function filterReviews(providerID, desiredRating) {
 
             for (let i = 0; i < reviews.length; i++) {
 
-                if (reviews[i].rating == desiredRating){ 
+                if (reviews[i].rating == desiredRating) {
 
-                let WrittenReviews = reviews[i].review;
-                let rating = reviews[i].rating;
+                    let WrittenReviews = reviews[i].review;
+                    let rating = reviews[i].rating;
+                    let name = reviews[i].name;
+                    let profilePicture = reviews[i].profilePicture;
 
-                var postedreview = $('<div id="reviews"></div>');
-                var cardformat = $('<div class="card"></div>');
-                var cardclass = $('<div class="card-header"></div>');
-                var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=> <div id= "thisagain"></div></div>');
-                var cardbody = $('<div class="card-body"></div>');
-                var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
-                var reviewerstatement = $('<p id="reviewer-statement"></p>');
-                var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
+                    var postedreview = $('<div id="reviews"></div>');
+                    var cardformat = $('<div class="card"></div>');
+                    var cardclass = $('<div class="card-header"></div>');
+                    var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=> <div id= "thisagain"></div></div>');
+                    var cardbody = $('<div class="card-body"></div>');
+                    var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
+                    var reviewerstatement = $('<p id="reviewer-statement"></p>');
+                    var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
 
-                blockquote.append(reviewerstatement);
-                blockquote.append(reviewername);
-                cardbody.append(blockquote);
-                cardformat.append(avatar);
-                cardclass.append(cardbody);
-                cardformat.append(cardclass);
-                postedreview.append(cardformat);
+                    blockquote.append(reviewerstatement);
+                    blockquote.append(reviewername);
+                    cardbody.append(blockquote);
+                    cardformat.append(avatar);
+                    cardclass.append(cardbody);
+                    cardformat.append(cardclass);
+                    postedreview.append(cardformat);
 
 
                     postedreview.find('#thisagain').append(StarCreation(rating));
                     postedreview.find('#reviewer-statement').text(WrittenReviews);
+                    postedreview.find('#reviewer-name').text(name);
+                    postedreview.find('#reviewer-photo').attr("src", profilePicture);
                     $('#reviews').append(postedreview);
                 }
             }
@@ -342,10 +346,10 @@ function statisticRatings(userID) {
                     desc.html(sortedRatings[i].length + ' ratings')
                 }
 
-            /**
-             * End of reference:
-             * https://stackoverflow.com/questions/47871201/calculate-values-for-multiple-rating-bars
-             */
+                /**
+                 * End of reference:
+                 * https://stackoverflow.com/questions/47871201/calculate-values-for-multiple-rating-bars
+                 */
 
             }
         }.catch(function (error) {
@@ -358,7 +362,7 @@ function statisticRatings(userID) {
 /**
  * Render a div with a set of stars (between 1-5), as determined by ratingscore. 
  * 
- * @param {number} ratingscore 
+ * @param {number} ratingscore a number between 1-5 that represents a user's rating
  * @returns A div with a number of stars determined by the passed value of ratingscore 
  */
 
@@ -443,9 +447,10 @@ function sayHello() {
 
 /**
  * Click event listener that grabs values from text area with an id of 'exampleFormControlTextarea1' and drop down window with 
- * an id of 'exampleFormControlSelect1'*/
+ * an id of 'exampleFormControlSelect1'
+ */
 
- document.getElementById("reviewsubmit").addEventListener("click", function () {
+document.getElementById("reviewsubmit").addEventListener("click", function () {
     let text_review = $("#exampleFormControlTextarea1")[0].value;
     let rating = parseInt($("#exampleFormControlSelect1")[0].value);
     LeaveReview(provider_identification, text_review, rating);
