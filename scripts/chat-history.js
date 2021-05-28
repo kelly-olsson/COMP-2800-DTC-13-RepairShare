@@ -1,77 +1,29 @@
-// function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
-//     console.log("INSIDE CREATION")
-//     for (let i = 0; i < allChatInfo.length; i++) {
-//         let userName = allChatInfo[i][0]
-//         let chatID = allChatInfo[i][1]
-
-//         var divformat =$('<div></div>'); 
-//         var cardheader = $('<div class="card-header" id="namegoeshere"></div>');
-//         var cardbody = $(' <div class="card-body"> </div>');
-//         var title = $('<h5 class = "card-text"> Reconnect</h5>');
-//         var bigbutton = $('<a class="btn btn-primary id="connectbutton"">Chat</a>');
-
-//         divformat.append(cardheader);
-//         cardbody.append(title); 
-//         cardbody.append(bigbutton);
-//         divformat.append(cardbody);
-     
-
-//         // let historyDiv = document.getElementById('history');
-//         // let singleChatDiv = document.createElement('div');
-//         // singleChatDiv.textContent = userName
-//         // let link = document.createTextNode(userName);
-//         // let connectButton = document.createElement('a');
-//         // connectButton.appendChild(link)
-//         // connectButton.setAttribute('value', 'Message')
-//         // connectButton.setAttribute('type', 'button')
-//         // connectButton.setAttribute('href',"personal-chat.html?id=" + chatID)
-//         // singleChatDiv.appendChild(connectButton)
-//         // historyDiv.appendChild(singleChatDiv)
-
-
-
-//         divformat.find("#namegoeshere").attr(userName);
-//         divformat.find("#connectbutton").attr("href", "personal-chat.html?id=" + chatID);
-//         $('#history').append(divformat);
-
-//         console.log("END OF CREATE DIV")
-
-//     }//end of for loop
-//     // return div;
-// }
-function createAndInsertChatHistory(allChatInfo) { //[['mahan', 'chatID], [['chris', chatid]]
-    console.log("INSIDE CREATION")
+/**
+ * Dynamically creates and 
+ * 
+ * @param {*} allChatInfo 
+ */
+function createAndInsertChatHistory(allChatInfo) {
     for (let i = 0; i < allChatInfo.length; i++) {
-        // let userName = allChatInfo[i][0]
         let chatID = allChatInfo[i][1]
         let receiverName = allChatInfo[i][3]
         let recieverPic = allChatInfo[i][4]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
-        // singleChatDiv.textContent = userName
         let link = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
         connectButton.appendChild(link)
-        // connectButton.setAttribute('value', 'Message')
-        // connectButton.setAttribute('type', 'button')
         connectButton.setAttribute('href',"personal-chat.html?id=" + chatID)
         singleChatDiv.appendChild(connectButton)
         historyDiv.appendChild(singleChatDiv)
-
-        console.log("END OF CREATE DIV")
-
-    }//end of for loop
-    // return div;
+    }
 }
 
-
-//grab ONE chat ID (no duplicates), for each one, document.createElemenet(div), append the div to the "history" div.
 
 function chatButton(chatId) {
     $('#chatboxbutton').attr("href", "chat.html?id=" + chatId);
 }
 
-//   var setID = "MNfZqn3fQ1Q1gZkTutxxp3Sxz5m1YasR9vy0hkdtI2fA9VWl7KdFCK93"
 function getChatData(uniqueChatlist) {
     var allChatInfo = [];
     let sadArray = [];
@@ -110,16 +62,13 @@ function removeDuplicates(allChatInfo){
     let uidList = []
     for (let i = 0; i < allChatInfo.length; i++){
         if (uidList.includes(allChatInfo[i][1])){
-            console.log("duplicate");
             console.log(allChatInfo[i][1]);
         }
         else{
             uidList.push(allChatInfo[i][1])
             finalList.push(allChatInfo[i])
-            console.log(allChatInfo[i])
     }
  }
-    console.log(finalList)
     return finalList
 }
 
@@ -135,8 +84,6 @@ function grabChatsAfterStateChange() {
                 })
                 let uniqueChatlist = [...new Set(chatList)]
                 getChatData(uniqueChatlist)
-                console.log(chatList)
-                console.log(uniqueChatlist)
             });
         }
     })
@@ -163,92 +110,3 @@ async function grabAllChatsWithUserId() {
 
 
 grabChatsAfterStateChange();
-
-//     // Start listening to the query.
-//     query.onSnapshot(function (snapshot) {
-//       snapshot.docChanges().forEach(function (change) {
-//         if (change.type === 'removed') {
-//           deleteMessage(change.doc.id);
-//         } else {
-//           var message = change.doc.data();
-//           displayMessage(change.doc.id, message.timestamp, message.name,
-//             message.text, message.profilePicUrl, message.imageUrl);
-//         }
-//       });
-//     });
-
-// function removeChatDuplicated(chats){
-//     let uniqueChats = [new Set(chats)]
-//     console.log(uniqueChats)
-//     return uniqueChats
-// }
-
-
-//   loadMessagedAfterStateChange();
-
-
-//   const citiesRef = db.collection('cities');
-
-//       //We define an async function
-//       async function getIsCapitalOrCountryIsItaly() {
-//         const isCapital = citiesRef.where('capital', '==', true).get();
-//         const isItalian = citiesRef.where('country', '==', 'Italy').get();
-
-//         const [capitalQuerySnapshot, italianQuerySnapshot] = await Promise.all([
-//           isCapital,
-//           isItalian
-//         ]);
-
-//         const capitalCitiesArray = capitalQuerySnapshot.docs;
-//         const italianCitiesArray = italianQuerySnapshot.docs;
-
-//         const citiesArray = capitalCitiesArray.concat(italianCitiesArray);
-
-//         return citiesArray;
-//       }
-
-//       //We call the asychronous function
-//       getIsCapitalOrCountryIsItaly().then(result => {
-//         result.forEach(docSnapshot => {
-//           console.log(docSnapshot.data());
-//         });
-//       });
-
-
-// function getChatData(uniqueChatlist) {
-//     let allChatInfo = [];
-//   uniqueChatlist.forEach(function(element){
-//       firebase.firestore()
-//       .collection('messages')
-//       .where('chat', '==', element)
-//       .get()
-//       .then(function (snapshot) {
-//           let tempArray = []
-//               tempArray.push(doc.data().name)
-//               // tempArray.push(doc.id)
-//               allChatInfo.push(tempArray) 
-//               console.log(tempArray)
-
-//       })
-//       console.log(allChatInfo)
-
-
-//   .catch(function(error){
-//       console.log(error)
-//   })
-// })
-// }
-
-//             megaArray = []  
-//             snapshot.forEach(function (doc) {
-//                 let tempArray = []
-//                 tempArray.push(doc.data().location)
-//                 tempArray.push(doc.id)
-//                 megaArray.push(tempArray)
-//             })
-
-//             setMarkers(map, megaArray)})
-//             .catch(function(error){
-//                 console.log(error)
-//             })
-// }
