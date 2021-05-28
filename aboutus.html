@@ -19,8 +19,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand" href="#">Repair Share</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">RepairShare</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,26 +28,27 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
-                                <span class="sr-only">(current)</span>
+                            <a class="nav-link" href="homepage.html">Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="aboutus.html">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="user-profile.html">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="map-tool.html">Search Tools</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="logout">Log Out</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <div class="p-5 text-center bg-image" style="
+    <div id="coverImage" class="img-fluid" style="
     background-image: url('https://images.pexels.com/photos/3194519/pexels-photo-3194519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 25vh;">
         <div class="d-flex justify-content-center align-items-center h-100">
@@ -70,36 +71,35 @@
 
         </div>
     </div>
-
     <div class="d-flex justify-content-center align-items-center h-100" id="blurb">
         <div class="text-black">
             <hr size="4">
-            <h1 class="mb-3 text-center" id="intro">MEET THE TEAM </h1>
+            <h1 class="mb-3 text-center" id="teamTitle">MEET THE TEAM </h1>
         </div>
     </div>
     <div id="teamPicturesContainer">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 23rem;">
             <img class="card-img-top" src="images\hannah.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Hannah Kuo</h5>
                 <p class="card-text">Enjoys anime/books and being stuck in programming.</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 23rem;">
             <img class="card-img-top" src="images\mahan.png" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Mahan Esmaeilzadeh</h5>
                 <p class="card-text">"I never look back darling it distracts from the now" -Edna Mode</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 23rem;">
             <img class="card-img-top" src="images\max.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Max Anderson-Baier</h5>
                 <p class="card-text">When I'm not riding my bike, I'm at my computer crying!</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 23rem;">
             <img class="card-img-top" src="images\kelly.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Kelly Olsson</h5>
@@ -110,18 +110,45 @@
 
     <footer>
         <div class="navbar" id="bottomfooter">
-            <a href="index.html"><span class="iconify" data-icon="fluent:home-12-filled" data-inline="false" data-height="48"></span></a>
-            <a href="#"><span class="iconify" data-icon="oi:magnifying-glass" data-inline="false" data-height="48"></span></a>
-            <a href="#"><span class="iconify" data-icon="cil:speech" data-inline="false" data-height="48"></span></a>
-            <a href="map-tool.html"><span class="iconify" data-icon="el:map-marker" data-inline="false" data-height="48"></span></a>
-            <a href="newprofile.html"><span class="iconify" data-icon="vs:profile" data-inline="false" data-height="48"></span></a>       
+            <a href="homepage.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass" data-inline="false"
+                    data-height="48"></span></a>
+            <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
+                    data-height="48"></span></a>
+            <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
+                    data-inline="false" data-height="48"></span></a>
+            <a href="user-profile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
+                    data-inline="false" data-height="48"></span></a>
         </div>
     </footer>
 
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, JQuery, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE&callback=initMap"
+        type="text/javascript"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    
+    <!-- Link to the api keys for your firebase project -->
+    <script src="scripts/firebase_api.js"></script>
+
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script src="scripts/logout.js"></script>
 
 </body>
 

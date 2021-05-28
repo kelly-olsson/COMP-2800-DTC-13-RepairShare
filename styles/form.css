@@ -1,0 +1,134 @@
+.navbar-brand {
+    font-size: 4em;
+}
+
+.navbar {
+    justify-content: space-between;
+}
+
+.navbar-toggler {
+    height: 4em;
+    width: 4em;
+    margin: 0em 1.5em 0em 0em;
+    padding: 0em 0.85em 0em 0.4em;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: black;
+}
+
+.navbar-toggler-icon {
+    height: 3em;
+    width: 3em;
+}
+
+.container-fluid {
+    /* margin: 1em 2em 1em 2em; */
+    width: 100vw;
+}
+
+.nav-link {
+    font-size: 2em;
+}
+
+/* body {
+    margin: 6em 0em;
+} */
+
+
+#bottomfooter {
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#bottomfooter a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1.2em 0em 1.2em 0em;
+}
+
+#iconifyFooter {
+    width: 6vh;
+    height: 6vh;
+}
+
+/* Added by Hannah */
+
+form {
+    /* margin: 1em 0em; */
+    font-size: 2.5em;   
+    padding: 3%;
+}
+
+body {
+    background-image: url("/images/bg-dark.jpg" );
+    background-repeat: repeat-y;
+    width: 100%;
+    height: auto;
+
+}
+
+.form-group-tools {
+    column-count: 2;
+}
+
+
+/* .img-fluid {
+    height: 62vh;
+} */
+
+/* .user-form {
+    float: left;
+} */
+
+#user-form {
+
+    font-size: 2.5em;   
+    padding: 0% 3%;
+
+    position: relative;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    
+    width: 70%;
+    /* height: 100%; */
+    
+
+    /* border: solid orange; */
+    background-color: whitesmoke;
+    opacity: 0.9;
+
+    margin: 5em auto;
+    /* margin-top: 5em;
+    margin-bottom: 1em;  */
+    /* padding-bottom: 10vh; */
+
+}
+
+.form-body {
+    margin: 0%, 20%;
+}
+
+/* .class_fluid {
+    opacity:0.4;
+} */
+
+input {
+    width: 100%;
+}
+
+.form-control {
+    font-size: 1em;
+}
+
+.form-button {
+    font-size: 1em;
+}

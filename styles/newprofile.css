@@ -1,3 +1,7 @@
+.navbar-custom {
+    background-color: white !important;
+}
+
 .navbar-brand {
     font-size: 2.5em;
 }
@@ -9,6 +13,7 @@
 .navbar-toggler {
     height: 4vh;
     width: 10vw;
+    padding: 0px 3px 0px 0px;
 }
 
 .navbar-light .navbar-toggler {
@@ -54,12 +59,12 @@ body {
 
 #membersince{
     margin-left: 2vw;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 #rating{
     margin-left: 2vw;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .checked{
@@ -77,6 +82,10 @@ body {
 
 .subtitle {
     font-size: 3em;
+}
+
+#learnmore {
+    font-size: 2em;
 }
 
 #about {
@@ -106,7 +115,7 @@ body {
 }
 
 #dividingskills{
-    width: 5vw;
+    width: 10vw;
 }
 
 #helpfulSkills {
@@ -148,15 +157,15 @@ body {
 }
 
 #exampleFormControlTextarea1 {
-    font-size: 3em;
+    font-size: 2em;
 }
 
-#chatbox button {
+#chatboxbutton {
     font-size: 2.5em;
 }
 
 .title {
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     font-size: 1.5em;
     grid-column: 1 / span 2;
@@ -164,7 +173,8 @@ body {
 }
 
 .card li {
-    list-style: none;
+    /* list-style: none; */
+    margin-left: 3vw;
 }
 
 #skillsheading{
@@ -201,15 +211,15 @@ body {
 }
 
 #iconifyFooter {
-    width: 6vh;
-    height: 6vh;
+    width: 4vh;
+    height: 4vh;
 }
 
 #reviews {
     margin-top: 2vh;
-    margin-left: 5vw;
+    margin-left: 2.5vw;
     margin-bottom: 10vh;
-    width: 85vw;
+    width: 75vw;
 }
 
 #reviewer-photo{
@@ -227,5 +237,135 @@ body {
 }
 
 #numberofreviews{
-    margin-left: 10vw;
+    width: 75vw;
+    margin-left: 5vw;
 }
+
+#writereview{
+    width: 75vw;
+    margin-left: 5vw;
+    margin-top: 2.5vh;
+}
+
+#exampleFormControlSelect1{
+    font-size: 2em;
+
+}
+
+#reviewnumber {
+    color: darkblue;
+}
+
+
+#deleteaccount, #enter-info{
+    font-size: 2em;
+    margin-left: 5vw;
+}
+
+
+#update-tools {
+    height: 50px;
+    width: 50px;
+}
+
+.twitter-share-button { 
+    min-width: 80px !important;
+    width: auto !important;
+    margin-top: .5vh;
+}
+
+.divworld{
+    display: flex;
+
+}
+
+.ratingBar {
+    height: 2vh;
+    margin-top: 1vh;
+  }
+
+#ratingnumber1{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#ratingBar1 {
+    background-color: gold;
+  }
+
+#desc1{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+
+#ratingnumber2{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc2{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+
+#ratingnumber3{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc3{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingnumber4{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc4{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingnumber5{
+    margin-top: 1.5vh;
+    padding-right: 1vw;
+    font-weight: bold;
+}
+
+#desc5{
+    margin-top: 1.5vh;
+    padding-left: 1vw;
+    font-weight: bold;
+}
+
+#ratingBar2 {
+    background-color: gold;
+  }
+
+#ratingBar3 {
+    background-color: gold;
+  }
+
+#ratingBar4 {
+    background-color: gold;
+  }
+
+#ratingBar5 {
+    background-color: gold;
+  }
+
+.ratingnumber{
+      font-size: 2rem;
+  }
