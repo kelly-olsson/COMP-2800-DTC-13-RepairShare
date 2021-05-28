@@ -1,4 +1,9 @@
-// Your web app's Firebase configuration
+/**
+ * Initialize the web app's Firebase configuration.
+ * 
+ * This code was adapted from https://firebase.google.com/docs/web/setup
+ * 
+ */
 var firebaseConfig = {
     apiKey: "AIzaSyAdM3ePl65L34esirhXE7smv_aUNjECrnc",
     authDomain: "repairshare-ce54f.firebaseapp.com",
@@ -8,7 +13,14 @@ var firebaseConfig = {
     messagingSenderId: "151156008286",
     appId: "1:151156008286:web:8a94503aa2c1899f001bcf"
   };
-// Initialize Firebase
+
+
+/**
+ * Initialize Firebase.
+ * 
+ * This code was adapted from https://firebase.google.com/docs/web/setup
+ *
+ */
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
