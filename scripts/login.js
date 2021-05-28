@@ -1,4 +1,8 @@
-// Initialize the FirebaseUI Widget using Firebase.
+/**
+ * Initialize the FirebaseUI Widget using Firebase.
+ * Adapted from Hannah's previous project: https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
+ *
+ */
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {
