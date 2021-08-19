@@ -150,6 +150,7 @@ async function saveMessage(messageText) {
  * 
  */
 function loadMessages() {
+  let profilePic = getProfilePicUrl()
   let loggedInUser = firebase.auth().currentUser.uid
   chatID = createchatId(user_identification, loggedInUser);
   var query = firebase.firestore()
@@ -165,7 +166,7 @@ function loadMessages() {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+          message.text, profilePic, message.imageUrl);
       }
     });
   });

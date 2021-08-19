@@ -369,3 +369,25 @@ body {
 .ratingnumber{
       font-size: 2rem;
   }
+
+
+#loading {
+    position: fixed;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    text-align: center;
+    /* opacity: 0.7; */
+    background-color: #fff;
+    z-index: 99;
+  }
+  
+  #loading-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    z-index: 100;
+  }

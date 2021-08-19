@@ -11,15 +11,24 @@ function populateUser() {
                 .get()
                 .then(function (doc) {
                     var name = doc.data().name;
+                    console.log(name)
                     var description = doc.data().description;
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
                     var picture = doc.data().profilePicture;
-
                     $("#usernamegoeshere").text(name.toUpperCase());
                     $("#usercanhelp").text(name.toUpperCase());
                     $("#about").text(description);
                     $("#profile-photo").attr("src", picture);
+
+                    //this function, hides the "buffering" div after 1sec to ensure 
+                    //that all the doms have been properly rendered based on the fetched data first
+                    setTimeout(() => {
+                        $("#loading").hide();
+                    }, 1000);
+                    
+                    console.log("here?")
+
 
                     for (var index = 0; index < skills.length; index++) {
                         let skill = skills[index];
@@ -40,12 +49,19 @@ function populateUser() {
                                 $("#toolz").append($toolkit);
 
                             })
-                        }
-                    })
+                        } 
+                    });
+
+                }).catch(function (error) {
+                    console.log(error)
+                    console.log("got error")
+                    //set the loader to falser if the .then fails
                 })
         }
     })
 }
+
+
 
 
 /**
@@ -256,7 +272,7 @@ function filterReviews(desiredRating) {
  * Click event listener for button with Id of 'deleteaccount' which deletes all of a logged in user's information from firebase. 
  */
 
- document.getElementById("deleteaccount").onclick = function () {
+document.getElementById("deleteaccount").onclick = function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var confirmDelete = confirm("Are you sure you want to delete your profile?")
@@ -284,7 +300,7 @@ function filterReviews(desiredRating) {
  * Click event listener that grabs value from filter drop down window, accepts a value between 1-5. 
  */
 
- document.getElementById("filterbutton").addEventListener("click", function () {
+document.getElementById("filterbutton").addEventListener("click", function () {
     let search_number = parseInt($("#searchRating")[0].value);
     $("#reviews").empty();
     filterReviews(search_number);
@@ -296,7 +312,7 @@ function filterReviews(desiredRating) {
  * Click event listener for button with Id of "enter-info", which redirects a user to form.html. 
  */
 
- document.getElementById("enter-info").onclick = function () {
+document.getElementById("enter-info").onclick = function () {
     location.href = "form.html";
 };
 
