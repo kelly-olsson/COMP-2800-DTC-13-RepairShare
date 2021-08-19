@@ -261,3 +261,13 @@ div#carouselExampleCaptions{
     from {left: -30vw}
     to {left: 0.6vw}
   }
+
+
+  @media screen and (min-width: 600px) {
+
+    .p-5.text-center.bg-image {
+        height: 35vh;
+        color: green;
+    }
+
+  }

@@ -170,6 +170,7 @@ async function saveMessage(messageText) {
  * Loads chat messages based on the chatID that is unique to the two users and listens for upcoming ones.
  * 
  */ function loadMessages() {
+  let profilePic = getProfilePicUrl()
   var query = firebase.firestore()
     .collection('messages')
     .where('chat', '==', chatID)
@@ -183,7 +184,7 @@ async function saveMessage(messageText) {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+          message.text, profilePic, message.imageUrl);
       }
     });
   });
