@@ -263,11 +263,11 @@ div#carouselExampleCaptions{
   }
 
 
-  @media screen and (min-width: 600px) {
+  /* @media screen and (min-width: 600px) {
 
     .p-5.text-center.bg-image {
         height: 35vh;
         color: green;
     }
 
-  }
+  } */
