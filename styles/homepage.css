@@ -89,7 +89,9 @@ body{
     color: black;
     font-weight: bold;
     font-size: 4em;
-    margin: 0em 0em 0.5em 0em;
+    text-align: center;
+    /* margin: 0em 0em 0.5em 0em;
+    display: inline-block; */
 }
 
 #paintbrush{
@@ -179,7 +181,8 @@ div#carouselExampleCaptions{
     color: black;
     font-weight: bold;
     font-size: 5em;
-    margin: 0em 0em 0em 1em;
+    /* margin: 0em 0em 0em 1em; */
+    text-align: center;
 }
 
 .class-slide-title{
@@ -251,25 +254,24 @@ div#carouselExampleCaptions{
 
 .animated {
     left: -30vw;
-    animation: myanimation 2s;
+    animation: myanimation 4s;
     position: relative;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 @keyframes myanimation {
-    from {left: -30vw}
-    to {left: 0.6vw}
+    from {left: -60vw}
+    to {left: 70vw}
   }
 
 
-  /* @media screen and (min-width: 600px) {
+  @media screen and (min-width: 641px) {
 
-    .p-5.text-center.bg-image {
-        height: 35vh;
-        color: green;
+    #bottomfooter {
+        display: none;
     }
 
-  } */
+  }
 
   
