@@ -15,7 +15,9 @@ function populateUser() {
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
                     var picture = doc.data().profilePicture;
+                    var dateJoined = new Date(firebase.auth().currentUser.metadata.creationTime);
                     $("#usernamegoeshere").text(name.toUpperCase());
+                    // $("#dateJoined").text(dateJoined);
                     $("#usercanhelp").text(name.toUpperCase());
                     $("#about").text(description);
                     $("#profile-photo").attr("src", picture);
@@ -226,7 +228,7 @@ function filterReviews(desiredRating) {
                 .get()
                 .then(function (doc) {
                     var reviews = doc.data().reviews;
-
+                    if (typeof reviews !== 'undefined'){
                     for (let i = 0; i < reviews.length; i++) {
 
                         if (reviews[i].rating == desiredRating) {
@@ -259,6 +261,8 @@ function filterReviews(desiredRating) {
                             postedreview.find('#reviewer-photo').attr("src", profilePicture);
                             $('#reviews').append(postedreview);
                         }
+                    }} else {
+                        console.log("There are no reviews to filter.")
                     }
                 }).catch(function (error) {
                     console.log(error)
