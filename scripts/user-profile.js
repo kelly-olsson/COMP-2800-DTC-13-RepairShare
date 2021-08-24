@@ -27,7 +27,6 @@ function populateUser() {
                         $("#loading").hide();
                     }, 1000);
                     
-                    console.log("here?")
 
 
                     for (var index = 0; index < skills.length; index++) {

@@ -27,6 +27,11 @@ function PopulateProviderProfile(userID) {
             $("#about").text(description);
             $("#profile-photo").attr("src", picture);
 
+            //this function, hides the "buffering" div after 1sec to ensure 
+            //that all the doms have been properly rendered based on the fetched data first
+            setTimeout(() => {
+                $("#loading").hide();
+            }, 1000);
 
             for (var index = 0; index < skills.length; index++) {
                 let skill = skills[index];
