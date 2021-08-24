@@ -1,3 +1,12 @@
+body {
+    overflow-x: hidden;
+    color: whitesmoke;
+    /* width: 100%; */
+    font-size: 0.87em;
+
+ }
+
+
 .navbar-custom {
     background-color: white !important;
 }
@@ -11,9 +20,10 @@
 }
 
 .navbar-toggler {
-    height: 85px;
-    width: 105px;
-    padding: 0px 1px 0px 0px;
+    height: 4em;
+    width: 4em;
+    margin: 0em 1.5em 0em 0em;
+    padding: 0em 0.85em 0em 0.4em;
 }
 
 .navbar-light .navbar-toggler {
@@ -21,8 +31,8 @@
 }
 
 .navbar-toggler-icon {
-    height: 55px;
-    width: 65px;
+    height: 3em;
+    width: 3em;
 }
 
 .container-fluid {
@@ -34,25 +44,13 @@
     font-size: 2em;
 }
 
-#headline{
+/* #headline{
     font-size: 7em;
     margin-left: 3vw;
     margin-top: 100px;
-  }
+  } */
 
-#bottomfooter{
-    background-color: white;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
 
-body{
-    color: whitesmoke;
-}
 
 #history div{
     font-size: 3em;
@@ -80,7 +78,7 @@ body{
 }
 
 #exploretools{
-    margin-top: 2.5vh;
+    margin-top: 15vh;
     width: 75vw;
     margin-left: 10vw;
 }
@@ -127,16 +125,30 @@ body{
     display: grid;
     position: relative;
     justify-content: center;
-    margin: 0em 0em 15em 2.5em;
+    margin: 0em 0em 15em 0em;
     grid-template-areas:
         "First Second"
         "Third Fourth";
-    gap: 90px;
+    gap: 10px;
 }
 
 #infocards{
     margin: 0em 0em 30em 0em;
+
+    transition: box-shadow .3s;
+    /* width: 300px;
+    height: 500px;
+    margin: 50px; */
+    border-radius:10px;
+    /* border: 1px solid #ccc; */
+    background: #fff;
+    float: left;
+    
 }
+
+#infocards:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
 
 #info{
     float: right;
@@ -189,16 +201,17 @@ div#carouselExampleCaptions{
     font-size: 4em;
 }
 
-#bottomfooter {
+
+#bottomfooter{
     background-color: white;
     overflow: hidden;
     position: fixed;
-    left: 0px;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
+
 
 #bottomfooter a {
     color: black;
@@ -215,6 +228,7 @@ div#carouselExampleCaptions{
 #communityoffering-title{
     color: black;
     font-size: 3em;
+    text-align: center;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -261,17 +275,27 @@ div#carouselExampleCaptions{
 }
 
 @keyframes myanimation {
-    from {left: -60vw}
-    to {left: 70vw}
+    from {left: -60vw;
+        overflow: hidden}
+    to {left: 70vw;
+        overflow: hidden;}
+
   }
 
+#details {
+    font-size: 3em;
+    text-align: center;
+    color: black;
+}
 
-  @media screen and (min-width: 641px) {
+
+/* @media screen and (min-width: 641px) {
 
     #bottomfooter {
         display: none;
     }
 
-  }
+  } */
 
+  
   
