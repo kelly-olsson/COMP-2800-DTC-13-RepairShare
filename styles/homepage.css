@@ -3,6 +3,7 @@ body {
     color: whitesmoke;
     /* width: 100%; */
     font-size: 0.87em;
+    font-family: Arial, Helvetica, sans-serif;
 
  }
 
@@ -44,12 +45,14 @@ body {
     font-size: 2em;
 }
 
-/* #headline{
-    font-size: 7em;
-    margin-left: 3vw;
-    margin-top: 100px;
-  } */
 
+#loading-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    z-index: 100;
+  }
 
 
 #history div{
@@ -61,11 +64,11 @@ body {
     text-align: center;
     cursor: pointer;
     outline: none;
-    color: #fff;
-    background-color: #009a9a;
+    color: rgb(90, 79, 79);
+    background-color: rgb(95, 92, 92);
     border: none;
     border-radius: 7px;
-    box-shadow: 0 5px #00cdcd;
+    box-shadow: 0 5px #494b4b;
 }
 
 #search-form{
@@ -113,8 +116,9 @@ body {
 }
 
 #headline{
-    text-align: left;
-}
+    font-size: 4em;
+    margin: auto;
+  }
 
 #communityoffering{
     color: black;
@@ -144,6 +148,12 @@ body {
     background: #fff;
     float: left;
     
+}
+
+.top-div {
+    margin-top: 15vh;
+    color: #000;
+    f
 }
 
 #infocards:hover {

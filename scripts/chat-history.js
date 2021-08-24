@@ -12,6 +12,7 @@ function createAndInsertChatHistory(allChatInfo) {
         let singleChatDiv = document.createElement('div');
         let link = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
+
         connectButton.appendChild(link)
         connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
         singleChatDiv.appendChild(connectButton)
@@ -46,6 +47,7 @@ function getChatData(uniqueChatlist) {
                 allChatInfo.push(singleChatInfo)
             })
             var myFinalList = removeDuplicates(allChatInfo)
+            
             createAndInsertChatHistory(myFinalList)
 
         })
@@ -119,5 +121,7 @@ async function grabAllChatsWithUserId() {
     return chatArray;
 }
 
-
+setTimeout(() => {
+    $("#loading").hide();
+}, 500);
 grabChatsAfterStateChange();
