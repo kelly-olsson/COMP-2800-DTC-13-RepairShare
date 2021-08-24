@@ -7,14 +7,22 @@ function createAndInsertChatHistory(allChatInfo) {
     for (let i = 0; i < allChatInfo.length; i++) {
         let chatID = allChatInfo[i][1]
         let receiverName = allChatInfo[i][3]
-        let recieverPic = allChatInfo[i][4]
+        let profilePic = allChatInfo[i][4]
+        let receiverPic = allChatInfo[i][5]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
+        singleChatDiv.setAttribute('id', "single")
         let link = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
-
+        console.log(profilePic)
+        let img = document.createElement('img');
+        img.src = receiverPic
+        console.log(allChatInfo)
+        
+        $("#single").click(function() { window.location.href="personal-chat.html?id=" + chatID})
+        singleChatDiv.appendChild(img)
         connectButton.appendChild(link)
-        connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
+        // connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
         singleChatDiv.appendChild(connectButton)
         historyDiv.appendChild(singleChatDiv)
     }
@@ -44,7 +52,10 @@ function getChatData(uniqueChatlist) {
                 singleChatInfo.push(doc.id)//allchatinfo[i][2]
                 singleChatInfo.push(doc.data().receiverName)//allchatinfo[i][3]
                 singleChatInfo.push(doc.data().profilePicUrl)//allchatinfo[i][4]
+                singleChatInfo.push(doc.data().receiverPic)//allchatinfo[i][5]
                 allChatInfo.push(singleChatInfo)
+                console.log(singleChatInfo)
+                console.log(doc.data())
             })
             var myFinalList = removeDuplicates(allChatInfo)
             
@@ -123,5 +134,5 @@ async function grabAllChatsWithUserId() {
 
 setTimeout(() => {
     $("#loading").hide();
-}, 500);
+}, 1500);
 grabChatsAfterStateChange();
