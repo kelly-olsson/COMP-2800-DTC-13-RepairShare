@@ -75,7 +75,7 @@ body {
     text-align: left;
     cursor: pointer;
     outline: none;
-    color: rgb(90, 79, 79);
+    color: rgb(223, 215, 215);
     background-color: rgb(95, 92, 92);
     border: none;
     border-radius: 7px;
@@ -169,7 +169,7 @@ body {
 .top-div {
     margin-top: 15vh;
     color: #000;
-    f
+
 }
 
 #infocards:hover {

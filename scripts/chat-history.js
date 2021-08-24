@@ -18,14 +18,15 @@ function createAndInsertChatHistory(allChatInfo) {
         let img = document.createElement('img');
         img.src = receiverPic
         console.log(allChatInfo)
-        
-        $("#single").click(function() { window.location.href="personal-chat.html?id=" + chatID})
+
+        $("#single").click(function () { window.location.href = "personal-chat.html?id=" + chatID })
         singleChatDiv.appendChild(img)
         connectButton.appendChild(link)
         // connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
         singleChatDiv.appendChild(connectButton)
         historyDiv.appendChild(singleChatDiv)
     }
+
 }
 
 
@@ -37,6 +38,8 @@ function createAndInsertChatHistory(allChatInfo) {
 function getChatData(uniqueChatlist) {
     var allChatInfo = [];
     let chatIdArray = [];
+    console.log(uniqueChatlist.length)
+
     for (let i = 0; i < uniqueChatlist.length; i++) {
         chatIdArray.push(uniqueChatlist[i])
     }
@@ -58,7 +61,7 @@ function getChatData(uniqueChatlist) {
                 console.log(doc.data())
             })
             var myFinalList = removeDuplicates(allChatInfo)
-            
+
             createAndInsertChatHistory(myFinalList)
 
         })
@@ -104,10 +107,26 @@ function grabChatsAfterStateChange() {
 
                 })
                 let uniqueChatlist = [...new Set(chatList)]
-                getChatData(uniqueChatlist)
+
+                if (uniqueChatlist.length === 0) {
+                    noChatsYet();
+                } else {
+                    getChatData(uniqueChatlist)
+                }
+
+
             });
         }
     })
+}
+
+function noChatsYet(){
+    let historyDiv = document.getElementById('history');
+    let singleChatDiv = document.createElement('div');
+    let emptyText = document.createTextNode("You have no chat History!")
+    singleChatDiv.appendChild(emptyText)
+    historyDiv.appendChild(singleChatDiv)
+
 }
 
 /**
