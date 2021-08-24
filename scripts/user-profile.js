@@ -11,7 +11,6 @@ function populateUser() {
                 .get()
                 .then(function (doc) {
                     var name = doc.data().name;
-                    console.log(name)
                     var description = doc.data().description;
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
@@ -165,7 +164,7 @@ function grabReviews() {
                 .get()
                 .then(function (doc) {
                     var reviews = doc.data().reviews;
-
+                    if (typeof reviews !== 'undefined'){
                     for (let i = 0; i < reviews.length; i++) {
 
                         let WrittenReviews = reviews[i].review;
@@ -198,6 +197,8 @@ function grabReviews() {
                         postedreview.find('#reviewer-name').text(name);
                         postedreview.find('#reviewer-photo').attr("src", profilePicture);
                         $('#reviews').append(postedreview);
+                    }} else {
+                        console.log("There are no reviews")
                     }
                 }).catch(function (error) {
                     console.log(error)
