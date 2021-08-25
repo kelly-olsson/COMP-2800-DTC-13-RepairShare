@@ -11,23 +11,19 @@ function createAndInsertChatHistory(allChatInfo) {
         let receiverPic = allChatInfo[i][5]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
-        singleChatDiv.setAttribute('id', "single")
-        let link = document.createTextNode(receiverName);
+        let name = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
-        console.log(profilePic)
         let img = document.createElement('img');
         img.src = receiverPic
-        console.log(allChatInfo)
-
-        $("#single").click(function () { window.location.href = "personal-chat.html?id=" + chatID })
         singleChatDiv.appendChild(img)
-        connectButton.appendChild(link)
-        // connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
-        singleChatDiv.appendChild(connectButton)
-        historyDiv.appendChild(singleChatDiv)
+        singleChatDiv.appendChild(name)
+        connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
+        connectButton.appendChild(singleChatDiv)
+        historyDiv.appendChild(connectButton)
     }
-
 }
+
+
 
 
 /**
@@ -38,7 +34,6 @@ function createAndInsertChatHistory(allChatInfo) {
 function getChatData(uniqueChatlist) {
     var allChatInfo = [];
     let chatIdArray = [];
-    console.log(uniqueChatlist.length)
 
     for (let i = 0; i < uniqueChatlist.length; i++) {
         chatIdArray.push(uniqueChatlist[i])
@@ -57,8 +52,6 @@ function getChatData(uniqueChatlist) {
                 singleChatInfo.push(doc.data().profilePicUrl)//allchatinfo[i][4]
                 singleChatInfo.push(doc.data().receiverPic)//allchatinfo[i][5]
                 allChatInfo.push(singleChatInfo)
-                console.log(singleChatInfo)
-                console.log(doc.data())
             })
             var myFinalList = removeDuplicates(allChatInfo)
 
@@ -83,7 +76,7 @@ function removeDuplicates(allChatInfo) {
     let uidList = []
     for (let i = 0; i < allChatInfo.length; i++) {
         if (uidList.includes(allChatInfo[i][1])) {
-            console.log(allChatInfo[i][1]);
+            console.log("Duplicate");
         }
         else {
             uidList.push(allChatInfo[i][1])
@@ -120,7 +113,7 @@ function grabChatsAfterStateChange() {
     })
 }
 
-function noChatsYet(){
+function noChatsYet() {
     let historyDiv = document.getElementById('history');
     let singleChatDiv = document.createElement('div');
     let emptyText = document.createTextNode("You have no chat History!")
