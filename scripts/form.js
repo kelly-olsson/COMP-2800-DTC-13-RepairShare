@@ -98,7 +98,7 @@ function renderPrevInfo() {
 
                     $("#user-description").text(description)
 
-
+                    if (typeof skills != "undefined") {
                     for (var index = 0; index < skills.length; index++) {
                         let skill = skills[index];
                         console.log(skill)
@@ -115,18 +115,17 @@ function renderPrevInfo() {
                         } else if (skill === "interior-home repair") {
                             $("#interior-home").prop("checked", true);
                         }
-                    }
-
-                    console.log(tools)
+                    }}
 
                     let trueTools = []
+                    if (typeof tools != "undefined") {
                     Object.keys(tools).forEach(key => {
                         if (tools[key] == true) {
                             const toolitem = key;
                             trueTools.push(key)
                         } 
-                    });
-                    console.log(trueTools)
+                    });}
+
                     for (var index = 0; index < trueTools.length; index++) {
                         let tool = trueTools[index];
                         console.log(tool)
