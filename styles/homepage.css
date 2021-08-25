@@ -82,9 +82,13 @@ body {
     box-shadow: 0 5px #494b4b;
 }
 
-#history div:last-child{
+/* #history div:last-child{
     margin-bottom: 10vh;
 
+} */
+
+#history {
+    margin-bottom: 10vh;
 }
 
 #search-form{
