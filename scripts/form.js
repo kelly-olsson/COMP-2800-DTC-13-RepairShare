@@ -63,15 +63,94 @@ function createSkillsArray() {
 function createToolsObject() {
 
     toolsObject = {};
-    var toolsCheckboxes = document.querySelectorAll('input[name=toolcheck]:checked');
+    var toolsCheckboxes = document.querySelectorAll('input[name=toolcheck]:checked'); //Select all inputs that have their name as "toolcheck" and are CHECKED
     for (var i = 0; i < toolsCheckboxes.length; i++) {
         toolsObject[toolsCheckboxes[i].id] = true;
     }
     return toolsObject
 }
+////////////////////////////
 
 
-// Write data of created habits to Firestore.
+
+
+//TEST TEST    TEST    TEST    TEST    TEST
+
+/**
+ * Populates the profile-update-form page with the user's current info.
+ */
+function renderPrevInfo() {
+    firebase.auth().onAuthStateChanged(function (somebody) {
+        if (somebody) {
+            db.collection("users")
+                .doc(somebody.uid)
+                .get()
+                .then(function (doc) {
+                    let description = doc.data().description;
+                    let skills = doc.data().skills;
+                    let tools = doc.data().tools;
+
+                    // let name = doc.data().name;
+                    // let picture = doc.data().profilePicture;
+                    // let dateJoined = new Date(firebase.auth().currentUser.metadata.creationTime);
+
+
+
+                    $("#user-description").text(description)
+
+
+                    for (var index = 0; index < skills.length; index++) {
+                        let skill = skills[index];
+                        console.log(skill)
+                        if (skill === "appliance repair") {
+                            $("#appliance").prop("checked", true);
+                        } else if (skill === "automotive repair") {
+                            $("#automotive").prop("checked", true);
+                        } else if (skill === "textile repair") {
+                            $("#textile").prop("checked", true);
+                        } else if (skill === "electronic repair") {
+                            $("#electronic").prop("checked", true);
+                        } else if (skill === "exterior-home repair") {
+                            $("#exterior-home").prop("checked", true);
+                        } else if (skill === "interior-home repair") {
+                            $("#interior-home").prop("checked", true);
+                        }
+                    }
+
+                    console.log(tools)
+
+                    let trueTools = []
+                    Object.keys(tools).forEach(key => {
+                        if (tools[key] == true) {
+                            const toolitem = key;
+                            trueTools.push(key)
+                        } 
+                    });
+                    console.log(trueTools)
+                    for (var index = 0; index < trueTools.length; index++) {
+                        let tool = trueTools[index];
+                        console.log(tool)
+                        if (tool === "hammer") {
+                            $("#hammer").prop("checked", true);
+                        } else if (tool === "ladder") {
+                            $("#ladder").prop("checked", true);
+                        } else if (tool === "screwdriver") {
+                            $("#screwdriver").prop("checked", true);
+                        } else if (tool === "nails") {
+                            $("#nails").prop("checked", true);
+                        } else if (tool === "wrench") {
+                            $("#wrench").prop("checked", true);
+                        } else if (tool === "sewing-kit") {
+                            $("#sewing-kit").prop("checked", true);
+                        }
+                    }
+
+                })
+        }
+    })
+}
+
+// Write data of created habits to Firestore.s
 
 /**
  * Write data stored in passed arguments, skillsArray and toolsObject, to Firebase. 
@@ -85,15 +164,15 @@ function addData(skillsArray, toolsObject) {
 
     firebase.auth().onAuthStateChanged(function (user) {
         let userRef = db.collection("users").doc(user.uid)
-        
-        userRef.set({
-                "description": description,
-                "skills": skillsArray,
 
-            }, { merge: true })
-            userRef.update({
-                    "tools": toolsObject
-                })
+        userRef.set({
+            "description": description,
+            "skills": skillsArray,
+
+        }, { merge: true })
+        userRef.update({
+            "tools": toolsObject
+        })
             .catch((error) => {
                 console.log("Error writing document: ", error);
             })
@@ -120,6 +199,11 @@ function sayHello() {
     })
 }
 sayHello();
+
+
+
+
+
 
 
 /**
@@ -259,3 +343,5 @@ function createLocationArray(latitude, longitude) {
 document.getElementById("submit").onclick = function () {
     location.href = "user-profile.html";
 };
+
+renderPrevInfo();
