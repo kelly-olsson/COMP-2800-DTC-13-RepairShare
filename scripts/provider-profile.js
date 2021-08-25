@@ -22,7 +22,7 @@ function PopulateProviderProfile(userID) {
             var picture = doc.data().profilePicture;
 
 
-            $(".usernamegoeshere").text(name.toUpperCase());
+            $(".usernamegoeshere").text(name);
             $("#usercanhelp").text(name.toUpperCase());
             $("#about").text(description);
             $("#profile-photo").attr("src", picture);
@@ -227,7 +227,9 @@ function averageRating(userId) {
             totalrating = 0;
 
             for (let i = 0; i < reviews.length; i++) {
-                totalrating += reviews[i].rating;
+                if (typeof reviews[i].rating === "number") {
+                    totalrating += reviews[i].rating;
+                }
             }
 
             let average_rating = totalrating / reviews.length;
