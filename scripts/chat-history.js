@@ -116,9 +116,15 @@ function grabChatsAfterStateChange() {
 function noChatsYet() {
     let historyDiv = document.getElementById('history');
     let singleChatDiv = document.createElement('div');
-    let emptyText = document.createTextNode("You have no chat History!")
+    let emptyText = document.createTextNode("You have no chat History! Click here to explore your community")
+
+    let connectButton = document.createElement('a');
+    connectButton.setAttribute('href', "map-tool.html")
     singleChatDiv.appendChild(emptyText)
-    historyDiv.appendChild(singleChatDiv)
+    connectButton.appendChild(singleChatDiv)
+
+    historyDiv.appendChild(connectButton)
+
 
 }
 
