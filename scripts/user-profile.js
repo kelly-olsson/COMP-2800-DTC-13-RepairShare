@@ -29,16 +29,19 @@ function populateUser() {
                     }, 1000);
                     
 
-
-                    for (var index = 0; index < skills.length; index++) {
-                        let skill = skills[index];
-
-                        $(document).ready(function () {
-                            var $skillset = '<li>' + skill + '</li>';
-                            $("#skillsinfo").append($skillset)
-                        })
+                    if (typeof skills != "undefined") {
+                        for (var index = 0; index < skills.length; index++) {
+                            let skill = skills[index];
+    
+                            $(document).ready(function () {
+                                var $skillset = '<li>' + skill + '</li>';
+                                $("#skillsinfo").append($skillset)
+                            })
+                        }
                     }
 
+
+                    if (typeof tools != "undefined") {
                     Object.keys(tools).forEach(key => {
                         if (tools[key] == true) {
                             const toolitem = key;
@@ -50,7 +53,7 @@ function populateUser() {
 
                             })
                         } 
-                    });
+                    });}
 
                 }).catch(function (error) {
                     console.log(error)
