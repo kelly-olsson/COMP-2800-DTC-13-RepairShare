@@ -118,6 +118,7 @@ function grabReviews(providerID) {
         .then(function (doc) {
             var reviews = doc.data().reviews;
 
+            if (typeof reviews != "undefined") {
             for (let i = 0; i < reviews.length; i++) {
 
                 let WrittenReviews = reviews[i].review;
@@ -149,7 +150,7 @@ function grabReviews(providerID) {
                 postedreview.find('#reviewer-name').text(name);
                 postedreview.find('#reviewer-photo').attr("src", profilePicture);
                 $('#reviews').append(postedreview);
-            }
+            }}
         }).catch(function (error) {
             console.log(error)
         })
@@ -170,6 +171,7 @@ function filterReviews(providerID, desiredRating) {
         .then(function (doc) {
             var reviews = doc.data().reviews;
 
+            if (typeof reviews != "undefined") {
             for (let i = 0; i < reviews.length; i++) {
 
                 if (reviews[i].rating == desiredRating) {
@@ -203,7 +205,7 @@ function filterReviews(providerID, desiredRating) {
                     postedreview.find('#reviewer-photo').attr("src", profilePicture);
                     $('#reviews').append(postedreview);
                 }
-            }
+            }}
         }).catch(function (error) {
             console.log(error)
         })
@@ -223,8 +225,8 @@ function averageRating(userId) {
         .get()
         .then(function (doc) {
             var reviews = doc.data().reviews;
-
-            totalrating = 0;
+            if (reviews) {
+            let totalrating = 0;
 
             for (let i = 0; i < reviews.length; i++) {
                 if (typeof reviews[i].rating === "number") {
@@ -237,7 +239,8 @@ function averageRating(userId) {
             $("#reviewnumber").text('Average Rating: ' + average_rating.toFixed(2) + ' / 5 Stars (' + reviews.length + ' Reviews)');
             $(".starspot").append(StarCreation(average_rating));
             $("#totalreview").text(reviews.length + ' Reviews');
-
+        
+        }
         }).catch(function (error) {
             console.log(error)
         })
