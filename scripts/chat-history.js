@@ -7,17 +7,23 @@ function createAndInsertChatHistory(allChatInfo) {
     for (let i = 0; i < allChatInfo.length; i++) {
         let chatID = allChatInfo[i][1]
         let receiverName = allChatInfo[i][3]
-        let recieverPic = allChatInfo[i][4]
+        let profilePic = allChatInfo[i][4]
+        let receiverPic = allChatInfo[i][5]
         let historyDiv = document.getElementById('history');
         let singleChatDiv = document.createElement('div');
-        let link = document.createTextNode(receiverName);
+        let name = document.createTextNode(receiverName);
         let connectButton = document.createElement('a');
-        connectButton.appendChild(link)
+        let img = document.createElement('img');
+        img.src = receiverPic
+        singleChatDiv.appendChild(img)
+        singleChatDiv.appendChild(name)
         connectButton.setAttribute('href', "personal-chat.html?id=" + chatID)
-        singleChatDiv.appendChild(connectButton)
-        historyDiv.appendChild(singleChatDiv)
+        connectButton.appendChild(singleChatDiv)
+        historyDiv.appendChild(connectButton)
     }
 }
+
+
 
 
 /**
@@ -28,6 +34,7 @@ function createAndInsertChatHistory(allChatInfo) {
 function getChatData(uniqueChatlist) {
     var allChatInfo = [];
     let chatIdArray = [];
+
     for (let i = 0; i < uniqueChatlist.length; i++) {
         chatIdArray.push(uniqueChatlist[i])
     }
@@ -43,9 +50,11 @@ function getChatData(uniqueChatlist) {
                 singleChatInfo.push(doc.id)//allchatinfo[i][2]
                 singleChatInfo.push(doc.data().receiverName)//allchatinfo[i][3]
                 singleChatInfo.push(doc.data().profilePicUrl)//allchatinfo[i][4]
+                singleChatInfo.push(doc.data().receiverPic)//allchatinfo[i][5]
                 allChatInfo.push(singleChatInfo)
             })
             var myFinalList = removeDuplicates(allChatInfo)
+
             createAndInsertChatHistory(myFinalList)
 
         })
@@ -67,7 +76,7 @@ function removeDuplicates(allChatInfo) {
     let uidList = []
     for (let i = 0; i < allChatInfo.length; i++) {
         if (uidList.includes(allChatInfo[i][1])) {
-            console.log(allChatInfo[i][1]);
+            console.log("Duplicate");
         }
         else {
             uidList.push(allChatInfo[i][1])
@@ -91,10 +100,32 @@ function grabChatsAfterStateChange() {
 
                 })
                 let uniqueChatlist = [...new Set(chatList)]
-                getChatData(uniqueChatlist)
+
+                if (uniqueChatlist.length === 0) {
+                    noChatsYet();
+                } else {
+                    getChatData(uniqueChatlist)
+                }
+
+
             });
         }
     })
+}
+
+function noChatsYet() {
+    let historyDiv = document.getElementById('history');
+    let singleChatDiv = document.createElement('div');
+    let emptyText = document.createTextNode("You have no chat History! Click here to explore your community")
+
+    let connectButton = document.createElement('a');
+    connectButton.setAttribute('href', "map-tool.html")
+    singleChatDiv.appendChild(emptyText)
+    connectButton.appendChild(singleChatDiv)
+
+    historyDiv.appendChild(connectButton)
+
+
 }
 
 /**
@@ -119,5 +150,7 @@ async function grabAllChatsWithUserId() {
     return chatArray;
 }
 
-
+setTimeout(() => {
+    $("#loading").hide();
+}, 1500);
 grabChatsAfterStateChange();
