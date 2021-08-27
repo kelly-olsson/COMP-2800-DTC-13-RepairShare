@@ -170,6 +170,7 @@ async function saveMessage(messageText) {
  * Loads chat messages based on the chatID that is unique to the two users and listens for upcoming ones.
  * 
  */ function loadMessages() {
+  let profilePic = getProfilePicUrl()
   var query = firebase.firestore()
     .collection('messages')
     .where('chat', '==', chatID)
@@ -183,7 +184,7 @@ async function saveMessage(messageText) {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+          message.text, profilePic, message.imageUrl);
       }
     });
   });
@@ -271,7 +272,6 @@ function onMessageFormSubmit(e) {
 async function authStateObserver(user) {
   let loggedInUser = firebase.auth().currentUser.uid
   let recieverID = extractReceiverIdfromChatId(chatID, loggedInUser)
-
   let picOfReceiver = await getReceiverPic(recieverID);
   let nameOfReceiver = await getReceiverName(recieverID);
 
@@ -281,6 +281,7 @@ async function authStateObserver(user) {
     var profilePicUrl = picOfReceiver;
     var userName = nameOfReceiver;
 
+
     // Set the user's profile pic and name.
     userPicElement.style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(profilePicUrl) + ')';
     userNameElement.textContent = userName;
@@ -288,18 +289,12 @@ async function authStateObserver(user) {
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
     userPicElement.removeAttribute('hidden');
-    signOutButtonElement.removeAttribute('hidden');
+    userPicAnchor.setAttribute('href', 'provider-profile.html?id=' + recieverID);
 
-    // Hide sign-in button.
-    //  signInButtonElement.setAttribute('hidden', 'true');
-
-    // We save the Firebase Messaging Device token and enable notifications.
-    saveMessagingDeviceToken();
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
     userPicElement.setAttribute('hidden', 'true');
-    signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
     //  signInButtonElement.removeAttribute('hidden');
@@ -446,6 +441,7 @@ function checkSetup() {
   }
 }
 
+
 // Checks that Firebase has been imported.
 checkSetup();
 
@@ -459,6 +455,8 @@ var imageFormElement = document.getElementById('image-form');
 var mediaCaptureElement = document.getElementById('mediaCapture');
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
+var userPicAnchor = document.getElementById('user-pic-anchor');
+
 //  var signInButtonElement = document.getElementById('sign-in');
 //  var signOutButtonElement = document.getElementById('sign-out');
 var signInSnackbarElement = document.getElementById('must-signin-snackbar');

@@ -37,7 +37,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-  <link rel="manifest" href="/icons/site_manifest.json">
+  <link rel="manifest" href="/icons/manifest.json">
   <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#ffcd05">
   <meta name="msapplication-TileColor" content="#ffcd05">
   <meta name="theme-color" content="#ffcd05">
@@ -53,7 +53,7 @@
           <h3 id="upper-left-brand"> RepairShare Chat</h3>
         </div>
         <div id="user-container">
-          <div hidden id="user-pic"></div>
+          <a id="user-pic-anchor"><div hidden id="user-pic"></div></a>
           <div hidden id="user-name"></div>
         </div>
       </div>
@@ -97,18 +97,16 @@
     </main>
     <footer>
       <div class="navbar" id="bottomfooter">
-        <a href="homepage.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
-            data-inline="false" data-height="48"></span></a>
-        <a href="blank.html"><span id="iconifyFooter" class="iconify" data-icon="oi:magnifying-glass"
-            data-inline="false" data-height="48"></span></a>
-        <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech" data-inline="false"
-            data-height="48"></span></a>
-        <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker" data-inline="false"
-            data-height="48"></span></a>
-        <a href="user-profile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile" data-inline="false"
-            data-height="48"></span></a>
+          <a href="homepage.html"><span id="iconifyFooter" class="iconify" data-icon="fluent:home-12-filled"
+                  data-inline="false" data-height="48"></span></a>
+          <a href="chat-history.html"><span id="iconifyFooter" class="iconify" data-icon="cil:speech"
+                  data-inline="false" data-height="48"></span></a>
+          <a href="map-tool.html"><span id="iconifyFooter" class="iconify" data-icon="el:map-marker"
+                  data-inline="false" data-height="48"></span></a>
+          <a href="user-profile.html"><span id="iconifyFooter" class="iconify" data-icon="vs:profile"
+                  data-inline="false" data-height="48"></span></a>
       </div>
-    </footer>
+  </footer>
   </div>
 
   <script src="/__/firebase/8.6.1/firebase-app.js"></script>

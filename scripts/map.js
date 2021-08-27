@@ -131,11 +131,14 @@ function mapDetailWindow(userID, i) {
 function calculateRating(reviews) {
 
     let totalrating = 0;
+    let average_rating = 0;
+    if (typeof reviews != "undefined") {
 
     for (let i = 0; i < reviews.length; i++) {
         totalrating += reviews[i].rating;
     }
-    let average_rating = totalrating / reviews.length;
+    average_rating = totalrating / reviews.length;
+    }
     return average_rating
 }
 
@@ -260,6 +263,23 @@ function addSubmitListener() {
     removeMarkers(markersList);
     getLocation(toolKeyword);
 }
+
+
+// map.addListener(marker, 'click', function() {
+//     if(!marker.open){
+//         infoWindow.open(map,marker);
+//         marker.open = true;
+//         console.log("MAHANANANANAN")
+//     }
+//     else{
+//         infoWindow.close();
+//         marker.open = false;
+//     }
+//     map.addListener(map, 'click', function() {
+//         infoWindow.close();
+//         marker.open = false;
+//     });
+// });
 
 submitButton.onclick = addSubmitListener;
 initMap();
