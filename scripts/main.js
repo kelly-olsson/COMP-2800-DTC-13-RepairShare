@@ -150,6 +150,7 @@ async function saveMessage(messageText) {
  * 
  */
 function loadMessages() {
+  let profilePic = getProfilePicUrl()
   let loggedInUser = firebase.auth().currentUser.uid
   chatID = createchatId(user_identification, loggedInUser);
   var query = firebase.firestore()
@@ -165,7 +166,7 @@ function loadMessages() {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+          message.text, profilePic, message.imageUrl);
       }
     });
   });
@@ -269,18 +270,14 @@ async function authStateObserver(user) {
     // Show user's profile and sign-out button.
     userNameElement.removeAttribute('hidden');
     userPicElement.removeAttribute('hidden');
-    signOutButtonElement.removeAttribute('hidden');
+    userPicAnchor.setAttribute('href', 'provider-profile.html?id=' + user_identification);
 
-    // Hide sign-in button.
-    //  signInButtonElement.setAttribute('hidden', 'true');
 
-    // We save the Firebase Messaging Device token and enable notifications.
-    saveMessagingDeviceToken();
+
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
     userPicElement.setAttribute('hidden', 'true');
-    signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
     //  signInButtonElement.removeAttribute('hidden');
@@ -440,6 +437,7 @@ var imageFormElement = document.getElementById('image-form');
 var mediaCaptureElement = document.getElementById('mediaCapture');
 var userPicElement = document.getElementById('user-pic');
 var userNameElement = document.getElementById('user-name');
+var userPicAnchor = document.getElementById('user-pic-anchor');
 var signInSnackbarElement = document.getElementById('must-signin-snackbar');
 
 // Saves message on form submit.
