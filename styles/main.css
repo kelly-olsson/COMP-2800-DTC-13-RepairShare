@@ -176,36 +176,7 @@ main, #messages-card {
 #mediaCapture {
   display: none;
 }
-@media screen and (max-width: 610px) {
-  header {
-    height: 113px;
-    padding-bottom: 80px !important;
-  }
-  #user-container {
-    top: 72px;
-    background-color: #5e96ae;
-    height: 38px;
-    padding-top: 3px;
-    padding-right: 2px;
-  }
-  #user-container #user-pic {
-    top: 2px;
-    width: 33px;
-    height: 33px;
-    background-size: 33px;
-  }
-}
-.mdl-textfield__label:after {
-  background-color: #5e96ae;
-}
-.mdl-textfield--floating-label.is-focused .mdl-textfield__label{
-  color: #5e96ae;
-  font-size: 0.9em;
-}
-.mdl-button .material-icons {
-  top: -1px;
-  margin-right: 5px;
-}
+
 #bottomfooter {
   background-color: white;
   overflow: hidden;
@@ -225,65 +196,4 @@ main, #messages-card {
 #iconifyFooter {
   width: 4vh;
   height: 4vh;
-}
-
-@media screen and (min-width: 1000px) {
-  main, #messages-card {
-    margin: 0px 0px 130px 0px;
-    width: 100%;
-  } 
-  #messages {
-    overflow-y: auto;
-    margin-bottom: 10px;
-    height: calc(96% - 80px);
-    display: flex;
-    flex-direction: column;
-  }
-  #message{
-    height: 2.5em;
-    padding: 3em 0em 0em 0em;
-  }
-  #main-header {
-    height: 2em;
-    font-size: 8em;
-  }
-  #upper-left-brand{
-    font-size: 1em;
-    height: 1em;
-  }
-  #message.mdl-textfield__input{
-    padding: 0em;
-  }
-  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.is-upgraded{
-    font-size: 1.3em; /*Enlarged text when not focused on*/
-  }
-  .mdl-textfield__label {
-    font-size: 5em;
-    padding: 0.3em 0em 0em 0em;
-  }
-  .mdl-textfield__input{
-    font-size: 4em;  /* This will change the text you type*/
-    padding: 0em;
-  }
-  .mdl-textfield--floating-label.is-focused{
-    font-size: 3em; /*This is message after being clicked*/
-    padding: 0em 0em 3em 0em; /*Pushes the "message..." text up after being clicked*/
-  }
-  #message-form{
-    width: 100%; /*Control width of input bar */
-  }
-  button#submit{
-    width: 4em;
-    height: 3em;
-    padding: 0.5em;
-    font-size: 3em;
-  }
-  button#submitImage{
-    width: 8.5em; /*These will adjust the yellow background on the image submit button*/
-    height: 8.5em;
-    padding: 0em 0.2em 0em 0em; /*padding between submit image and yellow background*/
-  }
-  i#image-only{
-    font-size: 88px
-  }
 }

@@ -15,21 +15,33 @@ function populateUser() {
                     var skills = doc.data().skills;
                     var tools = doc.data().tools;
                     var picture = doc.data().profilePicture;
-
+                    var dateJoined = new Date(firebase.auth().currentUser.metadata.creationTime);
                     $("#usernamegoeshere").text(name.toUpperCase());
+                    // $("#dateJoined").text(dateJoined);
                     $("#usercanhelp").text(name.toUpperCase());
                     $("#about").text(description);
                     $("#profile-photo").attr("src", picture);
 
-                    for (var index = 0; index < skills.length; index++) {
-                        let skill = skills[index];
+                    //this function, hides the "buffering" div after 1sec to ensure 
+                    //that all the doms have been properly rendered based on the fetched data first
+                    setTimeout(() => {
+                        $("#loading").hide();
+                    }, 1000);
+                    
 
-                        $(document).ready(function () {
-                            var $skillset = '<li>' + skill + '</li>';
-                            $("#skillsinfo").append($skillset)
-                        })
+                    if (typeof skills != "undefined") {
+                        for (var index = 0; index < skills.length; index++) {
+                            let skill = skills[index];
+    
+                            $(document).ready(function () {
+                                var $skillset = '<li>' + skill + '</li>';
+                                $("#skillsinfo").append($skillset)
+                            })
+                        }
                     }
 
+
+                    if (typeof tools != "undefined") {
                     Object.keys(tools).forEach(key => {
                         if (tools[key] == true) {
                             const toolitem = key;
@@ -40,12 +52,19 @@ function populateUser() {
                                 $("#toolz").append($toolkit);
 
                             })
-                        }
-                    })
+                        } 
+                    });}
+
+                }).catch(function (error) {
+                    console.log(error)
+                    console.log("got error")
+                    //set the loader to falser if the .then fails
                 })
         }
     })
 }
+
+
 
 
 /**
@@ -150,13 +169,14 @@ function grabReviews() {
                 .get()
                 .then(function (doc) {
                     var reviews = doc.data().reviews;
-
+                    if (typeof reviews !== 'undefined'){
                     for (let i = 0; i < reviews.length; i++) {
 
                         let WrittenReviews = reviews[i].review;
                         let rating = reviews[i].rating;
                         let name = reviews[i].name;
                         let profilePicture = reviews[i].profilePicture;
+                        
 
 
                         var postedreview = $('<div id="reviews"></div>');
@@ -182,6 +202,8 @@ function grabReviews() {
                         postedreview.find('#reviewer-name').text(name);
                         postedreview.find('#reviewer-photo').attr("src", profilePicture);
                         $('#reviews').append(postedreview);
+                    }} else {
+                        console.log("There are no reviews")
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -209,7 +231,7 @@ function filterReviews(desiredRating) {
                 .get()
                 .then(function (doc) {
                     var reviews = doc.data().reviews;
-
+                    if (typeof reviews !== 'undefined'){
                     for (let i = 0; i < reviews.length; i++) {
 
                         if (reviews[i].rating == desiredRating) {
@@ -222,8 +244,7 @@ function filterReviews(desiredRating) {
                             var postedreview = $('<div id="reviews"></div>');
                             var cardformat = $('<div class="card"></div>');
                             var cardclass = $('<div class="card-header"></div>');
-                            var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=> <div id= "thisagain"></div></div>');
-                            var cardbody = $('<div class="card-body"></div>');
+                            var avatar = $('<div class="avatar"> <img id="reviewer-photo" src=https://randomuser.me/api/portraits/men/66.jpg> <div id= "thisagain"></div></div>');                            var cardbody = $('<div class="card-body"></div>');
                             var blockquote = $('<blockquote class="blockquote mb-0"> </blockquote>');
                             var reviewerstatement = $('<p id="reviewer-statement"></p>');
                             var reviewername = $('<footer id="reviewer-name" class="blockquote-footer"> Francis Boomer <cite title="Source Title"></cite>');
@@ -243,6 +264,8 @@ function filterReviews(desiredRating) {
                             postedreview.find('#reviewer-photo').attr("src", profilePicture);
                             $('#reviews').append(postedreview);
                         }
+                    }} else {
+                        console.log("There are no reviews to filter.")
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -256,7 +279,7 @@ function filterReviews(desiredRating) {
  * Click event listener for button with Id of 'deleteaccount' which deletes all of a logged in user's information from firebase. 
  */
 
- document.getElementById("deleteaccount").onclick = function () {
+document.getElementById("deleteaccount").onclick = function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var confirmDelete = confirm("Are you sure you want to delete your profile?")
@@ -284,7 +307,7 @@ function filterReviews(desiredRating) {
  * Click event listener that grabs value from filter drop down window, accepts a value between 1-5. 
  */
 
- document.getElementById("filterbutton").addEventListener("click", function () {
+document.getElementById("filterbutton").addEventListener("click", function () {
     let search_number = parseInt($("#searchRating")[0].value);
     $("#reviews").empty();
     filterReviews(search_number);
@@ -296,7 +319,7 @@ function filterReviews(desiredRating) {
  * Click event listener for button with Id of "enter-info", which redirects a user to form.html. 
  */
 
- document.getElementById("enter-info").onclick = function () {
+document.getElementById("enter-info").onclick = function () {
     location.href = "form.html";
 };
 
