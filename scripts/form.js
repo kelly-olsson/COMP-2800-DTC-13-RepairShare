@@ -69,12 +69,7 @@ function createToolsObject() {
     }
     return toolsObject
 }
-////////////////////////////
 
-
-
-
-//TEST TEST    TEST    TEST    TEST    TEST
 
 /**
  * Populates the profile-update-form page with the user's current info.
@@ -89,12 +84,6 @@ function renderPrevInfo() {
                     let description = doc.data().description;
                     let skills = doc.data().skills;
                     let tools = doc.data().tools;
-
-                    // let name = doc.data().name;
-                    // let picture = doc.data().profilePicture;
-                    // let dateJoined = new Date(firebase.auth().currentUser.metadata.creationTime);
-
-
 
                     $("#user-description").text(description)
 
