@@ -1,8 +1,4 @@
 
-// var previousWidth = $(window).previousWidth();
-console.log("oout")
-
-
     $(window).resize(function() {
         let currentWidth = $(window).width();
         let threshold = 641;
