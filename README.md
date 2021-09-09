@@ -1,6 +1,3 @@
-## COMP-2800-Projects-2-Team-13
-Projects 2 Coursework! 
-
 ## RepairShare
 
 * [Developers](#developers)
@@ -8,7 +5,7 @@ Projects 2 Coursework!
 * [Technologies](#technologies)
 * [Sources](#sources)
 * [Roadmap](#roadmap)
-* [Contributing & Installation](#Contributing-and-Installation)
+* [Contributing & Installation](#contributing-and-installation)
 
 ## Developers
 Kelly Olsson
@@ -20,6 +17,8 @@ Mahan Esmaeilzadeh
 Maximilian Anderson-Baier
 
 ## General Info
+
+[Informational Video](https://youtu.be/zASKVtyS77E)
 
 Repair Share is a mobile-first web application that encourages community connection through facilitating the sharing of tools and repair knowledge. Our goal is to create a space in which people can learn and foster friendships within their city while promoting reusability and a circular economy. 
 	
