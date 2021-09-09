@@ -4,17 +4,16 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Sources](#sources)
-* [Roadmap](#roadmap)
 * [Contributing & Installation](#contributing-and-installation)
 
 ## Developers
-Kelly Olsson
+[Kelly Olsson](https://github.com/kelly-olsson)
 <br>
-Hannah Kuo
+[Hannah Kuo](https://github.com/hannah-kuo)
 <br>
-Mahan Esmaeilzadeh
+[Mahan Esmaeilzadeh](https://github.com/MahanZadeh)
 <br>
-Maximilian Anderson-Baier
+[Maximilian Anderson-Baier](https://github.com/MaxAndersonBaier)
 
 ## General Info
 
@@ -60,12 +59,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-
-## Roadmap
-* Implmenting a Help Request Board
-* Optimizing tools and skills search on map search page
-* Adding more exciting features to RepairShare 
 
 
 ## Contributing-and-Installation
