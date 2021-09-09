@@ -93,9 +93,9 @@ A contributing developer will need to download the following APIs:
 
 The API keys can be found below, but are also included in the file: 
 
-Google Map API: AIzaSyAnPKEQ1r5Z2vh8V9G-N9WRPLSou7spnJE
-Firebase API: AIzaSyAdM3ePl65L34esirhXE7smv_aUNjECrnc
-Facebook App ID: 406396073699983
+Google Map API
+Firebase API
+Facebook App ID
 
 ### Installation location 
 
