@@ -49,5 +49,17 @@ The project can be set up in any IDE, though Visual Studio Code is recommended. 
 ### Testing
 Access our [Testing Plan](https://bit.ly/3c2DxOy). For automated tests, refer to `DTC-Team13-SeleniumTests.side` in the `Testing` folder.
 
+## Sources
+We have utilized a variety of resources:
+- [Twitter JavaScript API Documentation](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/set-up-twitter-for-websites)
+- [Stack Overflow: Multiple Rating Bars Calculation](https://stackoverflow.com/questions/47871201/calculate-values-for-multiple-rating-bars)
+- [Firebase Web Codelab](https://firebase.google.com/codelabs/firebase-web#0)
+- [Stack Overflow: Firebase Data Filtering](https://stackoverflow.com/a/47781432/4816918)
+- [Google Maps JavaScript API Overview](https://developers.google.com/maps/documentation/javascript/overview)
+- [Stack Overflow: Google Maps Multiple Marker Example](https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example)
+- [Firebase Authentication Example](https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js)
+- [Geolocation API - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)
+- [Firebase Setup Documentation](https://firebase.google.com/docs/web/setup)
+
 ## License
 Licensed under the Apache License, Version 2.0. [More information](http://www.apache.org/licenses/LICENSE-2.0).
