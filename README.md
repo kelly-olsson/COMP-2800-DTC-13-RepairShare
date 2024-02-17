@@ -38,15 +38,15 @@ We extend our gratitude to the following resources that have been instrumental i
 
 Full list of resources can be found [here](#sources).
 
-### Prerequisites
+## Prerequisites
 - Google Maps API Key
 - Firebase API Key
 - Facebook App ID
 
-### Installation
+## Installation
 The project can be set up in any IDE, though Visual Studio Code is recommended. Installation order is not critical.
 
-### Testing
+## Testing
 Access our [Testing Plan](https://bit.ly/3c2DxOy). For automated tests, refer to `DTC-Team13-SeleniumTests.side` in the `Testing` folder.
 
 ## Sources
