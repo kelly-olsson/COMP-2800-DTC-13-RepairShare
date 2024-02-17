@@ -12,7 +12,7 @@ A community-driven web application fostering the sharing of tools and repair kno
 ## Introduction
 RepairShare is a mobile-first web application designed to connect communities through the sharing of tools and repair expertise. Our mission is to cultivate learning and friendships while promoting sustainability and a circular economy.
 
-[Watch our Demo Video](https://youtu.be/zASKVtyS77E)
+[Watch Our Demo Video](https://youtu.be/zASKVtyS77E)
 
 ## Team
 - [Kelly Olsson](https://github.com/kelly-olsson)
