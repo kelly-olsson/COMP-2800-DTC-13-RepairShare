@@ -28,6 +28,7 @@ RepairShare utilizes:
 - Firebase, Firestore noSQL Database
 - Google Maps API
 - Facebook App ID
+- Selenium IDE
 
 ## Acknowledgements
 We extend our gratitude to the following resources that have been instrumental in the development of RepairShare:
@@ -42,6 +43,7 @@ Full list of resources can be found [here](#sources).
 - Google Maps API Key
 - Firebase API Key
 - Facebook App ID
+- Selenium IDE
 
 ## Installation
 The project can be set up in any IDE, though Visual Studio Code is recommended. Installation order is not critical.
