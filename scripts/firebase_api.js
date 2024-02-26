@@ -5,7 +5,7 @@
  * 
  */
 
-import firebaseConfig from "./firebase-config";
+import firebaseConfig from "./firebase-config.js";
 
 /**
  * Initialize Firebase.
