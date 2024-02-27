@@ -1,3 +1,5 @@
+import { db } from './firebase_api.js';
+
 /* Pull userID from URL */
 const params = new URLSearchParams(window.location.search);
 
