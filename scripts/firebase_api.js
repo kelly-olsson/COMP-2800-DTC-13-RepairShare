@@ -16,6 +16,6 @@ import firebaseConfig from "./firebase-config.js";
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 export const auth = firebase.auth();
-var storage = firebase.storage();
+export var storage = firebase.storage();
 
 db.settings({timestampInSnapshots: true});

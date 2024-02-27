@@ -4,6 +4,8 @@
  * Click event listener for submit button which adds arrays created by helper functions createSkillsArray() and createToolsObject() and adds them to firebase.  
  */
 
+import { db, storage } from './firebase_api.js';
+
 function addSubmitListener() {
     document.getElementById("submit").addEventListener("click", function () {
         let skillsArray = createSkillsArray();
@@ -62,7 +64,7 @@ function createSkillsArray() {
 
 function createToolsObject() {
 
-    toolsObject = {};
+    var toolsObject = {};
     var toolsCheckboxes = document.querySelectorAll('input[name=toolcheck]:checked'); //Select all inputs that have their name as "toolcheck" and are CHECKED
     for (var i = 0; i < toolsCheckboxes.length; i++) {
         toolsObject[toolsCheckboxes[i].id] = true;
@@ -242,7 +244,7 @@ function uploadUserProfilePic(userUid) {
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        userId = user.uid;
+        var userId = user.uid;
         db.collection("users").doc(user.uid).get().then(function (user) {
             uploadUserProfilePic(userId);
         });
@@ -272,11 +274,11 @@ var options = {
 function success(pos) {
     var crd = pos.coords;
 
-    locationArray = createLocationArray(crd.latitude, crd.longitude);
+    var locationArray = createLocationArray(crd.latitude, crd.longitude);
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            userId = user.uid;
+            var userId = user.uid;
             db.collection("users").doc(user.uid)
                 .update({
                     "location": locationArray
@@ -315,7 +317,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 
 
 function createLocationArray(latitude, longitude) {
-    locationArray = [];
+    var locationArray = [];
 
     locationArray.push(latitude);
     locationArray.push(longitude);
