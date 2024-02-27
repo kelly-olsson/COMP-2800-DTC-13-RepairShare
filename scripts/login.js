@@ -3,6 +3,9 @@
  * Adapted from Hannah's previous project: https://github.com/ogharambae/webapp_template_grp_7/blob/main/scripts/login.js
  *
  */
+
+import { db } from './firebase_api.js';
+
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {

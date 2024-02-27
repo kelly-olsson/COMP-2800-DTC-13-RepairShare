@@ -3,6 +3,8 @@
  * 
  */
 
+import { db } from './firebase_api.js';
+
 function populateUser() {
     firebase.auth().onAuthStateChanged(function (somebody) {
         if (somebody) {

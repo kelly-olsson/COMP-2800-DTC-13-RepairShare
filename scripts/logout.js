@@ -5,6 +5,9 @@ const logout = document.querySelector("#logout")
  * Code taken from: https://github.com/iamshaunjp/firebase-auth/blob/lesson-6/scripts/auth.js
  * 
  */
+
+import { auth } from './firebase_api.js';
+
 logout.addEventListener("click", (event) => {
     event.preventDefault;
     auth.signOut().then(() => {
