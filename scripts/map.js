@@ -1,3 +1,5 @@
+import { db } from './firebase_api.js';
+
 var toolProviders;
 var map;
 var markersList = []
@@ -21,6 +23,8 @@ function initMap() {
     }
 
 }
+
+// window.initMap = initMap; // Make initMap accessible globally
 
 /**
  * Render a div with a set of stars (between 1-5), as determined by ratingscore. 
@@ -194,7 +198,7 @@ function getLocation(toolKeyword) {
  */
 function zoomBasedonMarkers(markers) {
     var bounds = new google.maps.LatLngBounds();
-    for (i = 0; i < markers.length; i++) {
+    for (let i = 0; i < markers.length; i++) {
         bounds.extend(markers[i].getPosition());
     }
     map.setCenter(bounds.getCenter());
